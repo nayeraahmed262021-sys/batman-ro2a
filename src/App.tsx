@@ -17,11 +17,129 @@ const IMAGES = {
   gallery6: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA9O7PZdEsEmYUPQGPQn3YGiFoORx4052ougXoRDNooJLv1UR0DL7Ie16_xKHQPuagPqppxs0ZOIrXwBfMb2CRloqrxyUYJZIAnyBVgxq7P63NXd_ch3Ht2ZPiED2f69qZLdEar1SaVDfhtfPlcdYqYIMbTIlwqPgbPt_QhYCSe-Yn9T_BdZ9Nl_utuRZL5ebhApVVQzjnmNlxi-U3p-WUYuaUUGWP3zrQnPiXrcaHx9wpVflvmoxUDag'
 };
 
+// 2000s Nostalgia & Fino Quiz Data
+const FINO_QUIZ_QUESTIONS = [
+  {
+    q: 'السندوتش الفينو اللي كان بيقعد في كيس نايلون من 7 الصبح لحد الحصة الأخيرة.. كان بيبقى إيه وسره إيه؟ 🥖',
+    options: [
+      'جبنة بيضا دمياطي مع خيار دبلان مبلول (ساندوتش كلاسيك معصور)',
+      'حلاوة طحينية سايحة ملزقة في سقف الحلق',
+      'لانشون حلواني بايت من يوم الخميس وريحته واصلة لحوش المدرسة',
+      'كل ما سبق، وده كان سر المناعة القومية لجيل الألفينات 🛡️'
+    ],
+    correct: 3,
+    comment: 'بالظبط! ميكس المناعة الخارق اللي خلى الجيل يقف على رجليه ضد أي برد أو زعل!'
+  },
+  {
+    q: 'لما كارت نت الـ 10 جنيه كان بيقرب يخلص في شات الياهو ماسنجر سنة 2005.. الجملة الرسمية كانت: 💬',
+    options: [
+      'brb tyt ya basha w tc (هقوم اتعشى وراجع على مهلك وخلي بالك من نفسك)',
+      'مسألة جبر للثانوية العامة',
+      'شفرة سرية بيفتحوا بيها سايبر الفرسان بعد العشا',
+      'ألو حول يا جوثام كارت الشحن طار'
+    ],
+    correct: 0,
+    comment: 'لغة عصر العمالقة! tyt و brb و tc و w8 و cya.. اختصارات أعظم من الذكاء الاصطناعي!'
+  },
+  {
+    q: 'اسم الفولدر السري اللي كان محطوط على كمبيوتر البيت جواه كليب عمرو دياب وحلقات سبيستون؟ 📁',
+    options: [
+      'New Folder (2) جواه New Folder (3) مستخبي في ملفات الويندوز',
+      'أحدث أغاني وكليبات صيف 2004',
+      'ملفات هامة لشغل بابا ممنوع اللمس ⚠️',
+      'clip_final_amr_diab_حقيقي_بلوتوث.3gp'
+    ],
+    correct: 0,
+    comment: 'طبعاً! الفولدر المستخبي جوا C:\\WINDOWS عشان محدش من البيت يدخل يمسحه بالغلط!'
+  },
+  {
+    q: 'فك الشفرة الفرانكو الذكية دي: "3ala fekra enta a7la batman w ba7ebak gdn 2"؟ 🔢',
+    options: [
+      'على فكرة أنت أحلى باتمان وبحبك جداً جداً 💙',
+      'معادلة كيمياء لتحضير الجبنة الرومي المقلية',
+      'كود كول تون إيهاب توفيق سنة 2006',
+      'باسورد شبكة واي فاي السايبر'
+    ],
+    correct: 0,
+    comment: 'صح 100%! شفرة فرانكو أصلية بتعترف بأعلى درجات الحب لباتمان!'
+  },
+  {
+    q: 'لو خالتك شافت باتمان لابس الكاب الأسود وماشي فوق السطوح الساعة 7 الصبح في طوبة.. هتقوله إيه؟ 👵🦇',
+    options: [
+      'انزل يا ابني هتسقع.. خدلك سندوتش جبنة رومي في إيدك! 🥖',
+      'إيه الشياكة دي يا جوثام.. ما شاء الله تبارك الله',
+      'متنساش تصبح على طنط ميرفت في جروب العيلة 🌹',
+      'هو أنت ابن الحاج عبدالرحمن؟ الشبه باين سبحان الله'
+    ],
+    correct: 0,
+    comment: 'مستحيل الست المصرية تسيبك تنزل تحارب الجريمة ومعدتك فاضية من غير فينو وشاي بلبن!'
+  }
+];
+
+// Family WhatsApp Cards Data
+const FAMILY_GROUP_CARDS = [
+  {
+    greeting: '🌹 صباح الورد والياسمين والفل 🌹',
+    body: 'أجمل صباح على عيون الغالي بوني.. نهارك أبيض ومشرق زي رغيف الفينو الطازة الخارج من الفرن، وربنا يبعد عنك عيون الحاسدين وعصابات جوثام! 🧿🥖',
+    dua: 'اللهم ارزق بوني راحة البال وسندوتشات جبنة رومي لا تنتهي.. أرسلها لـ 7 تضمن الروقان اليوم! ✨',
+    sticker: '☕ صباح الفل مع شاي بلبن',
+    bg: 'from-amber-900/40 via-rose-950/40 to-yellow-950/40'
+  },
+  {
+    greeting: '💖 جمعة مباركة يا غاليين 💖',
+    body: 'نصيحة صباحية من جروب العيلة لباتمان: لا تخرج لمحاربة الأشرار ومعدتك فارغة، فإن سندوتش الفينو سلاح لا يستهان به! 🥖🦇',
+    dua: 'اللهم اجعل أيام بوني كلها عسل وضحك ومحبة.. ولا ترنا فيه سوءاً أبداً 🤲',
+    sticker: '🕊️ جمعة طيبة ومعطرة بذكر الله',
+    bg: 'from-emerald-950/40 via-teal-950/40 to-slate-900/40'
+  },
+  {
+    greeting: '🌸 ورود وأزهار لقلب بوني 🌸',
+    body: 'تنبيه عاجل من خالتك: تم رصد كائن وسيم وقمور لابس كاب أسود، يرجى تقديم كوباية شاي بلبن سخنة وبسكوت فيري له فوراً! ☕🍪',
+    dua: 'من يقرأ هذه الرسالة يبتسم ويكتب تم في التعليقات فوراً! 🌹',
+    sticker: '💐 باقة ورد من بستان العائلة',
+    bg: 'from-purple-950/40 via-pink-950/40 to-slate-900/40'
+  },
+  {
+    greeting: '✨ حكمة الألفينات الخالدة ✨',
+    body: 'إذا كان حبيبك باتمان، فاعمليله سندوتش حلاوة بالقشطة ومتقلقيش من الجريمة في المدينة! الفينو أساس البناء والمناعة 💪🥖',
+    dua: 'دمت لنا فخراً وسنداً يا أجدع بوني في الدنيا 💙',
+    sticker: '🥖 وسام الفينو الذهبي',
+    bg: 'from-amber-950/40 via-orange-950/40 to-slate-900/40'
+  },
+  {
+    greeting: '💌 رسالة متداولة عبر البلوتوث 2004 💌',
+    body: 'رسالة خاصة لـ BATMAN: أرسلها لعشرة أشخاص وستسمع خبراً جميلاً خلال ساعتين، وإذا تجاهلتها سيفرغ شحن موبايلك النوكيا الليلة! 📱⚡',
+    dua: 'ربنا يحفظك ويسعدك يا حبيب قلوبنا 🤍',
+    sticker: '📲 نوكيا 3310 لا ينكسر',
+    bg: 'from-blue-950/40 via-indigo-950/40 to-slate-900/40'
+  }
+];
+
 export default function App() {
   // Audio state
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrackId, setCurrentTrackId] = useState<string | null>(null);
   const [currentTrackTitle, setCurrentTrackTitle] = useState<string>('الموسيقى: متوقفة');
+
+  // 2000s & Fino Hub State
+  const [finoTab, setFinoTab] = useState<'quiz' | 'family' | 'sandwich'>('quiz');
+
+  // Quiz state
+  const [quizIndex, setQuizIndex] = useState<number>(0);
+  const [quizScore, setQuizScore] = useState<number>(0);
+  const [quizSelected, setQuizSelected] = useState<number | null>(null);
+  const [quizShowFeedback, setQuizShowFeedback] = useState<boolean>(false);
+  const [quizDone, setQuizDone] = useState<boolean>(false);
+
+  // Family WhatsApp cards
+  const [familyIndex, setFamilyIndex] = useState<number>(0);
+  const [familyCopied, setFamilyCopied] = useState<boolean>(false);
+
+  // Sandwich builder
+  const [sandwichBread, setSandwichBread] = useState<string>('فينو طازة بينقط سمسم 🥖');
+  const [sandwichFilling, setSandwichFilling] = useState<string>('جبنة رومي قديمة مشعوطة 🧀');
+  const [sandwichExtra, setSandwichExtra] = useState<string>('كيس شيبسي طماطم مفروم جواه 🥔');
+  const [sandwichMade, setSandwichMade] = useState<boolean>(false);
 
   // Chaos mode gate state
   const [isChaosOpen, setIsChaosOpen] = useState<boolean>(false);
@@ -160,6 +278,84 @@ export default function App() {
   const exitChaosMode = () => {
     setIsChaosOpen(false);
     handleStopAudio();
+  };
+
+  // Quiz Handlers
+  const handleSelectQuizOption = (optionIndex: number) => {
+    if (quizShowFeedback) return;
+    setQuizSelected(optionIndex);
+    setQuizShowFeedback(true);
+    const isCorrect = optionIndex === FINO_QUIZ_QUESTIONS[quizIndex].correct;
+    if (isCorrect) {
+      setQuizScore(prev => prev + 1);
+      try {
+        confetti({
+          particleCount: 30,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ['#10B981', '#34D399', '#FBBF24']
+        });
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handleNextQuizQuestion = () => {
+    if (quizIndex < FINO_QUIZ_QUESTIONS.length - 1) {
+      setQuizIndex(prev => prev + 1);
+      setQuizSelected(null);
+      setQuizShowFeedback(false);
+    } else {
+      setQuizDone(true);
+      try {
+        confetti({
+          particleCount: 90,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#F59E0B', '#3B82F6', '#EC4899', '#10B981']
+        });
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handleResetQuiz = () => {
+    setQuizIndex(0);
+    setQuizScore(0);
+    setQuizSelected(null);
+    setQuizShowFeedback(false);
+    setQuizDone(false);
+  };
+
+  // Family Card Next Handler
+  const handleNextFamilyCard = () => {
+    setFamilyIndex(prev => (prev + 1) % FAMILY_GROUP_CARDS.length);
+    setFamilyCopied(false);
+  };
+
+  const handleCopyFamilyDua = (text: string) => {
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(text);
+    }
+    setFamilyCopied(true);
+    setTimeout(() => setFamilyCopied(false), 2500);
+  };
+
+  // Sandwich Builder Handler
+  const handleMakeSandwich = () => {
+    setSandwichMade(true);
+    try {
+      confetti({
+        particleCount: 50,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#F59E0B', '#F97316', '#EAB308']
+      });
+    } catch {
+      // ignore
+    }
   };
 
   // Terminal command handler
@@ -702,6 +898,349 @@ export default function App() {
                     </button>
                   </div>
                 </div>
+              </div>
+
+              {/* 2000s Nostalgia & Fino Hub */}
+              <div className="my-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#131720]/95 to-[#0F1218]/95 border-2 border-amber-400/40 shadow-2xl relative overflow-hidden text-right">
+                {/* Header with 2000s retro styling */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-5 border-b border-amber-400/20">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold mb-2">
+                      <span>📼 نوستالجيا الألفينات وسندوتشات الفينو</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
+                      <span>صالون العبثيات والذكريات القديمة</span>
+                      <span className="text-2xl">🥖👵</span>
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+                      ألعاب ذكية، اختصارات الياهو ماسنجر، ورسايل جروب العيلة الصباحية المعتمدة!
+                    </p>
+                  </div>
+
+                  {/* Tab Selector */}
+                  <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-black/40 border border-white/10 self-start sm:self-center">
+                    <button
+                      onClick={() => setFinoTab('quiz')}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
+                        finoTab === 'quiz'
+                          ? 'bg-amber-400 text-black shadow-md'
+                          : 'text-[#94A3B8] hover:text-white'
+                      }`}
+                    >
+                      <span>🥖 كويز الألفينات</span>
+                    </button>
+                    <button
+                      onClick={() => setFinoTab('family')}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
+                        finoTab === 'family'
+                          ? 'bg-amber-400 text-black shadow-md'
+                          : 'text-[#94A3B8] hover:text-white'
+                      }`}
+                    >
+                      <span>🌹 جروب العيلة</span>
+                    </button>
+                    <button
+                      onClick={() => setFinoTab('sandwich')}
+                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
+                        finoTab === 'sandwich'
+                          ? 'bg-amber-400 text-black shadow-md'
+                          : 'text-[#94A3B8] hover:text-white'
+                      }`}
+                    >
+                      <span>🥪 صانع الفينو</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* TAB 1: 2000s & Fino Quiz */}
+                {finoTab === 'quiz' && (
+                  <div className="animate-fadeIn">
+                    {!quizDone ? (
+                      <div className="bg-black/30 rounded-2xl p-6 border border-white/10 relative">
+                        {/* Progress Header */}
+                        <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-xs font-code">
+                          <span className="text-amber-400 font-bold">
+                            السؤال {quizIndex + 1} من {FINO_QUIZ_QUESTIONS.length}
+                          </span>
+                          <span className="text-[#38BDF8]">
+                            النقاط الحالية: {quizScore} 🏅
+                          </span>
+                        </div>
+
+                        {/* Question Text */}
+                        <h4 className="text-base sm:text-lg font-bold text-white mb-6 leading-relaxed">
+                          {FINO_QUIZ_QUESTIONS[quizIndex].q}
+                        </h4>
+
+                        {/* Options */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                          {FINO_QUIZ_QUESTIONS[quizIndex].options.map((opt, oIdx) => {
+                            const isSelected = quizSelected === oIdx;
+                            const isCorrect = oIdx === FINO_QUIZ_QUESTIONS[quizIndex].correct;
+                            let btnStyle = 'bg-white/5 border-white/10 hover:border-amber-400/50 hover:bg-white/10 text-[#F1F4F9]';
+                            if (quizShowFeedback) {
+                              if (isCorrect) {
+                                btnStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold';
+                              } else if (isSelected) {
+                                btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-300';
+                              } else {
+                                btnStyle = 'bg-white/5 border-white/5 text-[#94A3B8]/60 opacity-60';
+                              }
+                            }
+                            return (
+                              <button
+                                key={oIdx}
+                                onClick={() => handleSelectQuizOption(oIdx)}
+                                disabled={quizShowFeedback}
+                                className={`p-4 rounded-xl border text-right text-xs sm:text-sm font-medium transition cursor-pointer flex items-start gap-2.5 ${btnStyle}`}
+                              >
+                                <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs font-code shrink-0">
+                                  {oIdx + 1}
+                                </span>
+                                <span>{opt}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Feedback & Next Button */}
+                        {quizShowFeedback && (
+                          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fadeIn">
+                            <p className="text-xs sm:text-sm text-amber-300 font-medium">
+                              💡 {FINO_QUIZ_QUESTIONS[quizIndex].comment}
+                            </p>
+                            <button
+                              onClick={handleNextQuizQuestion}
+                              className="px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition self-end sm:self-auto shrink-0"
+                            >
+                              {quizIndex < FINO_QUIZ_QUESTIONS.length - 1 ? 'السؤال اللي بعده ➡️' : 'عرض النتيجة والشهادة 🏆'}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      /* Quiz Result Certificate */
+                      <div className="bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-500/15 border-2 border-amber-400 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
+                        <div className="text-4xl mb-3">🎓🥖</div>
+                        <span className="text-xs font-code tracking-widest text-amber-400 uppercase block mb-1">
+                          شهادة تفوق نوستالجيا الألفينات الرسمية
+                        </span>
+                        <h4 className="text-2xl sm:text-3xl font-black text-white mb-3">
+                          ألف مبروك يا بوني يا بطل!
+                        </h4>
+                        <div className="inline-block bg-black/60 px-6 py-2.5 rounded-full border border-amber-400/40 text-amber-300 font-bold text-base mb-4 font-code">
+                          درجتك: {quizScore} من {FINO_QUIZ_QUESTIONS.length}
+                        </div>
+                        <p className="text-sm sm:text-base text-[#F1F4F9] max-w-lg mx-auto mb-6 leading-relaxed">
+                          {quizScore >= 4
+                            ? 'معتمد رسمياً كـ «خبير سندوتشات الفينو وسيد شات الياهو ماسنجر».. أصيل وابن بلد وتستاهل وسام جوثام الذهبي! 🏅🦇'
+                            : 'أداء مشرف يا بوني! شكلك نسيت طعم الخيار الدبلان في الفينو، بس لسه مكانتك في القلب 100% 💙'}
+                        </p>
+                        <button
+                          onClick={handleResetQuiz}
+                          className="px-8 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-bold text-sm cursor-pointer shadow-lg transition"
+                        >
+                          العب الكويز من الأول 🔄
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* TAB 2: Family WhatsApp Card Generator */}
+                {finoTab === 'family' && (
+                  <div className="animate-fadeIn">
+                    <div className={`p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${FAMILY_GROUP_CARDS[familyIndex].bg} border-2 border-amber-400/50 shadow-2xl text-center relative overflow-hidden`}>
+                      {/* Glitter / Sparkle Header */}
+                      <div className="text-2xl mb-2 animate-pulse">✨ 🌹 💖 🌹 ✨</div>
+                      <h4 className="text-xl sm:text-2xl font-black text-yellow-300 mb-4 tracking-wide drop-shadow-md">
+                        {FAMILY_GROUP_CARDS[familyIndex].greeting}
+                      </h4>
+
+                      {/* Card Body with Old WhatsApp Vibe */}
+                      <div className="bg-black/50 backdrop-blur-md rounded-2xl p-5 sm:p-7 border border-yellow-300/30 max-w-xl mx-auto mb-6">
+                        <p className="text-base sm:text-lg text-white leading-loose font-medium mb-4">
+                          {FAMILY_GROUP_CARDS[familyIndex].body}
+                        </p>
+                        <div className="border-t border-yellow-300/20 pt-4">
+                          <p className="text-xs sm:text-sm text-yellow-200/90 italic font-sans">
+                            {FAMILY_GROUP_CARDS[familyIndex].dua}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Sticker Badge */}
+                      <div className="inline-block bg-yellow-400/20 border border-yellow-400/40 text-yellow-200 px-4 py-1.5 rounded-full text-xs font-bold mb-6">
+                        {FAMILY_GROUP_CARDS[familyIndex].sticker}
+                      </div>
+
+                      {/* Controls */}
+                      <div className="flex flex-wrap items-center justify-center gap-3">
+                        <button
+                          onClick={handleNextFamilyCard}
+                          className="px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2"
+                        >
+                          <i className="fa-solid fa-rotate text-xs" />
+                          <span>ولّد رسالة صباحية جديدة 🔄</span>
+                        </button>
+
+                        <button
+                          onClick={() => handlePlayAudio('audio-nokia')}
+                          className={`px-6 py-2.5 rounded-full border border-yellow-300/40 text-white font-bold text-xs sm:text-sm cursor-pointer transition flex items-center gap-2 ${
+                            currentTrackId === 'audio-nokia' && isPlaying
+                              ? 'bg-yellow-400 text-black font-bold'
+                              : 'bg-black/60 hover:bg-black/80'
+                          }`}
+                        >
+                          <i className="fa-solid fa-mobile-screen text-xs text-yellow-300" />
+                          <span>
+                            {currentTrackId === 'audio-nokia' && isPlaying
+                              ? 'أوقف رنة نوكيا'
+                              : 'رنة نوكيا 3310 الكلاسيكية 📱'}
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={() => handleCopyFamilyDua(FAMILY_GROUP_CARDS[familyIndex].body)}
+                          className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer transition flex items-center gap-2 border border-white/10"
+                        >
+                          <i className="fa-regular fa-copy text-xs" />
+                          <span>{familyCopied ? 'تم النسخ لجروب العيلة! 📋' : 'نسخ النص'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* TAB 3: Fino Sandwich Builder */}
+                {finoTab === 'sandwich' && (
+                  <div className="animate-fadeIn">
+                    <div className="bg-black/30 rounded-3xl p-6 sm:p-8 border border-white/10">
+                      <div className="text-center mb-6">
+                        <h4 className="text-xl sm:text-2xl font-black text-white mb-2 flex items-center justify-center gap-2">
+                          <span>مصنع سندوتشات الفينو الأسطورية</span>
+                          <span className="text-2xl">🥖👨‍🍳</span>
+                        </h4>
+                        <p className="text-xs text-[#94A3B8]">
+                          اختر مكونات لانش بوكس بوني عشان يدخل بيه امتحانات الثانوية العامة بدون تردد!
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6 text-right">
+                        {/* 1. Bread */}
+                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                          <label className="block text-xs font-bold text-amber-300 mb-3">
+                            1. نوع العيش 🥖
+                          </label>
+                          <div className="space-y-2">
+                            {[
+                              'فينو طازة بينقط سمسم 🥖',
+                              'فينو بايت ومكمكم من كيس المدرسة 🎒',
+                              'كايزر مدور زي بتاع البرجر 🥯'
+                            ].map((b, i) => (
+                              <button
+                                key={i}
+                                onClick={() => { setSandwichBread(b); setSandwichMade(false); }}
+                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
+                                  sandwichBread === b
+                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
+                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
+                                }`}
+                              >
+                                {b}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* 2. Filling */}
+                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                          <label className="block text-xs font-bold text-amber-300 mb-3">
+                            2. الحشو المقدس 🧀
+                          </label>
+                          <div className="space-y-2">
+                            {[
+                              'جبنة رومي قديمة مشعوطة 🧀',
+                              'حلاوة طحينية سايحة ملزقة 🍯',
+                              'لانشون حلواني بالزيتون 🥪',
+                              'جبنة بيضا وخيار مبلول معصور 🥒'
+                            ].map((f, i) => (
+                              <button
+                                key={i}
+                                onClick={() => { setSandwichFilling(f); setSandwichMade(false); }}
+                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
+                                  sandwichFilling === f
+                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
+                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
+                                }`}
+                              >
+                                {f}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* 3. Extra */}
+                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                          <label className="block text-xs font-bold text-amber-300 mb-3">
+                            3. الإضافة العبثية 🧃
+                          </label>
+                          <div className="space-y-2">
+                            {[
+                              'كيس شيبسي طماطم مفروم جواه 🥔',
+                              'عصير كابري سن برتقال بشفاطة معووجة 🧃',
+                              'مج شاي بلبن إزاز مضلع ☕',
+                              'بسكوت ويفر شيميز للتسلية 🧇'
+                            ].map((e, i) => (
+                              <button
+                                key={i}
+                                onClick={() => { setSandwichExtra(e); setSandwichMade(false); }}
+                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
+                                  sandwichExtra === e
+                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
+                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
+                                }`}
+                              >
+                                {e}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Button */}
+                      <div className="text-center">
+                        <button
+                          onClick={handleMakeSandwich}
+                          className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm sm:text-base cursor-pointer shadow-xl transition flex items-center gap-2.5 mx-auto"
+                        >
+                          <i className="fa-solid fa-scroll text-sm" />
+                          <span>لف السندوتش في ورق كشكول مربعات 📄</span>
+                        </button>
+                      </div>
+
+                      {/* Generated Sandwich Card */}
+                      {sandwichMade && (
+                        <div className="mt-8 p-6 rounded-2xl bg-amber-400/10 border-2 border-amber-400/60 text-center animate-fadeIn">
+                          <div className="text-3xl mb-2">🥖✨</div>
+                          <h5 className="text-lg font-bold text-amber-300 mb-2">
+                            سندوتش باتمان الخارق جاهز للاستهلاك الفوري!
+                          </h5>
+                          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-xs text-white bg-black/60 px-4 py-2 rounded-xl border border-white/10 mb-3">
+                            <span>{sandwichBread}</span>
+                            <span>+</span>
+                            <span>{sandwichFilling}</span>
+                            <span>+</span>
+                            <span>{sandwichExtra}</span>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#F1F4F9]/90 max-w-md mx-auto leading-relaxed">
+                            تقييم وزارة التربية والتعليم لسنة 2005: 10/10 في القرمشة، خالي من المواد الحافظة، ومفعم بحب روءة ودعوات جروب العيلة! 💙
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* The 3 Curated Stations */}

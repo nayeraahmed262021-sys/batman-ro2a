@@ -11,7 +11,8 @@ type TrackId =
   | 'audio-spacetoon'
   | 'audio-chaos'
   | 'audio-tul8te'
-  | 'audio-perfect';
+  | 'audio-perfect'
+  | 'audio-nokia';
 
 interface TrackMeta {
   id: TrackId;
@@ -54,6 +55,11 @@ export const TRACKS: Record<TrackId, TrackMeta> = {
     id: 'audio-perfect',
     title: 'Perfect — Ed Sheeran (آخر أغنية)',
     subtitle: 'الرومانسية والنهاية الهادية اللي في القلب'
+  },
+  'audio-nokia': {
+    id: 'audio-nokia',
+    title: 'رنة نوكيا 3310 الكلاسيكية 📱',
+    subtitle: 'نغمة المونوفونيك الشهيرة من زمن الألفينات'
   }
 };
 
@@ -127,6 +133,9 @@ class AudioEngine {
         break;
       case 'audio-perfect':
         this.playPerfectWaltz();
+        break;
+      case 'audio-nokia':
+        this.playNokiaTune();
         break;
     }
   }
@@ -426,6 +435,33 @@ class AudioEngine {
       this.playTone(f * 2, 'sine', 0.4, 0.02, 0.08);
       noteIndex++;
     }, 280);
+  }
+
+  private playNokiaTune() {
+    // Classic Nokia Tune 3310 (Gran Vals) - Monophonic 8-bit retro sound
+    const notes = [
+      { f: 659.25, d: 0.16, t: 0.00 }, // E5
+      { f: 587.33, d: 0.16, t: 0.18 }, // D5
+      { f: 369.99, d: 0.32, t: 0.36 }, // F#4
+      { f: 415.30, d: 0.32, t: 0.72 }, // G#4
+      { f: 554.37, d: 0.16, t: 1.08 }, // C#5
+      { f: 493.88, d: 0.16, t: 1.26 }, // B4
+      { f: 293.66, d: 0.32, t: 1.44 }, // D4
+      { f: 329.63, d: 0.32, t: 1.80 }, // E4
+      { f: 493.88, d: 0.16, t: 2.16 }, // B4
+      { f: 440.00, d: 0.16, t: 2.34 }, // A4
+      { f: 277.18, d: 0.32, t: 2.52 }, // C#4
+      { f: 329.63, d: 0.32, t: 2.88 }, // E4
+      { f: 440.00, d: 0.75, t: 3.24 }  // A4
+    ];
+
+    notes.forEach(n => {
+      this.playTone(n.f, 'square', n.d, n.t, 0.14);
+    });
+
+    this.intervalTimer = window.setTimeout(() => {
+      this.stop();
+    }, 4500);
   }
 }
 
