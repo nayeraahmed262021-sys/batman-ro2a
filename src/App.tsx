@@ -551,7 +551,7 @@ export default function App() {
               onClick={() => setShowBonyAlert(true)}
               className="text-xs text-[#38BDF8] hover:text-white font-medium flex items-center gap-1.5 cursor-pointer transition bg-[#2563EB]/15 hover:bg-[#2563EB]/30 px-3 py-1 rounded-full border border-[#2563EB]/30"
             >
-              <span className="font-bold tracking-wide">message for batman</span>
+              <span className="font-bold tracking-wide">message to batman</span>
               <span className="text-sm">✉️</span>
             </button>
           </div>
@@ -585,147 +585,12 @@ export default function App() {
           </div>
 
           {/* Subtitle & Words */}
-          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-3 flex items-center justify-center gap-2">
-            <span>كل سنة وانت طيب يا بوني</span>
-            <span className="text-[#38BDF8]">💙</span>
-          </h2>
-          <p className="text-[#CBD5E1] text-sm sm:text-base max-w-xl mx-auto mb-6 leading-relaxed font-normal">
-            الويبسايت دا اتعمل علشانك و فيه تفاصيل كتير حاولت اعمل حاجة تكون شبهنا سوا معقدة بس لذيذة ومختلفة.. خد وقتك و شوف كل التفاصيل الصغننة ✨
+          <p className="text-base sm:text-xl font-medium text-white max-w-2xl mx-auto mb-6 leading-relaxed">
+            الويبسايت دا اتعمل علشانك و فيه تفاصيل كتير حاولت تكون شبهنا مع بعض(معقدة بس مختلفة و لذيذة) خد وقتك و استكشفه يارب يعجبك حبيبي كل سنة و عيوني طيب 💙
           </p>
 
-          {/* Guidelines / Site Map */}
-          <div className="w-full max-w-xl glass-card rounded-2xl p-5 sm:p-6 mb-8 text-right border border-[#1E2536] bg-[#0F1218]/90 shadow-xl">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#1E2536]/80">
-              <div className="flex items-center gap-2 text-[#38BDF8] text-sm font-bold">
-                <i className="fa-solid fa-map-location-dot text-base" />
-                <span>خريطة الموقع • Guidelines</span>
-              </div>
-              <span className="text-[11px] text-[#94A3B8] font-code bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
-                دليلك للاستكشاف 🗺️
-              </span>
-            </div>
-
-            <p className="text-xs text-[#94A3B8] mb-4 leading-relaxed">
-              عشان متفوتش أي حاجة.. دي خريطة بسيطة للمحطات اللي مستنياك تحت:
-            </p>
-
-            <div className="space-y-2.5 text-xs sm:text-sm">
-              <a
-                href="#hero"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    1
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    رسالة message for batman والنغمة الهادية
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">فوق ✉️</span>
-              </a>
-
-              <a
-                href="#intro"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    2
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    كلام من القلب وبداية الحكاية
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#intro 💙</span>
-              </a>
-
-              <a
-                href="#fun-chaos-section"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    3
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    بوابة الذكريات والمواقف وتراكات المزيكا
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#memories 🎵</span>
-              </a>
-
-              <a
-                href="#moments"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    4
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    شريط اللحظات والتواريخ الخاصة
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#moments ⏳</span>
-              </a>
-
-              <a
-                href="#gallery"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    5
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    معرض الصور واللقطات المميزة
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#gallery 📸</span>
-              </a>
-
-              <a
-                href="#terminal-section"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    6
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    تيرمينال أوامر باتمان السري (جرب تكتب فيه!)
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#terminal 💻</span>
-              </a>
-
-              <a
-                href="#final-message"
-                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
-              >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
-                    7
-                  </span>
-                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
-                    الرسالة السرية الأخيرة (Secret Message)
-                  </span>
-                </div>
-                <span className="text-[11px] text-[#94A3B8] font-code">#secret 🔐</span>
-              </a>
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-[#1E2536]/80 flex items-center gap-2 text-[11px] text-amber-300/90 bg-amber-400/10 p-2.5 rounded-xl border border-amber-400/20">
-              <i className="fa-solid fa-wand-magic-sparkles text-xs" />
-              <span>
-                <strong>تريك سرية:</strong> وأنت في أي مكان في الصفحة، جرب تكتب بالكيبورد <strong>5/10</strong> أو <strong>17/9</strong> وشوف إيه اللي هيحصل! 👀✨
-              </span>
-            </div>
-          </div>
-
-          {/* Music Start Control */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          {/* Music Start Control (15s Song) */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             <button
               onClick={() => handlePlayAudio('audio-happy-birthday')}
               className={`px-7 py-3 rounded-full text-black font-semibold text-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
@@ -756,6 +621,18 @@ export default function App() {
             </a>
           </div>
 
+          {/* Road Map Placeholder */}
+          <div className="w-full max-w-md glass-card rounded-2xl p-6 mb-8 text-center border border-[#1E2536] bg-[#0F1218]/90 shadow-xl">
+            <h3 className="text-xl font-bold text-white flex items-center justify-center gap-2 mb-2">
+              <span>خريطة الطريق</span>
+              <span className="text-xl">😂</span>
+            </h3>
+            <p className="text-xs text-[#94A3B8]/70 font-sans">
+              (سيبنا مكان الخريطة فاضي هنعملها سوا في الآخر 😉🗺️)
+            </p>
+          </div>
+
+
           {/* Scroll Down Chevron */}
           <a
             href="#intro"
@@ -780,18 +657,14 @@ export default function App() {
 
             {/* Core Message Text */}
             <p className="text-xl sm:text-2xl font-medium text-white leading-relaxed mb-6">
-              ملقتش حاجة تجمع ذكريات لينا سوا تعرف تحتفظ بيها متكونش هاند ميد و تكون ذكية و شبهك فيها من
-              شخصياتنا سوا غير الويبسايت الصغنن دا
+              ملقتش حاجة تجمع ذكريات لينا و اعبرلك بيها عن كلام جوايا ولعب و فاعليات في يوم كان نفسي اكون معاك فيه و نعمل دا غير بالطريقة دي
             </p>
 
             <div className="border-t border-[#1E2536]/80 pt-6 mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <p className="text-lg font-bold text-[#2563EB] mb-1">بحبك.</p>
-                <p className="text-sm sm:text-base text-[#F1F4F9]/90">
-                  كل سنة وانت طيب أيها الرجل البوني الباتمان.
-                </p>
+                <p className="text-lg font-bold text-[#2563EB] mb-1">بحبك 💙</p>
               </div>
-              <div className="text-left font-code text-xs text-[#94A3B8]/60">
+              <div className="text-left font-code text-xs text-[#94A3B8]/70">
                 <span>from: ro2a</span>
                 <br />
                 <span>to: batman</span>
@@ -801,7 +674,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3. عبثيات وفاعليات نونية */}
+      {/* 3. عبثيات و فاعليات نونية */}
       <section id="fun-chaos-section" className="py-24 px-6 border-t border-[#1E2536]/40 relative">
         <div className="max-w-5xl mx-auto">
           {!isChaosOpen ? (
@@ -812,641 +685,96 @@ export default function App() {
                 <i className="fa-solid fa-masks-theater" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-                عبثيات وفاعليات نونية
+                عبثيات و فاعليات نونية
               </h3>
-              <p className="text-xs sm:text-sm text-[#94A3B8] max-w-lg mx-auto mb-7 leading-relaxed">
-                تنويه: دخلنا في فقرة الهبل اللامبرر والضحك والمحطات المخصوصة عشانك.. اضغط واستمتع بكل
-                الفاعليات!
-              </p>
+              <div className="text-sm sm:text-base text-[#F1F4F9]/90 max-w-lg mx-auto mb-7 leading-relaxed space-y-1">
+                <p>ادخل العالم العبثي دا و ارجو عدم التريقة</p>
+                <p>اي حاجة هتلاقيها دمها تقيل جوا ف هي بهدف العباطي 😂</p>
+              </div>
               <button
                 onClick={enterChaosMode}
                 className="px-8 py-3.5 rounded-full bg-gradient-to-r from-rose-500 via-amber-500 to-yellow-500 text-white font-bold text-sm sm:text-base shadow-xl hover:scale-105 active:scale-95 transition-transform flex items-center gap-3 mx-auto cursor-pointer"
               >
-                <span>افتح عبثيات وفاعليات نونية 🥳</span>
+                <span>ادخل العالم العبثي 🥳</span>
                 <i className="fa-solid fa-wand-magic-sparkles text-yellow-200" />
               </button>
             </div>
           ) : (
-            /* Expanded Chaos Box */
-            <div className="rounded-3xl p-6 sm:p-10 my-4 relative overflow-hidden transition-all duration-500 shadow-2xl chaos-active">
-              {/* Funny Chaos Marquee */}
-              <div className="bg-yellow-400/90 border border-yellow-300 py-2.5 px-4 mb-8 rounded-xl overflow-hidden font-bold text-black text-sm tracking-wider shadow-md">
-                <div className="whitespace-nowrap overflow-hidden">
-                  <p className="animate-pulse text-center">
-                    🌹🌹 الف مبروك يا غالي وعقبال 100 سنة فرفشة وضحك وراحة بال يارب يا بوني يا عسل 🌹🌹
-                  </p>
-                </div>
-              </div>
-
-              {/* Chaos Headline */}
-              <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-5xl font-black text-amber-300 animate-chaos-bounce mb-3 drop-shadow-md">
-                  🎉 HAPPY BIRTHDAYYYYY 🥳
-                </h2>
-                <p className="text-xs sm:text-sm text-[#94A3B8] font-code">
-                  [ فاعليات نونية لا تعترف بالمنطق — كل الأغاني والمحطات هنا ]
+            /* Inside Chaos Box: Kept empty for them to build together as requested */
+            <div className="glass-card rounded-3xl p-8 sm:p-14 my-4 relative overflow-hidden transition-all duration-500 shadow-2xl border border-amber-400/40 text-center bg-[#0F1218]/95">
+              <div className="text-5xl mb-4 animate-bounce">🎪🥖😂</div>
+              <h3 className="text-2xl sm:text-3xl font-black text-amber-300 mb-3">
+                العالم العبثي لروءة وبوني 😂
+              </h3>
+              <p className="text-base text-[#F1F4F9] max-w-lg mx-auto mb-2 leading-relaxed">
+                ادخل العالم العبثي دا و ارجو عدم التريقة
+              </p>
+              <p className="text-sm text-amber-200/90 max-w-lg mx-auto mb-6">
+                اي حاجة هتلاقيها دمها تقيل جوا ف هي بهدف العباطي 😂
+              </p>
+              <div className="p-6 rounded-2xl bg-black/40 border border-white/10 max-w-md mx-auto mb-8">
+                <p className="text-xs sm:text-sm text-[#94A3B8] font-sans">
+                  (سيبنا الصفحة اللي جوا العالم دا فاضية وهنبنيها سوا مع بعض خطوة بخطوة بكل الألعاب والتفاصيل 😉✨)
                 </p>
               </div>
 
-              {/* Meme & Funny Messages Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-12">
-                <div className="md:col-span-5 bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 transform rotate-1">
-                  <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-[#0F1218]">
-                    <img
-                      src={IMAGES.meme}
-                      alt="Meme Chaos"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute bottom-2 inset-x-2 bg-black/80 text-amber-300 text-xs font-bold py-1 px-2 rounded-lg text-center">
-                      "شكلي لما الويبسايت الهادي يقلب فجأة مولد وصاحبه غايب"
-                    </div>
-                  </div>
-                </div>
-
-                <div className="md:col-span-7 flex flex-col gap-3">
-                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-[#F1F4F9] text-sm font-semibold flex items-center gap-3">
-                    <span className="text-xl">🌹</span>
-                    <span>وردة عن ما بدر مني ومن كل الهبل اللي فات</span>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-[#F1F4F9] text-sm font-semibold flex items-center gap-3">
-                    <span className="text-xl">❤️</span>
-                    <span>ربنا يخليك لينا يا بوني يا حبيب الملايين</span>
-                  </div>
-                  <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 text-[#F1F4F9] text-sm font-semibold flex items-center gap-3">
-                    <span className="text-xl">🎂</span>
-                    <span>من نجاح لنجاح ومن عبط لعبط وأنت دايماً بطل الرواية</span>
-                  </div>
-                  <div className="mt-2">
-                    <button
-                      onClick={() => handlePlayAudio('audio-chaos')}
-                      className={`w-full py-2.5 px-4 rounded-xl text-white font-bold text-xs sm:text-sm hover:opacity-90 transition flex items-center justify-center gap-2 shadow cursor-pointer ${
-                        currentTrackId === 'audio-chaos' && isPlaying
-                          ? 'bg-gradient-to-r from-red-600 to-amber-600'
-                          : 'bg-gradient-to-r from-amber-500 to-rose-500'
-                      }`}
-                    >
-                      <i
-                        className={`fa-solid fa-compact-disc text-sm ${
-                          isPlaying && currentTrackId === 'audio-chaos' ? 'animate-spin' : ''
-                        }`}
-                      />
-                      <span>
-                        {currentTrackId === 'audio-chaos' && isPlaying
-                          ? 'أوقف تراك المهرجان'
-                          : 'شغل أغنية المهرجان (عليا النعمة بحبك)'}
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2000s Nostalgia & Fino Hub */}
-              <div className="my-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#131720]/95 to-[#0F1218]/95 border-2 border-amber-400/40 shadow-2xl relative overflow-hidden text-right">
-                {/* Header with 2000s retro styling */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-5 border-b border-amber-400/20">
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold mb-2">
-                      <span>📼 نوستالجيا الألفينات وسندوتشات الفينو</span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
-                      <span>صالون العبثيات والذكريات القديمة</span>
-                      <span className="text-2xl">🥖👵</span>
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-                      ألعاب ذكية، اختصارات الياهو ماسنجر، ورسايل جروب العيلة الصباحية المعتمدة!
-                    </p>
-                  </div>
-
-                  {/* Tab Selector */}
-                  <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-black/40 border border-white/10 self-start sm:self-center">
-                    <button
-                      onClick={() => setFinoTab('quiz')}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
-                        finoTab === 'quiz'
-                          ? 'bg-amber-400 text-black shadow-md'
-                          : 'text-[#94A3B8] hover:text-white'
-                      }`}
-                    >
-                      <span>🥖 كويز الألفينات</span>
-                    </button>
-                    <button
-                      onClick={() => setFinoTab('family')}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
-                        finoTab === 'family'
-                          ? 'bg-amber-400 text-black shadow-md'
-                          : 'text-[#94A3B8] hover:text-white'
-                      }`}
-                    >
-                      <span>🌹 جروب العيلة</span>
-                    </button>
-                    <button
-                      onClick={() => setFinoTab('sandwich')}
-                      className={`px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
-                        finoTab === 'sandwich'
-                          ? 'bg-amber-400 text-black shadow-md'
-                          : 'text-[#94A3B8] hover:text-white'
-                      }`}
-                    >
-                      <span>🥪 صانع الفينو</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* TAB 1: 2000s & Fino Quiz */}
-                {finoTab === 'quiz' && (
-                  <div className="animate-fadeIn">
-                    {!quizDone ? (
-                      <div className="bg-black/30 rounded-2xl p-6 border border-white/10 relative">
-                        {/* Progress Header */}
-                        <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-xs font-code">
-                          <span className="text-amber-400 font-bold">
-                            السؤال {quizIndex + 1} من {FINO_QUIZ_QUESTIONS.length}
-                          </span>
-                          <span className="text-[#38BDF8]">
-                            النقاط الحالية: {quizScore} 🏅
-                          </span>
-                        </div>
-
-                        {/* Question Text */}
-                        <h4 className="text-base sm:text-lg font-bold text-white mb-6 leading-relaxed">
-                          {FINO_QUIZ_QUESTIONS[quizIndex].q}
-                        </h4>
-
-                        {/* Options */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                          {FINO_QUIZ_QUESTIONS[quizIndex].options.map((opt, oIdx) => {
-                            const isSelected = quizSelected === oIdx;
-                            const isCorrect = oIdx === FINO_QUIZ_QUESTIONS[quizIndex].correct;
-                            let btnStyle = 'bg-white/5 border-white/10 hover:border-amber-400/50 hover:bg-white/10 text-[#F1F4F9]';
-                            if (quizShowFeedback) {
-                              if (isCorrect) {
-                                btnStyle = 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold';
-                              } else if (isSelected) {
-                                btnStyle = 'bg-rose-500/20 border-rose-500 text-rose-300';
-                              } else {
-                                btnStyle = 'bg-white/5 border-white/5 text-[#94A3B8]/60 opacity-60';
-                              }
-                            }
-                            return (
-                              <button
-                                key={oIdx}
-                                onClick={() => handleSelectQuizOption(oIdx)}
-                                disabled={quizShowFeedback}
-                                className={`p-4 rounded-xl border text-right text-xs sm:text-sm font-medium transition cursor-pointer flex items-start gap-2.5 ${btnStyle}`}
-                              >
-                                <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs font-code shrink-0">
-                                  {oIdx + 1}
-                                </span>
-                                <span>{opt}</span>
-                              </button>
-                            );
-                          })}
-                        </div>
-
-                        {/* Feedback & Next Button */}
-                        {quizShowFeedback && (
-                          <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fadeIn">
-                            <p className="text-xs sm:text-sm text-amber-300 font-medium">
-                              💡 {FINO_QUIZ_QUESTIONS[quizIndex].comment}
-                            </p>
-                            <button
-                              onClick={handleNextQuizQuestion}
-                              className="px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition self-end sm:self-auto shrink-0"
-                            >
-                              {quizIndex < FINO_QUIZ_QUESTIONS.length - 1 ? 'السؤال اللي بعده ➡️' : 'عرض النتيجة والشهادة 🏆'}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* Quiz Result Certificate */
-                      <div className="bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-500/15 border-2 border-amber-400 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
-                        <div className="text-4xl mb-3">🎓🥖</div>
-                        <span className="text-xs font-code tracking-widest text-amber-400 uppercase block mb-1">
-                          شهادة تفوق نوستالجيا الألفينات الرسمية
-                        </span>
-                        <h4 className="text-2xl sm:text-3xl font-black text-white mb-3">
-                          ألف مبروك يا بوني يا بطل!
-                        </h4>
-                        <div className="inline-block bg-black/60 px-6 py-2.5 rounded-full border border-amber-400/40 text-amber-300 font-bold text-base mb-4 font-code">
-                          درجتك: {quizScore} من {FINO_QUIZ_QUESTIONS.length}
-                        </div>
-                        <p className="text-sm sm:text-base text-[#F1F4F9] max-w-lg mx-auto mb-6 leading-relaxed">
-                          {quizScore >= 4
-                            ? 'معتمد رسمياً كـ «خبير سندوتشات الفينو وسيد شات الياهو ماسنجر».. أصيل وابن بلد وتستاهل وسام جوثام الذهبي! 🏅🦇'
-                            : 'أداء مشرف يا بوني! شكلك نسيت طعم الخيار الدبلان في الفينو، بس لسه مكانتك في القلب 100% 💙'}
-                        </p>
-                        <button
-                          onClick={handleResetQuiz}
-                          className="px-8 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-bold text-sm cursor-pointer shadow-lg transition"
-                        >
-                          العب الكويز من الأول 🔄
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* TAB 2: Family WhatsApp Card Generator */}
-                {finoTab === 'family' && (
-                  <div className="animate-fadeIn">
-                    <div className={`p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${FAMILY_GROUP_CARDS[familyIndex].bg} border-2 border-amber-400/50 shadow-2xl text-center relative overflow-hidden`}>
-                      {/* Glitter / Sparkle Header */}
-                      <div className="text-2xl mb-2 animate-pulse">✨ 🌹 💖 🌹 ✨</div>
-                      <h4 className="text-xl sm:text-2xl font-black text-yellow-300 mb-4 tracking-wide drop-shadow-md">
-                        {FAMILY_GROUP_CARDS[familyIndex].greeting}
-                      </h4>
-
-                      {/* Card Body with Old WhatsApp Vibe */}
-                      <div className="bg-black/50 backdrop-blur-md rounded-2xl p-5 sm:p-7 border border-yellow-300/30 max-w-xl mx-auto mb-6">
-                        <p className="text-base sm:text-lg text-white leading-loose font-medium mb-4">
-                          {FAMILY_GROUP_CARDS[familyIndex].body}
-                        </p>
-                        <div className="border-t border-yellow-300/20 pt-4">
-                          <p className="text-xs sm:text-sm text-yellow-200/90 italic font-sans">
-                            {FAMILY_GROUP_CARDS[familyIndex].dua}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Sticker Badge */}
-                      <div className="inline-block bg-yellow-400/20 border border-yellow-400/40 text-yellow-200 px-4 py-1.5 rounded-full text-xs font-bold mb-6">
-                        {FAMILY_GROUP_CARDS[familyIndex].sticker}
-                      </div>
-
-                      {/* Controls */}
-                      <div className="flex flex-wrap items-center justify-center gap-3">
-                        <button
-                          onClick={handleNextFamilyCard}
-                          className="px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2"
-                        >
-                          <i className="fa-solid fa-rotate text-xs" />
-                          <span>ولّد رسالة صباحية جديدة 🔄</span>
-                        </button>
-
-                        <button
-                          onClick={() => handlePlayAudio('audio-nokia')}
-                          className={`px-6 py-2.5 rounded-full border border-yellow-300/40 text-white font-bold text-xs sm:text-sm cursor-pointer transition flex items-center gap-2 ${
-                            currentTrackId === 'audio-nokia' && isPlaying
-                              ? 'bg-yellow-400 text-black font-bold'
-                              : 'bg-black/60 hover:bg-black/80'
-                          }`}
-                        >
-                          <i className="fa-solid fa-mobile-screen text-xs text-yellow-300" />
-                          <span>
-                            {currentTrackId === 'audio-nokia' && isPlaying
-                              ? 'أوقف رنة نوكيا'
-                              : 'رنة نوكيا 3310 الكلاسيكية 📱'}
-                          </span>
-                        </button>
-
-                        <button
-                          onClick={() => handleCopyFamilyDua(FAMILY_GROUP_CARDS[familyIndex].body)}
-                          className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer transition flex items-center gap-2 border border-white/10"
-                        >
-                          <i className="fa-regular fa-copy text-xs" />
-                          <span>{familyCopied ? 'تم النسخ لجروب العيلة! 📋' : 'نسخ النص'}</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 3: Fino Sandwich Builder */}
-                {finoTab === 'sandwich' && (
-                  <div className="animate-fadeIn">
-                    <div className="bg-black/30 rounded-3xl p-6 sm:p-8 border border-white/10">
-                      <div className="text-center mb-6">
-                        <h4 className="text-xl sm:text-2xl font-black text-white mb-2 flex items-center justify-center gap-2">
-                          <span>مصنع سندوتشات الفينو الأسطورية</span>
-                          <span className="text-2xl">🥖👨‍🍳</span>
-                        </h4>
-                        <p className="text-xs text-[#94A3B8]">
-                          اختر مكونات لانش بوكس بوني عشان يدخل بيه امتحانات الثانوية العامة بدون تردد!
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6 text-right">
-                        {/* 1. Bread */}
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                          <label className="block text-xs font-bold text-amber-300 mb-3">
-                            1. نوع العيش 🥖
-                          </label>
-                          <div className="space-y-2">
-                            {[
-                              'فينو طازة بينقط سمسم 🥖',
-                              'فينو بايت ومكمكم من كيس المدرسة 🎒',
-                              'كايزر مدور زي بتاع البرجر 🥯'
-                            ].map((b, i) => (
-                              <button
-                                key={i}
-                                onClick={() => { setSandwichBread(b); setSandwichMade(false); }}
-                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
-                                  sandwichBread === b
-                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
-                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
-                                }`}
-                              >
-                                {b}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* 2. Filling */}
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                          <label className="block text-xs font-bold text-amber-300 mb-3">
-                            2. الحشو المقدس 🧀
-                          </label>
-                          <div className="space-y-2">
-                            {[
-                              'جبنة رومي قديمة مشعوطة 🧀',
-                              'حلاوة طحينية سايحة ملزقة 🍯',
-                              'لانشون حلواني بالزيتون 🥪',
-                              'جبنة بيضا وخيار مبلول معصور 🥒'
-                            ].map((f, i) => (
-                              <button
-                                key={i}
-                                onClick={() => { setSandwichFilling(f); setSandwichMade(false); }}
-                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
-                                  sandwichFilling === f
-                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
-                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
-                                }`}
-                              >
-                                {f}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* 3. Extra */}
-                        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                          <label className="block text-xs font-bold text-amber-300 mb-3">
-                            3. الإضافة العبثية 🧃
-                          </label>
-                          <div className="space-y-2">
-                            {[
-                              'كيس شيبسي طماطم مفروم جواه 🥔',
-                              'عصير كابري سن برتقال بشفاطة معووجة 🧃',
-                              'مج شاي بلبن إزاز مضلع ☕',
-                              'بسكوت ويفر شيميز للتسلية 🧇'
-                            ].map((e, i) => (
-                              <button
-                                key={i}
-                                onClick={() => { setSandwichExtra(e); setSandwichMade(false); }}
-                                className={`w-full p-2.5 rounded-xl text-xs font-medium text-right border transition cursor-pointer block ${
-                                  sandwichExtra === e
-                                    ? 'bg-amber-400/20 border-amber-400 text-amber-300 font-bold'
-                                    : 'bg-black/30 border-white/5 text-[#94A3B8] hover:text-white'
-                                }`}
-                              >
-                                {e}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Action Button */}
-                      <div className="text-center">
-                        <button
-                          onClick={handleMakeSandwich}
-                          className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-sm sm:text-base cursor-pointer shadow-xl transition flex items-center gap-2.5 mx-auto"
-                        >
-                          <i className="fa-solid fa-scroll text-sm" />
-                          <span>لف السندوتش في ورق كشكول مربعات 📄</span>
-                        </button>
-                      </div>
-
-                      {/* Generated Sandwich Card */}
-                      {sandwichMade && (
-                        <div className="mt-8 p-6 rounded-2xl bg-amber-400/10 border-2 border-amber-400/60 text-center animate-fadeIn">
-                          <div className="text-3xl mb-2">🥖✨</div>
-                          <h5 className="text-lg font-bold text-amber-300 mb-2">
-                            سندوتش باتمان الخارق جاهز للاستهلاك الفوري!
-                          </h5>
-                          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-xs text-white bg-black/60 px-4 py-2 rounded-xl border border-white/10 mb-3">
-                            <span>{sandwichBread}</span>
-                            <span>+</span>
-                            <span>{sandwichFilling}</span>
-                            <span>+</span>
-                            <span>{sandwichExtra}</span>
-                          </div>
-                          <p className="text-xs sm:text-sm text-[#F1F4F9]/90 max-w-md mx-auto leading-relaxed">
-                            تقييم وزارة التربية والتعليم لسنة 2005: 10/10 في القرمشة، خالي من المواد الحافظة، ومفعم بحب روءة ودعوات جروب العيلة! 💙
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* The 3 Curated Stations */}
-              <div className="pt-8 border-t border-white/10">
-                <div className="text-center mb-8">
-                  <span className="text-xs font-code text-amber-400 uppercase tracking-widest block mb-1">
-                    Special Stations For Batman
-                  </span>
-                  <h4 className="text-xl sm:text-2xl font-bold text-white">محطات مخصوصة عشانك</h4>
-                  <p className="text-xs text-[#94A3B8] mt-1">
-                    حاجات بتمس طفولتك وشغفك وكل نغمة بتفكرنا بيك
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Station 1: Childhood */}
-                  <div className="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between tilt-card border-[#1E2536]/80">
-                    <div>
-                      <div className="relative w-full aspect-square bg-[#0F1218] overflow-hidden">
-                        <img
-                          src={IMAGES.childhood}
-                          alt="صورة طفولة عبدالرحمن"
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500 brightness-90 group-hover:brightness-100 cursor-pointer"
-                          onClick={() =>
-                            setLightboxImage({
-                              src: IMAGES.childhood,
-                              caption: 'البوني الصغنوني — طفولة بوني العسل',
-                              tag: 'mem_01 // childhood'
-                            })
-                          }
-                        />
-                        <div className="absolute top-3 right-3 bg-[#07080B]/80 backdrop-blur-md px-2.5 py-1 rounded text-xs text-[#94A3B8] font-code">
-                          mem_01 // childhood
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <h5 className="text-base font-bold text-white mb-1.5">البوني الصغنوني</h5>
-                        <p className="text-xs text-[#F1F4F9]/90 leading-relaxed">
-                          "هابي بيرث داي بوني البوني الصغنوني.. بحب ضحكتك دي أوي من زمان."
-                        </p>
-                      </div>
-                    </div>
-                    <div className="p-5 pt-0">
-                      <button
-                        onClick={() => handlePlayAudio('audio-childhood')}
-                        className={`w-full py-2.5 rounded-xl bg-[#0F1218] border border-[#1E2536] hover:border-amber-400 text-xs font-semibold text-[#F1F4F9] transition flex items-center justify-center gap-2 cursor-pointer ${
-                          currentTrackId === 'audio-childhood' && isPlaying
-                            ? 'border-amber-400 text-amber-300'
-                            : ''
-                        }`}
-                      >
-                        <i className="fa-solid fa-music text-amber-400" />
-                        <span>
-                          {currentTrackId === 'audio-childhood' && isPlaying
-                            ? 'أوقف أغنية الطفولة'
-                            : 'شغل أغنية الطفولة'}
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Station 2: Batman */}
-                  <div className="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between border-[#2563EB]/40 tilt-card">
-                    <div>
-                      <div className="relative w-full aspect-square bg-[#0F1218] overflow-hidden">
-                        <img
-                          src={IMAGES.batmanStation}
-                          alt="عبدالرحمن بطابع باتمان"
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500 grayscale contrast-125 group-hover:contrast-100 cursor-pointer"
-                          onClick={() =>
-                            setLightboxImage({
-                              src: IMAGES.batmanStation,
-                              caption: 'ضوء لمع وسط المدينة — Batman',
-                              tag: 'mem_02 // the dark knight'
-                            })
-                          }
-                        />
-                        <div className="absolute top-3 right-3 bg-[#2563EB]/90 backdrop-blur-md px-2.5 py-1 rounded text-xs text-white font-code">
-                          mem_02 // the dark knight
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <h5 className="text-base font-bold text-white mb-1.5">
-                          ضوء لمع وسط المدينة
-                        </h5>
-                        <p className="text-xs text-[#F1F4F9]/90 leading-relaxed">
-                          "رسمتلك الطابع ده عشان انت فعلًا كدا.. غامض، ذكي، وبتحب تعمل الحاجة الصح في
-                          هدوء."
-                        </p>
-                      </div>
-                    </div>
-                    <div className="p-5 pt-0">
-                      <button
-                        onClick={() => handlePlayAudio('audio-batman')}
-                        className={`w-full py-2.5 rounded-xl bg-[#0F1218] border border-[#1E2536] hover:border-[#2563EB] text-xs font-semibold text-[#F1F4F9] transition flex items-center justify-center gap-2 cursor-pointer ${
-                          currentTrackId === 'audio-batman' && isPlaying
-                            ? 'border-[#2563EB] text-[#38BDF8]'
-                            : ''
-                        }`}
-                      >
-                        <i className="fa-solid fa-play text-[#2563EB]" />
-                        <span>
-                          {currentTrackId === 'audio-batman' && isPlaying
-                            ? 'أوقف تراك باتمان'
-                            : 'شغل تراك باتمان'}
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Station 3: Spacetoon */}
-                  <div className="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between tilt-card border-[#1E2536]/80">
-                    <div>
-                      <div className="relative w-full aspect-square bg-[#0F1218] overflow-hidden">
-                        <img
-                          src={IMAGES.spacetoon}
-                          alt="أبطال الديجيتال و سبيستون"
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500 brightness-90 group-hover:brightness-100 cursor-pointer"
-                          onClick={() =>
-                            setLightboxImage({
-                              src: IMAGES.spacetoon,
-                              caption: 'أبطال الديجيتال وسبيستون — نوستالجيا التسعينات',
-                              tag: 'mem_03 // nostalgia'
-                            })
-                          }
-                        />
-                        <div className="absolute top-3 right-3 bg-[#07080B]/80 backdrop-blur-md px-2.5 py-1 rounded text-xs text-[#94A3B8] font-code">
-                          mem_03 // nostalgia
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <h5 className="text-base font-bold text-white mb-1.5">أبطال الديجيتال</h5>
-                        <p className="text-xs text-[#F1F4F9]/90 leading-relaxed">
-                          "كنا بنحب النوستالجيا دي.. ودايمًا هقولهالك: بس انت بطلي المفضل."
-                        </p>
-                      </div>
-                    </div>
-                    <div className="p-5 pt-0">
-                      <button
-                        onClick={() => handlePlayAudio('audio-spacetoon')}
-                        className={`w-full py-2.5 rounded-xl bg-[#0F1218] border border-[#1E2536] hover:border-[#38BDF8] text-xs font-semibold text-[#F1F4F9] transition flex items-center justify-center gap-2 cursor-pointer ${
-                          currentTrackId === 'audio-spacetoon' && isPlaying
-                            ? 'border-[#38BDF8] text-[#38BDF8]'
-                            : ''
-                        }`}
-                      >
-                        <i className="fa-solid fa-wand-magic-sparkles text-[#38BDF8]" />
-                        <span>
-                          {currentTrackId === 'audio-spacetoon' && isPlaying
-                            ? 'أوقف أغنية سبيستون'
-                            : 'شغل أغنية أبطال الديجيتال'}
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* Exit Button back to quiet state */}
-              <div className="mt-12 text-center">
-                <button
-                  onClick={exitChaosMode}
-                  className="px-8 py-3.5 rounded-full bg-[#07080B] text-white hover:bg-black font-bold text-sm sm:text-base shadow-2xl transition border-2 border-white/40 hover:border-white flex items-center gap-2 mx-auto cursor-pointer"
-                >
-                  <i className="fa-solid fa-arrow-rotate-left text-xs" />
-                  <span>خلصنا فقرة العبط — رجعني للموقع المحترم</span>
-                </button>
-              </div>
+              <button
+                onClick={exitChaosMode}
+                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-2xl transition flex items-center gap-2 mx-auto cursor-pointer"
+              >
+                <i className="fa-solid fa-arrow-rotate-left text-xs" />
+                <span>الخروج من العالم العبثي 🚪</span>
+              </button>
             </div>
           )}
         </div>
       </section>
 
-      {/* 4. Moments Section: "قسم اللحظات" + Underneath: Emotional Love Letter */}
+      {/* 4. Moments Section: "ويلكم باك بوني 😂" + اغنية في يوم وليلة + المشاعر */}
       <section id="moments" className="py-24 px-6 border-t border-[#1E2536]/40 relative">
         <div className="max-w-5xl mx-auto">
           {/* Moments Header */}
           <div className="text-center mb-12">
-            <span className="text-xs font-code text-[#2563EB] uppercase tracking-widest block mb-2">
-              Unspoken Memories
-            </span>
-            <h3 className="font-display text-3xl sm:text-4xl font-bold text-white mb-3">
-              قسم اللحظات
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2563EB]/15 border border-[#2563EB]/30 text-white font-bold text-sm mb-4">
+              <span>ويلكم باك بوني 😂</span>
+            </div>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
+              ضحكنا و لعبنا و عبطنا
             </h3>
-            <p className="text-[#94A3B8] text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-              تفاصيل صغيرة ولحظات عمري ما بنساها مش متصورة بس انا دايما فاكراها
+            <p className="text-base sm:text-lg text-[#38BDF8] max-w-xl mx-auto leading-relaxed font-medium">
+              ندخل في المشاعر و الحاجات اللي هي الحاجات دي يعني انت فاهم يعني 😉
             </p>
 
-            {/* Tul8te Track Button */}
-            <div className="mt-5 flex justify-center">
+            {/* Fi Yom W Leila Track Button */}
+            <div className="mt-7 flex justify-center">
               <button
-                onClick={() => handlePlayAudio('audio-tul8te')}
-                className={`px-5 py-2 rounded-full bg-[#0F1218] border border-[#1E2536] hover:border-[#2563EB] text-xs font-medium text-[#F1F4F9] flex items-center gap-2 transition cursor-pointer ${
-                  currentTrackId === 'audio-tul8te' && isPlaying
-                    ? 'border-[#2563EB] text-[#38BDF8] ring-1 ring-[#2563EB]'
-                    : ''
+                onClick={() => handlePlayAudio('audio-fi-yom-w-leila')}
+                className={`px-7 py-3 rounded-full text-sm font-bold transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
+                  currentTrackId === 'audio-fi-yom-w-leila' && isPlaying
+                    ? 'bg-rose-500 text-white ring-2 ring-rose-400'
+                    : 'bg-white text-black hover:bg-[#F1F4F9]'
                 }`}
               >
-                <i className="fa-solid fa-headphones text-[#2563EB]" />
+                <i
+                  className={`fa-solid ${
+                    currentTrackId === 'audio-fi-yom-w-leila' && isPlaying ? 'fa-pause' : 'fa-play'
+                  } text-xs`}
+                />
                 <span>
-                  {currentTrackId === 'audio-tul8te' && isPlaying
-                    ? 'أوقف موسيقى اللحظات'
-                    : 'شغل موسيقى اللحظات (Tul8te)'}
+                  {currentTrackId === 'audio-fi-yom-w-leila' && isPlaying
+                    ? 'أوقف أغنية في يوم وليلة'
+                    : 'في يوم و ليلة (خدنا حلاوة الحب كله) 🎶'}
                 </span>
               </button>
             </div>
+          </div>
+
+          {/* Section: الحاجات اللي هفضل بفتكرها */}
+          <div className="mb-8 text-center">
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              عاوزة اقول الحاجات اللي مهما عدا عليها الوقت هفضل بفتكرها ما بينا و بحبها اوي في علاقتنا
+            </h4>
           </div>
 
           {/* Moments Cards Grid */}
@@ -1457,8 +785,8 @@ export default function App() {
                 <i className="fa-solid fa-hand-holding-heart text-lg" />
               </div>
               <h5 className="text-white font-semibold text-base mb-2">حنيتك في اللحظات الصعبة</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                لما كنت اتخبط أو أتأذى وانت مضايق، كان وشك يهدى فجأة وتطبطب عليا وتطمن، دي عندي بالدنيا.
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                حنيتك في اللحظات الصعبة لم بتخبط او لم بيحصلي حاجة
               </p>
             </div>
 
@@ -1468,53 +796,52 @@ export default function App() {
                 <i className="fa-regular fa-eye text-lg" />
               </div>
               <h5 className="text-white font-semibold text-base mb-2">الـ Eye Contact</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                النظرات اللي كانت بيننا في الأماكن العامة وسط الناس، من غير ما حد يحس بإننا بنفهم بعض بنظرة
-                عين.
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                الاي كونتاكت اللي بيبقى ف وسط الناس كلها
               </p>
             </div>
 
             {/* Card 3 */}
             <div className="glass-card p-6 rounded-2xl tilt-card border-[#1E2536]/70">
               <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center mb-4">
-                <i className="fa-solid fa-snowflake text-lg" />
+                <i className="fa-solid fa-moon text-lg" />
               </div>
-              <h5 className="text-white font-semibold text-base mb-2">الشتاء والسفر</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                المشي في السقعة والهدوء والشارع فاضي، والإحساس بالأمان اللي مكنتش بحسه غير معاك.
+              <h5 className="text-white font-semibold text-base mb-2">كلامنا ونومنا سوا</h5>
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                كلامنا مع بعض بالليل قبل ما ننام و لم بننام سوا
               </p>
             </div>
 
             {/* Card 4 */}
             <div className="glass-card p-6 rounded-2xl tilt-card border-[#1E2536]/70">
-              <div className="w-10 h-10 rounded-xl bg-[#2563EB]/10 text-[#2563EB] flex items-center justify-center mb-4">
-                <i className="fa-solid fa-headphones-simple text-lg" />
+              <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center mb-4">
+                <i className="fa-solid fa-utensils text-lg" />
               </div>
-              <h5 className="text-white font-semibold text-base mb-2">أغاني Tul8te</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                الألبوم الأخير اللي كنا بنسمعه ونحس كأنه بيكلمنا بالظبط وبنوصف بيه حالنا سوا.
+              <h5 className="text-white font-semibold text-base mb-2">أكلنا سوا</h5>
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                لم بنقعد ناكل سوا و بأكلك
               </p>
             </div>
 
             {/* Card 5 */}
             <div className="glass-card p-6 rounded-2xl tilt-card border-[#1E2536]/70">
-              <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center mb-4">
-                <i className="fa-solid fa-utensils text-lg" />
+              <div className="w-10 h-10 rounded-xl bg-[#38BDF8]/10 text-[#38BDF8] flex items-center justify-center mb-4">
+                <i className="fa-solid fa-motorcycle text-lg" />
               </div>
-              <h5 className="text-white font-semibold text-base mb-2">الممبار والشوكولاتة</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                خروج الأكل التقيل والمزاج العالي، والتفاصيل العفوية اللي بنضحك عليها من قلبنا.
+              <h5 className="text-white font-semibold text-base mb-2">البايك</h5>
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                واحنا على البايك سوا
               </p>
             </div>
 
             {/* Card 6 */}
             <div className="glass-card p-6 rounded-2xl tilt-card border-[#1E2536]/70">
-              <div className="w-10 h-10 rounded-xl bg-[#38BDF8]/10 text-[#38BDF8] flex items-center justify-center mb-4">
-                <i className="fa-solid fa-cloud-moon text-lg" />
+              <div className="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center mb-4">
+                <i className="fa-solid fa-heart text-lg" />
               </div>
-              <h5 className="text-white font-semibold text-base mb-2">الهدوء وحكايات الفجر</h5>
-              <p className="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
-                ساعات السكوت اللي مفيهاش إحراج، والكلام الصادق اللي مش بيطلع لأي حد تاني غير ليك.
+              <h5 className="text-white font-semibold text-base mb-2">وغيرها كتير</h5>
+              <p className="text-sm text-[#F1F4F9]/90 leading-relaxed">
+                حاجات كتير كتير كتير ممكن اكتبها...
               </p>
             </div>
           </div>
@@ -1524,7 +851,7 @@ export default function App() {
             <div className="glass-card rounded-2xl p-8 sm:p-14 border border-[#1E2536]/90 relative shadow-2xl">
               <div className="flex items-center justify-between pb-6 border-b border-[#1E2536]/60 mb-8">
                 <div className="font-code text-xs text-[#94A3B8]">
-                  <span className="text-[#2563EB]">from:</span> نون / روءة
+                  <span className="text-[#2563EB]">from:</span> روءة
                   <br />
                   <span className="text-[#2563EB]">to:</span> batman (عبدالرحمن)
                 </div>
@@ -1533,212 +860,324 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="space-y-6 text-sm sm:text-base leading-relaxed text-[#F1F4F9]/90 font-sans">
-                <p className="font-medium text-white text-base sm:text-lg">
-                  انا بحبك عشان انت عبدالرحمن بكل مشاكلنا وكل لغبطتنا.. انا حبيتك اوي وهفضل بحبك اوي.. انت
-                  اغلى انسان في الدنيا عندي، وبحب اوي صورنا دي سوا.
+              <div className="space-y-6 text-base sm:text-lg leading-relaxed text-[#F1F4F9]/90 font-sans">
+                <p className="font-medium text-white">
+                  انا بحبك عشان انت عبدالرحمن بكل مشاكلنا وكل لغبطتنا.. انا حبيتك اوي وهفضل بحبك اوي.. انت اغلى انسان في الدنيا عندي، وبحب اوي صورنا دي سوا.
                 </p>
-                <p className="text-[#94A3B8]">
+                <p className="text-[#38BDF8] font-medium">
                   عبدالرحمن.. انت تستاهل الحب وتستاهل تكون في مكان شبهك ومرتاح فيه.
                 </p>
                 <p className="text-[#94A3B8]">
-                  كان نفسي اكون جنبك فيه دايما، بس ملناش نصيب غير في ان نكون في حياة بعض من بعيد.. بس
-                  اتمنالك دايما تكون كويس ومبسوط ومرتاح، وتحقق كل حاجة حلمنا بيها سوا واكتر.
+                  كان نفسي اكون جنبك فيه دايما، بس ملناش نصيب غير في ان نكون في حياة بعض من بعيد.. بس اتمنالك دايما تكون كويس ومبسوط ومرتاح، وتحقق كل حاجة حلمنا بيها سوا واكتر.
                 </p>
               </div>
 
               <div className="mt-10 pt-6 border-t border-[#1E2536]/60 flex items-center justify-between">
-                <div className="font-handwritten text-3xl text-[#38BDF8]">- نون / روءة</div>
-                <span className="text-xs text-[#94A3B8]/40 font-code">EOF // protected</span>
+                <div className="font-handwritten text-3xl text-[#38BDF8]">- روءة 💙</div>
+                <span className="text-xs text-[#94A3B8]/40 font-code">always in my heart</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Photo Gallery: "بحب صورنا سوا قد إيه" */}
+      {/* 5. Photo Gallery: "شكلنا حلو اوي سوا اوي اوي سوا صورنا بتبهرني و هحط صور لينا" */}
       <section id="gallery" className="py-24 px-6 max-w-6xl mx-auto border-t border-[#1E2536]/40">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
             <span className="text-xs font-code text-[#2563EB] tracking-widest uppercase block mb-1">
               Visual Archive
             </span>
-            <h3 className="font-display text-3xl sm:text-4xl font-bold text-white">
-              بحب صورنا سوا قد إيه
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-snug">
+              شكلنا حلو اوي سوا اوي اوي سوا صورنا بتبهرني و هحط صور لينا
             </h3>
           </div>
-          <p className="text-xs sm:text-sm text-[#94A3B8] max-w-sm text-right leading-relaxed">
-            شكلك وشكلي بيبقى حلو مع بعض.. ذكريات وأماكن وحاجات حقيقية عشناها.
+          <p className="text-xs sm:text-sm text-[#38BDF8] max-w-sm text-right leading-relaxed font-sans font-medium">
+            صورنا سوا وتحت كل صورة ريكورد بصوت روءة 🎙️💙
           </p>
         </div>
 
-        {/* Gallery Grid with 3D Tilt Cards */}
+        {/* Gallery Grid with 3D Tilt Cards & Voice Record Placeholders */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {/* Gallery Item 1 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery1,
+                src: IMAGES.hero,
                 caption: 'أول المشوار والبدايات الرايقة',
                 tag: '[بداية القرب]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery1}
-                alt="بداية القرب"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">2025.10</span>
-                <p className="text-sm font-medium text-white">أول المشوار والبدايات الرايقة</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="بداية القرب"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">2025.10</span>
+                  <p className="text-sm font-medium text-white">أول المشوار والبدايات الرايقة</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-1.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[بداية القرب]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-1.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[بداية القرب]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:24</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Gallery Item 2 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery2,
+                src: IMAGES.hero,
                 caption: 'ضحكة طالعة من القلب بجد',
-                tag: '[هزارنا العبثي]'
+                tag: '[هزارنا سوا]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery2}
-                alt="هزارنا العبثي"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">Private</span>
-                <p className="text-sm font-medium text-white">ضحكة طالعة من القلب بجد</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="هزارنا سوا"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">Private</span>
+                  <p className="text-sm font-medium text-white">ضحكة طالعة من القلب بجد</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-2.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[هزارنا سوا]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-2.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[هزارنا العبثي]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:31</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Gallery Item 3 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery3,
+                src: IMAGES.hero,
                 caption: 'سقعة إيدينا والدفا',
                 tag: '[الشتاء]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery3}
-                alt="الشتاء"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">Winter Walk</span>
-                <p className="text-sm font-medium text-white">سقعة إيدينا والدفا</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="الشتاء"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">Winter Walk</span>
+                  <p className="text-sm font-medium text-white">سقعة إيدينا والدفا</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-3.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[الشتاء]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-3.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[الشتاء]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:18</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Gallery Item 4 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery4,
+                src: IMAGES.hero,
                 caption: 'نظرة عين كانت تكفي',
                 tag: '[مكاننا الهادي]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery4}
-                alt="مكاننا الهادي"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">Unspoken</span>
-                <p className="text-sm font-medium text-white">نظرة عين كانت تكفي</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="مكاننا الهادي"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">Unspoken</span>
+                  <p className="text-sm font-medium text-white">نظرة عين كانت تكفي</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-4.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[مكاننا الهادي]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-4.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[مكاننا الهادي]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:45</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Gallery Item 5 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery5,
+                src: IMAGES.hero,
                 caption: 'الأكل التقيل والمزاج العالي',
                 tag: '[الممبار والروقان]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery5}
-                alt="الممبار والروقان"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">Food Trips</span>
-                <p className="text-sm font-medium text-white">الأكل التقيل والمزاج العالي</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="الممبار والروقان"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">Food Trips</span>
+                  <p className="text-sm font-medium text-white">الأكل التقيل والمزاج العالي</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-5.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[الممبار والروقان]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-5.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[الممبار والروقان]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:28</span>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Gallery Item 6 */}
           <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer"
+            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
             onClick={() =>
               setLightboxImage({
-                src: IMAGES.gallery6,
+                src: IMAGES.hero,
                 caption: 'حكايات الفجرية والكلام الصادق',
                 tag: '[آخر الليل]'
               })
             }
           >
-            <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-              <img
-                src={IMAGES.gallery6}
-                alt="آخر الليل"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                <span className="text-xs text-[#2563EB] font-code">Late Nights</span>
-                <p className="text-sm font-medium text-white">حكايات الفجرية والكلام الصادق</p>
+            <div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={IMAGES.hero}
+                  alt="آخر الليل"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                  <span className="text-xs text-[#2563EB] font-code">Late Nights</span>
+                  <p className="text-sm font-medium text-white">حكايات الفجرية والكلام الصادق</p>
+                </div>
+              </div>
+              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                <span>images/gallery-6.jpg</span>
+                <span className="font-sans text-[#F1F4F9]">[آخر الليل]</span>
               </div>
             </div>
-            <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-              <span>images/gallery-6.jpg</span>
-              <span className="font-sans text-[#F1F4F9]">[آخر الليل]</span>
+            {/* Voice record placeholder */}
+            <div className="px-2 pb-2">
+              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
+                    <i className="fa-solid fa-microphone text-[11px]" />
+                  </div>
+                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:52</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1832,7 +1271,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 7. Final Climax Section: "في حاجة أخيرة.. (Secret Message)" & Perfect Track */}
+      {/* 7. Final Climax Section: Secret Message & Perfect Track */}
       <section id="final-message" className="py-32 px-6 relative border-t border-[#1E2536]/40">
         <div className="max-w-2xl mx-auto text-center">
           {!isFinalRevealed ? (
@@ -1841,18 +1280,18 @@ export default function App() {
               <div className="w-16 h-16 rounded-2xl bg-[#2563EB]/15 text-[#2563EB] mx-auto flex items-center justify-center text-2xl mb-5 shadow-inner animate-pulse">
                 <i className="fa-solid fa-envelope-open-text" />
               </div>
-              <h4 className="font-display text-2xl sm:text-3xl font-semibold text-white mb-2">
-                في حاجة أخيرة..
+              <h4 className="font-display text-2xl sm:text-3xl font-semibold text-white mb-3">
+                دي اخر حاجة في الويبسايت سيكريت مسدج
               </h4>
-              <p className="text-xs sm:text-sm text-[#94A3B8] mb-6">
-                (Secret Message) رسالة مقفولة بهدوء
+              <p className="text-sm text-[#94A3B8] mb-6 max-w-md mx-auto leading-relaxed">
+                ممكن اغيرهالك كل شوية.. اضغط هنا عشان تفتحها ✉️
               </p>
               <button
                 onClick={() => {
                   setIsFinalRevealed(true);
                   handlePlayAudio('audio-perfect');
                 }}
-                className="px-8 py-3.5 rounded-full bg-[#2563EB] text-white hover:bg-[#0052FF] text-sm font-medium transition shadow-lg hover:shadow-[#2563EB]/30 flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer"
+                className="px-8 py-3.5 rounded-full bg-[#2563EB] text-white hover:bg-[#0052FF] text-sm font-semibold transition shadow-lg hover:shadow-[#2563EB]/30 flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer"
               >
                 <i className="fa-solid fa-key text-xs" />
                 <span>افتح السيكريت مسدج</span>
@@ -1863,14 +1302,9 @@ export default function App() {
             <div className="glass-card rounded-3xl p-8 sm:p-14 border-[#2563EB]/40 text-center relative overflow-hidden shadow-2xl transition-all duration-700 animate-fadeIn">
               <div className="absolute -top-12 inset-x-0 h-28 bg-[#2563EB]/15 blur-2xl" />
 
-              <p className="text-base sm:text-lg font-medium text-[#F1F4F9]/90 mb-4 leading-relaxed">
-                كنت أتمنى أغنية Perfect تبقى شغالة وإحنا بنشوف الجزء ده..
+              <p className="text-base sm:text-lg font-medium text-[#F1F4F9]/90 mb-6 leading-relaxed">
+                دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا perfect
               </p>
-
-              {/* The Core Unspoken Sentence */}
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white my-6 py-3 border-y border-[#1E2536]/60">
-                كان نفسي نشغلها في فرحنا.
-              </h2>
 
               {/* Play Final Song CTA */}
               <div className="my-8">
@@ -1878,7 +1312,7 @@ export default function App() {
                   onClick={() => handlePlayAudio('audio-perfect')}
                   className={`px-8 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base shadow-xl transition flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer ${
                     currentTrackId === 'audio-perfect' && isPlaying
-                      ? 'bg-emerald-600 hover:bg-emerald-500'
+                      ? 'bg-rose-600 hover:bg-rose-500'
                       : 'bg-[#2563EB] hover:bg-[#0052FF] hover:shadow-[#2563EB]/30'
                   }`}
                 >
@@ -1890,18 +1324,18 @@ export default function App() {
                   <span>
                     {currentTrackId === 'audio-perfect' && isPlaying
                       ? 'أوقف أغنية Perfect'
-                      : 'شغل أغنية Perfect'}
+                      : 'شغل أغنية Perfect (من أول I found a love 🎶)'}
                   </span>
                 </button>
               </div>
 
               {/* Final Goodnight Sign-off */}
               <div className="pt-8 border-t border-[#1E2536]/60">
-                <p className="text-xl sm:text-2xl font-display font-medium italic text-[#F1F4F9]">
-                  نايتي نايت بيب.
+                <p className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
+                  نايتي نايت بيب
                 </p>
                 <span className="text-xs text-[#94A3B8]/60 font-code block mt-2">
-                  🤍 انتهى بهدوء وبدون عتاب 🤍
+                  🤍 روءة &amp; باتمان 🤍
                 </span>
               </div>
             </div>
@@ -1987,22 +1421,22 @@ export default function App() {
       {showBonyAlert && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
           <div className="glass-card max-w-md w-full rounded-3xl p-7 sm:p-8 border-blue-500/30 text-center relative bg-[#0F1218]/95 shadow-2xl">
-            <div className="text-3xl mb-3">🦇🖤</div>
+            <div className="text-3xl mb-3">🦇❤️</div>
             <h4 className="text-xl font-bold text-white mb-4 tracking-wider uppercase font-display text-[#38BDF8]">
-              message for batman
+              message to batman
             </h4>
             <div className="bg-white/5 rounded-2xl p-5 sm:p-6 mb-6 border border-white/10 text-right">
               <p className="text-base sm:text-lg text-[#F1F4F9] leading-relaxed font-normal whitespace-pre-line">
-                انت ممكن تكون شخص عادي مش خارق ومش كل يوم بتنقذ المدينة بس شكرا على كل مرة انقذتني فيها
+                انت ممكن تكون شخص عادي مش خارق و مش كل يوم بتنقذ الناس ولا المدينة بس شكرا على كل مرة انقذتني فيها
                 {'\n\n'}
                 انا بحبك ❤️
               </p>
             </div>
             <button
               onClick={() => setShowBonyAlert(false)}
-              className="px-8 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-sm font-semibold cursor-pointer shadow-lg transition"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white text-base font-bold cursor-pointer shadow-lg transition transform hover:scale-105 active:scale-95"
             >
-              شكراً يا روءة 💙
+              موووااااااه
             </button>
           </div>
         </div>

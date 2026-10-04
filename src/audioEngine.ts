@@ -12,7 +12,8 @@ type TrackId =
   | 'audio-chaos'
   | 'audio-tul8te'
   | 'audio-perfect'
-  | 'audio-nokia';
+  | 'audio-nokia'
+  | 'audio-fi-yom-w-leila';
 
 interface TrackMeta {
   id: TrackId;
@@ -53,13 +54,18 @@ export const TRACKS: Record<TrackId, TrackMeta> = {
   },
   'audio-perfect': {
     id: 'audio-perfect',
-    title: 'Perfect — Ed Sheeran (آخر أغنية)',
-    subtitle: 'الرومانسية والنهاية الهادية اللي في القلب'
+    title: 'Perfect — Ed Sheeran (من أول I found a love) 🎶',
+    subtitle: 'الأغنية اللي كان نفسي نرقص عليها في فرحنا'
   },
   'audio-nokia': {
     id: 'audio-nokia',
     title: 'رنة نوكيا 3310 الكلاسيكية 📱',
     subtitle: 'نغمة المونوفونيك الشهيرة من زمن الألفينات'
+  },
+  'audio-fi-yom-w-leila': {
+    id: 'audio-fi-yom-w-leila',
+    title: 'في يوم وليلة — وردة (خدنا حلاوة الحب كله) 🎶',
+    subtitle: 'الكلام على طول بدون مقدمة طويلة'
   }
 };
 
@@ -136,6 +142,9 @@ class AudioEngine {
         break;
       case 'audio-nokia':
         this.playNokiaTune();
+        break;
+      case 'audio-fi-yom-w-leila':
+        this.playFiYomWLeila();
         break;
     }
   }
@@ -420,21 +429,159 @@ class AudioEngine {
   }
 
   private playPerfectWaltz() {
-    // Ed Sheeran Perfect waltz (12/8 gentle acoustic guitar feel)
-    // Bb, Gm, Eb, F progression
-    const arp = [
-      233.08, 293.66, 349.23, 466.16, // Bb
-      196.00, 233.08, 293.66, 392.00, // Gm
-      155.56, 196.00, 233.08, 311.13, // Eb
-      174.61, 220.00, 261.63, 349.23  // F
+    // Ed Sheeran - Perfect (Starting immediately from vocal line: "I found a love for me...")
+    const vocalNotes = [
+      // "I found a love for me"
+      { f: 196.00, d: 0.28, t: 0.00 }, // I
+      { f: 196.00, d: 0.28, t: 0.35 }, // found
+      { f: 196.00, d: 0.28, t: 0.70 }, // a
+      { f: 196.00, d: 0.35, t: 1.05 }, // love
+      { f: 220.00, d: 0.35, t: 1.45 }, // for
+      { f: 246.94, d: 1.10, t: 1.85 }, // me
+
+      // "Darling just dive right in"
+      { f: 196.00, d: 0.28, t: 3.20 }, // Dar-
+      { f: 196.00, d: 0.28, t: 3.55 }, // ling
+      { f: 196.00, d: 0.28, t: 3.90 }, // just
+      { f: 220.00, d: 0.35, t: 4.25 }, // dive
+      { f: 246.94, d: 0.35, t: 4.65 }, // right
+      { f: 261.63, d: 0.55, t: 5.05 }, // in
+
+      // "and follow my lead"
+      { f: 246.94, d: 0.28, t: 5.75 }, // and
+      { f: 220.00, d: 0.28, t: 6.05 }, // fol-
+      { f: 196.00, d: 0.35, t: 6.40 }, // low
+      { f: 220.00, d: 0.35, t: 6.80 }, // my
+      { f: 246.94, d: 1.20, t: 7.20 }, // lead
+
+      // "Well I found a girl, beautiful and sweet"
+      { f: 196.00, d: 0.28, t: 8.60 }, // Well
+      { f: 196.00, d: 0.28, t: 8.95 }, // I
+      { f: 196.00, d: 0.28, t: 9.30 }, // found
+      { f: 220.00, d: 0.35, t: 9.65 }, // a
+      { f: 246.94, d: 0.70, t: 10.05 }, // girl
+      { f: 261.63, d: 0.35, t: 10.85 }, // beau-
+      { f: 246.94, d: 0.35, t: 11.25 }, // ti-
+      { f: 220.00, d: 0.35, t: 11.65 }, // ful
+      { f: 196.00, d: 0.35, t: 12.05 }, // and
+      { f: 196.00, d: 1.10, t: 12.45 }, // sweet
+
+      // "I never knew you were the someone waiting for me"
+      { f: 196.00, d: 0.28, t: 13.80 }, // I
+      { f: 196.00, d: 0.28, t: 14.15 }, // ne-
+      { f: 196.00, d: 0.28, t: 14.50 }, // ver
+      { f: 220.00, d: 0.35, t: 14.85 }, // knew
+      { f: 246.94, d: 0.35, t: 15.25 }, // you
+      { f: 261.63, d: 0.35, t: 15.65 }, // were
+      { f: 246.94, d: 0.35, t: 16.05 }, // the
+      { f: 220.00, d: 0.35, t: 16.45 }, // some-
+      { f: 196.00, d: 0.35, t: 16.85 }, // one
+      { f: 220.00, d: 0.35, t: 17.25 }, // wai-
+      { f: 196.00, d: 0.35, t: 17.65 }, // ting
+      { f: 196.00, d: 0.35, t: 18.05 }, // for
+      { f: 196.00, d: 1.40, t: 18.45 }  // me
     ];
-    let noteIndex = 0;
-    this.intervalTimer = window.setInterval(() => {
-      const f = arp[noteIndex % arp.length];
-      this.playTone(f, 'triangle', 0.6, 0, 0.16);
-      this.playTone(f * 2, 'sine', 0.4, 0.02, 0.08);
-      noteIndex++;
-    }, 280);
+
+    const guitarChords = [
+      { f: 98.00, d: 2.8, t: 0.00 },
+      { f: 82.41, d: 2.8, t: 3.20 },
+      { f: 65.41, d: 2.8, t: 5.75 },
+      { f: 73.42, d: 2.8, t: 7.20 },
+      { f: 98.00, d: 2.8, t: 8.60 },
+      { f: 82.41, d: 2.8, t: 11.25 },
+      { f: 65.41, d: 2.8, t: 13.80 },
+      { f: 73.42, d: 2.8, t: 16.85 }
+    ];
+
+    const playRound = () => {
+      vocalNotes.forEach(n => {
+        this.playTone(n.f, 'sine', n.d, n.t, 0.22);
+        this.playTone(n.f * 2, 'triangle', n.d * 0.7, n.t, 0.06);
+      });
+      guitarChords.forEach(c => {
+        this.playTone(c.f, 'triangle', c.d, c.t, 0.12);
+        this.playTone(c.f * 1.5, 'sine', c.d * 0.8, c.t + 0.1, 0.08);
+      });
+    };
+
+    playRound();
+    this.intervalTimer = window.setInterval(playRound, 21000);
+  }
+
+  private playFiYomWLeila() {
+    // Warda - Fi Yom W Leila (Starting straight into vocal melody without long intro)
+    const notes = [
+      // "Fi yom w leila"
+      { f: 261.63, d: 0.35, t: 0.00 }, // Fi (C4)
+      { f: 293.66, d: 0.40, t: 0.40 }, // yom (D4)
+      { f: 329.63, d: 0.40, t: 0.85 }, // w (E4)
+      { f: 349.23, d: 0.50, t: 1.30 }, // lei- (F4)
+      { f: 392.00, d: 1.10, t: 1.85 }, // la (G4)
+
+      // "khedna halawet el hob kollo"
+      { f: 392.00, d: 0.35, t: 3.10 }, // khed- (G4)
+      { f: 440.00, d: 0.40, t: 3.50 }, // na (A4)
+      { f: 392.00, d: 0.35, t: 3.95 }, // ha- (G4)
+      { f: 349.23, d: 0.35, t: 4.35 }, // la- (F4)
+      { f: 329.63, d: 0.45, t: 4.75 }, // wet (E4)
+      { f: 293.66, d: 0.35, t: 5.25 }, // el (D4)
+      { f: 329.63, d: 0.50, t: 5.65 }, // hob (E4)
+      { f: 349.23, d: 0.45, t: 6.20 }, // kol- (F4)
+      { f: 329.63, d: 0.70, t: 6.70 }, // lo (E4)
+
+      // "fi yom w leila"
+      { f: 293.66, d: 0.35, t: 7.55 }, // fi (D4)
+      { f: 261.63, d: 0.40, t: 7.95 }, // yom (C4)
+      { f: 293.66, d: 0.45, t: 8.40 }, // w (D4)
+      { f: 261.63, d: 1.40, t: 8.90 }, // lei-la (C4)
+
+      // "w bein yom w leila"
+      { f: 261.63, d: 0.35, t: 10.60 }, // w (C4)
+      { f: 293.66, d: 0.35, t: 11.00 }, // bein (D4)
+      { f: 329.63, d: 0.40, t: 11.40 }, // yom (E4)
+      { f: 349.23, d: 0.45, t: 11.85 }, // w (F4)
+      { f: 392.00, d: 1.10, t: 12.35 }, // lei-la (G4)
+
+      // "dawwa'na halawet el hob kollo"
+      { f: 392.00, d: 0.35, t: 13.60 }, // daw- (G4)
+      { f: 440.00, d: 0.40, t: 14.00 }, // wa'- (A4)
+      { f: 392.00, d: 0.35, t: 14.45 }, // na (G4)
+      { f: 349.23, d: 0.35, t: 14.85 }, // ha-la- (F4)
+      { f: 329.63, d: 0.45, t: 15.25 }, // wet (E4)
+      { f: 293.66, d: 0.35, t: 15.75 }, // el hob (D4)
+      { f: 349.23, d: 0.45, t: 16.15 }, // kol- (F4)
+      { f: 329.63, d: 0.70, t: 16.65 }, // lo (E4)
+
+      // "fi yom w leila"
+      { f: 293.66, d: 0.35, t: 17.50 }, // fi (D4)
+      { f: 261.63, d: 0.40, t: 17.90 }, // yom (C4)
+      { f: 293.66, d: 0.45, t: 18.35 }, // w (D4)
+      { f: 261.63, d: 1.50, t: 18.85 }  // lei-la (C4)
+    ];
+
+    const chords = [
+      { f: 130.81, d: 2.2, t: 0.00 },
+      { f: 196.00, d: 2.5, t: 1.85 },
+      { f: 174.61, d: 2.5, t: 4.75 },
+      { f: 130.81, d: 2.5, t: 7.55 },
+      { f: 130.81, d: 2.0, t: 10.60 },
+      { f: 196.00, d: 2.5, t: 12.35 },
+      { f: 174.61, d: 2.5, t: 15.25 },
+      { f: 130.81, d: 2.5, t: 17.50 }
+    ];
+
+    const playRound = () => {
+      notes.forEach(n => {
+        this.playTone(n.f, 'triangle', n.d, n.t, 0.20);
+        this.playTone(n.f * 2, 'sine', n.d * 0.8, n.t + 0.01, 0.07);
+      });
+      chords.forEach(c => {
+        this.playTone(c.f, 'sine', c.d, c.t, 0.14);
+      });
+    };
+
+    playRound();
+    this.intervalTimer = window.setInterval(playRound, 21500);
   }
 
   private playNokiaTune() {
