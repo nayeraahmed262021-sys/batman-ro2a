@@ -389,12 +389,144 @@ export default function App() {
           </div>
 
           {/* Subtitle & Words */}
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-3">
-            كل سنة وانت طيب يا بوني.
+          <h2 className="text-2xl sm:text-4xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+            <span>كل سنة وانت طيب يا بوني</span>
+            <span className="text-[#38BDF8]">💙</span>
           </h2>
-          <p className="text-[#94A3B8] text-sm sm:text-base max-w-lg mb-8 leading-relaxed font-normal">
-            المكان ده اتعمل بهدوء عشانك.. خد وقتك، اتفرج، وشوف الحاجات اللي كانت حقيقية بيننا.
+          <p className="text-[#CBD5E1] text-sm sm:text-base max-w-xl mx-auto mb-6 leading-relaxed font-normal">
+            الويبسايت دا اتعمل علشانك و فيه تفاصيل كتير حاولت اعمل حاجة تكون شبهنا سوا معقدة بس لذيذة ومختلفة.. خد وقتك و شوف كل التفاصيل الصغننة ✨
           </p>
+
+          {/* Guidelines / Site Map */}
+          <div className="w-full max-w-xl glass-card rounded-2xl p-5 sm:p-6 mb-8 text-right border border-[#1E2536] bg-[#0F1218]/90 shadow-xl">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#1E2536]/80">
+              <div className="flex items-center gap-2 text-[#38BDF8] text-sm font-bold">
+                <i className="fa-solid fa-map-location-dot text-base" />
+                <span>خريطة الموقع • Guidelines</span>
+              </div>
+              <span className="text-[11px] text-[#94A3B8] font-code bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
+                دليلك للاستكشاف 🗺️
+              </span>
+            </div>
+
+            <p className="text-xs text-[#94A3B8] mb-4 leading-relaxed">
+              عشان متفوتش أي حاجة.. دي خريطة بسيطة للمحطات اللي مستنياك تحت:
+            </p>
+
+            <div className="space-y-2.5 text-xs sm:text-sm">
+              <a
+                href="#hero"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    1
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    رسالة message for batman والنغمة الهادية
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">فوق ✉️</span>
+              </a>
+
+              <a
+                href="#intro"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    2
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    كلام من القلب وبداية الحكاية
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#intro 💙</span>
+              </a>
+
+              <a
+                href="#fun-chaos-section"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    3
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    بوابة الذكريات والمواقف وتراكات المزيكا
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#memories 🎵</span>
+              </a>
+
+              <a
+                href="#moments"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    4
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    شريط اللحظات والتواريخ الخاصة
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#moments ⏳</span>
+              </a>
+
+              <a
+                href="#gallery"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    5
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    معرض الصور واللقطات المميزة
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#gallery 📸</span>
+              </a>
+
+              <a
+                href="#terminal-section"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    6
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    تيرمينال أوامر باتمان السري (جرب تكتب فيه!)
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#terminal 💻</span>
+              </a>
+
+              <a
+                href="#final-message"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.03] hover:bg-[#2563EB]/15 border border-white/5 hover:border-[#2563EB]/40 transition group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="w-6 h-6 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs font-bold font-code">
+                    7
+                  </span>
+                  <span className="text-white font-medium group-hover:text-[#38BDF8] transition">
+                    الرسالة السرية الأخيرة (Secret Message)
+                  </span>
+                </div>
+                <span className="text-[11px] text-[#94A3B8] font-code">#secret 🔐</span>
+              </a>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-[#1E2536]/80 flex items-center gap-2 text-[11px] text-amber-300/90 bg-amber-400/10 p-2.5 rounded-xl border border-amber-400/20">
+              <i className="fa-solid fa-wand-magic-sparkles text-xs" />
+              <span>
+                <strong>تريك سرية:</strong> وأنت في أي مكان في الصفحة، جرب تكتب بالكيبورد <strong>5/10</strong> أو <strong>17/9</strong> وشوف إيه اللي هيحصل! 👀✨
+              </span>
+            </div>
+          </div>
 
           {/* Music Start Control */}
           <div className="flex flex-wrap items-center justify-center gap-4">
