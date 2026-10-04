@@ -2,20 +2,73 @@ import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { audioEngine, TRACKS } from './audioEngine';
 
-// Images hotlinked from the user's HTML specification
+// Real photos of Ro2a & Batman
 const IMAGES = {
   hero: '/batman-ro2a.jpg',
+  photo1: '/images/photo1.jpg',
+  photo2: '/images/photo2.jpg',
+  photo3: '/images/photo3.jpg',
+  photo4: '/images/photo4.jpg',
+  photo5: '/images/photo5.jpg',
+  photo6: '/images/photo6.jpg',
+  photo7: '/images/photo7.jpg',
   meme: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDj-6g9k6J0Q5BuI5p7irUiRQu9an7UuVQA7ojo8hJmVHKKbXvQNZN1Z0D5uWA_i4_T1qQntI2XWMXqFQwQDgnZzTifR9raKyxK5d5XmrNrRWwDUjt0zj66bytwNOY0-YmTMrAQw4wHAjAW3lKnda3bN8CVRHZ9t3eTIDlUG5LSUoFNCZ8A8LJDcrUJ0RBirVqyeavJVQgZ7uaUXPy8ZqEPK00w1FIf1Nbhc2wfG9dA_DtvDTyeoxClBQ',
   childhood: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIYfehwMvsdO-D7HzgW4CTAG4iRL3QCA6fx8fdNM40NqyGn6TZ3ZH56j0e9uzraZOS_PjTy8Oeo0eFoku-WYc2flnugEvby-u4bvsnBGwws4FKlHHYhyRzmkqX7k63kJpjQeIW4EI4vrB-6la8mNsM0Gji7KqrmgLG10xxiI9fmiWvs6CYl7Oa3d3hnEaqfBrxoPzYY4kJ5ZxsfOa3cCAyJtqDhZ_CAFrib4beRnlTNSbh8Bg8o9bA4Q',
   batmanStation: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB_DtLIMg-mMFly21USDod_NTefmA0MGa8vjQQYmwjbL8z16jwSyhLgL8bkwun231yDrU1jKd2wHyxH2wxnAZzPaWJ0QIuOTcWnkeUstkDJgCuHYNd2ixGPT4l3hP424nGRmUcKkFreMtRA5WmtAiPHI6PVTphF7Z-6xVIIH9n88rqd6ULKeTMVQ9P2OfdL4-wPOL9W00UkNubg7-sRXKQsd4eL-mxZ73nlsAyPF07Itg7MatxSQNMouQ',
-  spacetoon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCL245MxpDaQYS-iwahne09lnLew5QfRQ0rGNEUQ6MBoWxjrtHfid_wODzbwXe4elMdN2wUuSfgUVxkeQT-a2snEw_pt1XK_2ub34w6lConNsMTfs8oc4MCXgh6EjnK041nnaScKrE7f-KGV9vKPfA7tlVu-90ChrSLLOlcAr5JwUvnxRaz0pQisQEG96bpx6LNxMLkDJR8hvE-HsvPGvZxk3VqhSd76dxgrP4v0L30HJQFs9aR1sVMVw',
-  gallery1: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2wyi9ZklVRxC-YaAFo0r64iYiZN5aDnRTDJ1dEEOvRI7POuHUrGlyT0umzGjGE_4CeaYGSeMwXgmnUG2YyYJwN7hwCnU8cn8YDgIdqvRDG4xOiHXb4YPgegzWRuPWMK-SwJQL9ue6ghrANibcPnWgTv0Xs-K62oM5WPCd9VzlQlOEBok4F2NKAMFk7VHlUEg8yfyvgG3aDNdQf-xKKTtn4gD_dw1qrWPM26gHvDbThJpEvlwYZRlx0A',
-  gallery2: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAzst6cCnp_BHLFpGubay5eW7F0f_8r4KBDtu3YKaCrMuMIn4fbcFXOux8NSMcFyGYSVmVhSEAXO09ca2KOub4M08O0NmrCbVY19YaFx71iXyUuacO7zmL5SfrpZyxDe1QTRXzKkgjANgSzwJBkvkEjy7LbJ2wZuQ54sfRjNcaHrsgmw3TchCHJF5cZv1YwWRXWmdTswB4ADMGbNZxoPqhjGzs8o1KOhvS04dm5D3lvGCT3V8Yg3er8fg',
-  gallery3: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTUQoSlz42bCriviXe2SrT0P-8QvGNNBqw-sYrHJSSRVknfhN0c0wsNt-kxspSe2tgpdJ84Cuf7EiC5SUCZnE_85tM6_g67CWtv0MGfZ8Q1qbOeb7adbXaRiFxXeKuDc294e43PtwvgdMZjsi1tDTSs-a4vn0TfBQ7nqTH9bPVx5DEnkWMyOSv9C3yY0Nk1LY2kgCpNVY9HcT3fsbpOSdLE9C0uUS2-xFW4fDmze2hDBB71GOGo7cUlA',
-  gallery4: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0JAAZgleNucg9MSzyJQHqwJ2JSzYK1gFhotBeSA1kGCD6Cidy3n7mc0JvC66peUn9XNC789C17nRyvh-dwId9oM9RBkDmgzcy_reljuwL40W5uRhQMywcHA1u-qjEj2s03PQp6hYCwIWhUCWIsBpTpw4Eo6duU0p5Yw1S2oZ9kj5-5wwGyBplqo_CVYT_4H2iJ4x21ry6LASVgZGIAOcuCaV3VVPqH47v1SMZrjV5Df2DbWOYsuwvAQ',
-  gallery5: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAgxsnBtZjEOcPLPsbdcHvYLf2Th8okLIYfD9WJCX25jciJ24FJ8UmT2mVY-u53V7Ao1t4juCwfmvCf_gArC4Tg9dnAqVM5izZkbT87Tl5uD3iYD3SqDdD4x40viL2wsOlThgxGrICeSu8zIZ7T0kU-nymsaA2Qs_0qPEcIeFPPnIKUmXxlnj4b9vK5LuCVBRgqOULlbrTDi1lPa2Zx016eyF1yoYK2hWPFrozwCPfELKtxDnQOJcJrZQ',
-  gallery6: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA9O7PZdEsEmYUPQGPQn3YGiFoORx4052ougXoRDNooJLv1UR0DL7Ie16_xKHQPuagPqppxs0ZOIrXwBfMb2CRloqrxyUYJZIAnyBVgxq7P63NXd_ch3Ht2ZPiED2f69qZLdEar1SaVDfhtfPlcdYqYIMbTIlwqPgbPt_QhYCSe-Yn9T_BdZ9Nl_utuRZL5ebhApVVQzjnmNlxi-U3p-WUYuaUUGWP3zrQnPiXrcaHx9wpVflvmoxUDag'
+  spacetoon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCL245MxpDaQYS-iwahne09lnLew5QfRQ0rGNEUQ6MBoWxjrtHfid_wODzbwXe4elMdN2wUuSfgUVxkeQT-a2snEw_pt1XK_2ub34w6lConNsMTfs8oc4MCXgh6EjnK041nnaScKrE7f-KGV9vKPfA7tlVu-90ChrSLLOlcAr5JwUvnxRaz0pQisQEG96bpx6LNxMLkDJR8hvE-HsvPGvZxk3VqhSd76dxgrP4v0L30HJQFs9aR1sVMVw'
 };
+
+const GALLERY_ITEMS = [
+  {
+    src: IMAGES.photo1,
+    tag: '[الشتاء والدفا]',
+    title: 'سقعة إيدينا والقهوة والدفا وسط الشتا ☕🧣',
+    file: 'images/photo1.jpg',
+    duration: '0:24'
+  },
+  {
+    src: IMAGES.photo2,
+    tag: '[ضحكة من القلب]',
+    title: 'ضحكتك في الشمس اللي بتنور أي مكان ☀️❤️',
+    file: 'images/photo2.jpg',
+    duration: '0:35'
+  },
+  {
+    src: IMAGES.photo3,
+    tag: '[هزارنا العبثي]',
+    title: 'لما نفصل ضحك وعبط ومحدش يفهمنا غيرنا 😂✨',
+    file: 'images/photo3.jpg',
+    duration: '0:42'
+  },
+  {
+    src: IMAGES.photo4,
+    tag: '[شكلنا سوا]',
+    title: 'شكلنا حلو أوي سوا.. لايقين على بعض أوي 💙',
+    file: 'images/photo4.jpg',
+    duration: '0:28'
+  },
+  {
+    src: IMAGES.photo5,
+    tag: '[الأمان والحنية]',
+    title: 'سندتنا لبعض والإحساس بالأمان جنبك 🤍',
+    file: 'images/photo5.jpg',
+    duration: '0:50'
+  },
+  {
+    src: IMAGES.photo6,
+    tag: '[مكالماتنا وسهرنا]',
+    title: 'ضحكتنا في المكالمات وكلامنا اللي مبيخلصش 📱✨',
+    file: 'images/photo6.jpg',
+    duration: '0:31'
+  },
+  {
+    src: IMAGES.photo7,
+    tag: '[مشاويرنا سوا]',
+    title: 'مشاوير العربية وحكايات الطريق والأغاني 🚗🎶',
+    file: 'images/photo7.jpg',
+    duration: '0:45'
+  }
+];
 
 // 2000s Nostalgia & Fino Quiz Data
 const FINO_QUIZ_QUESTIONS = [
@@ -898,288 +951,56 @@ export default function App() {
         </div>
 
         {/* Gallery Grid with 3D Tilt Cards & Voice Record Placeholders */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {/* Gallery Item 1 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'أول المشوار والبدايات الرايقة',
-                tag: '[بداية القرب]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="بداية القرب"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">2025.10</span>
-                  <p className="text-sm font-medium text-white">أول المشوار والبدايات الرايقة</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-1.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[بداية القرب]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {GALLERY_ITEMS.map((item, idx) => (
+            <div
+              key={idx}
+              className="glass-card rounded-2xl p-2.5 group tilt-card transition cursor-pointer flex flex-col justify-between border border-white/10 hover:border-[#2563EB]/50"
+              onClick={() =>
+                setLightboxImage({
+                  src: item.src,
+                  caption: item.title,
+                  tag: item.tag
+                })
+              }
+            >
+              <div>
+                <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
+                    <span className="text-xs text-[#38BDF8] font-code mb-1">{item.tag}</span>
+                    <p className="text-sm font-medium text-white">{item.title}</p>
                   </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:24</span>
+                <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
+                  <span>{item.file}</span>
+                  <span className="font-sans text-[#F1F4F9] font-medium">{item.tag}</span>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Gallery Item 2 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'ضحكة طالعة من القلب بجد',
-                tag: '[هزارنا سوا]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="هزارنا سوا"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">Private</span>
-                  <p className="text-sm font-medium text-white">ضحكة طالعة من القلب بجد</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-2.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[هزارنا سوا]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
+              {/* Voice record placeholder */}
+              <div className="px-1.5 pb-1.5">
+                <div className="flex items-center justify-between bg-black/50 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-[#2563EB]/25 text-[#38BDF8] flex items-center justify-center text-xs">
+                      <i className="fa-solid fa-microphone text-[11px]" />
+                    </div>
+                    <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
                   </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:31</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Gallery Item 3 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'سقعة إيدينا والدفا',
-                tag: '[الشتاء]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="الشتاء"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">Winter Walk</span>
-                  <p className="text-sm font-medium text-white">سقعة إيدينا والدفا</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-3.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[الشتاء]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
+                  <div className="flex items-center gap-1">
+                    <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                    <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
+                    <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
+                    <span className="text-[10px] font-code text-[#94A3B8] mr-1">{item.duration}</span>
                   </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:18</span>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Gallery Item 4 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'نظرة عين كانت تكفي',
-                tag: '[مكاننا الهادي]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="مكاننا الهادي"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">Unspoken</span>
-                  <p className="text-sm font-medium text-white">نظرة عين كانت تكفي</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-4.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[مكاننا الهادي]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
-                  </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:45</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Gallery Item 5 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'الأكل التقيل والمزاج العالي',
-                tag: '[الممبار والروقان]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="الممبار والروقان"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">Food Trips</span>
-                  <p className="text-sm font-medium text-white">الأكل التقيل والمزاج العالي</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-5.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[الممبار والروقان]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
-                  </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:28</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Gallery Item 6 */}
-          <div
-            className="glass-card rounded-2xl p-2 group tilt-card transition cursor-pointer flex flex-col justify-between"
-            onClick={() =>
-              setLightboxImage({
-                src: IMAGES.hero,
-                caption: 'حكايات الفجرية والكلام الصادق',
-                tag: '[آخر الليل]'
-              })
-            }
-          >
-            <div>
-              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                <img
-                  src={IMAGES.hero}
-                  alt="آخر الليل"
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                  <span className="text-xs text-[#2563EB] font-code">Late Nights</span>
-                  <p className="text-sm font-medium text-white">حكايات الفجرية والكلام الصادق</p>
-                </div>
-              </div>
-              <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                <span>images/gallery-6.jpg</span>
-                <span className="font-sans text-[#F1F4F9]">[آخر الليل]</span>
-              </div>
-            </div>
-            {/* Voice record placeholder */}
-            <div className="px-2 pb-2">
-              <div className="flex items-center justify-between bg-black/40 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#2563EB]/20 text-[#38BDF8] flex items-center justify-center text-xs">
-                    <i className="fa-solid fa-microphone text-[11px]" />
-                  </div>
-                  <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                  <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                  <span className="text-[10px] font-code text-[#94A3B8] mr-1">0:52</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
