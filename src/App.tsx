@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { audioEngine, TRACKS } from './audioEngine';
 
-// Real photos of Ro2a & Batman
+// Real photos & memes for Ro2a & Batman
 const IMAGES = {
   hero: '/batman-ro2a.jpg',
   photo1: '/images/photo1.jpg',
@@ -12,11 +12,86 @@ const IMAGES = {
   photo5: '/images/photo5.jpg',
   photo6: '/images/photo6.jpg',
   photo7: '/images/photo7.jpg',
+  nesreenHeart: '/images/nesreen_heart.jpg',
+  eidMiladGarhy: '/images/eid_milad_garhy.jpg',
+  wardaSheikh: '/images/warda_sheikh.jpg',
+  completelyLayes: '/images/completely_layes.jpg',
+  bataE3tezar: '/images/bata_e3tezar.jpg',
+  baliLandscape: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
   meme: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDj-6g9k6J0Q5BuI5p7irUiRQu9an7UuVQA7ojo8hJmVHKKbXvQNZN1Z0D5uWA_i4_T1qQntI2XWMXqFQwQDgnZzTifR9raKyxK5d5XmrNrRWwDUjt0zj66bytwNOY0-YmTMrAQw4wHAjAW3lKnda3bN8CVRHZ9t3eTIDlUG5LSUoFNCZ8A8LJDcrUJ0RBirVqyeavJVQgZ7uaUXPy8ZqEPK00w1FIf1Nbhc2wfG9dA_DtvDTyeoxClBQ',
   childhood: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIYfehwMvsdO-D7HzgW4CTAG4iRL3QCA6fx8fdNM40NqyGn6TZ3ZH56j0e9uzraZOS_PjTy8Oeo0eFoku-WYc2flnugEvby-u4bvsnBGwws4FKlHHYhyRzmkqX7k63kJpjQeIW4EI4vrB-6la8mNsM0Gji7KqrmgLG10xxiI9fmiWvs6CYl7Oa3d3hnEaqfBrxoPzYY4kJ5ZxsfOa3cCAyJtqDhZ_CAFrib4beRnlTNSbh8Bg8o9bA4Q',
   batmanStation: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB_DtLIMg-mMFly21USDod_NTefmA0MGa8vjQQYmwjbL8z16jwSyhLgL8bkwun231yDrU1jKd2wHyxH2wxnAZzPaWJ0QIuOTcWnkeUstkDJgCuHYNd2ixGPT4l3hP424nGRmUcKkFreMtRA5WmtAiPHI6PVTphF7Z-6xVIIH9n88rqd6ULKeTMVQ9P2OfdL4-wPOL9W00UkNubg7-sRXKQsd4eL-mxZ73nlsAyPF07Itg7MatxSQNMouQ',
   spacetoon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCL245MxpDaQYS-iwahne09lnLew5QfRQ0rGNEUQ6MBoWxjrtHfid_wODzbwXe4elMdN2wUuSfgUVxkeQT-a2snEw_pt1XK_2ub34w6lConNsMTfs8oc4MCXgh6EjnK041nnaScKrE7f-KGV9vKPfA7tlVu-90ChrSLLOlcAr5JwUvnxRaz0pQisQEG96bpx6LNxMLkDJR8hvE-HsvPGvZxk3VqhSd76dxgrP4v0L30HJQFs9aR1sVMVw'
 };
+
+// 5 Sarcastic Creative Signal Questions for Developer Batman
+const SIGNAL_QUESTIONS = [
+  {
+    id: 1,
+    q: 'لو الكود ضرب Runtime Error على برودكشن الساعة 4 الفجر، الإشارة الكرييتف المنطقية هي: 💻',
+    options: [
+      'أعمل git commit -m "يارب تستر" وأقفل اللاب وأنام في هدوء 😴',
+      'أرن على روءة أقولها جعان وعايز سندوتش جبنة رومي مشعوطة 🧀',
+      'ألوم سيرفرات جوثام وأقول باتمان هو اللي داس ع السلك بالغلط 🦇',
+      'ولا إجابة صح.. بس روءة بتحبك بكل لغبطتك ومشاكلك ❤️'
+    ],
+    correct: 3,
+    memeImg: '/images/warda_sheikh.jpg',
+    memeTitle: 'المهندس وهو ماسك وردة بعد ما السيرفر وقع بكل شياكة 🌹'
+  },
+  {
+    id: 2,
+    q: 'لو الـ API رجع 404 Not Found لقلب روءة، إزاي تعالج الـ Exception كمهندس برمجيات محترف؟ 🔌',
+    options: [
+      'أزود الـ Timeout وأستنى لحد ما تحن عليا ⏳',
+      'أشغل كشاف باتمان في السما استغاثة في المعادي 🦇',
+      'أعمل Restart للمشاعر بكلمة حلوة وكوباية نسكافيه ☕',
+      'Error: القلب محجوز ومحمي لـ عبدالرحمن فقط ولا يمكن الوصول لغيره 🔒'
+    ],
+    correct: 3,
+    memeImg: '/images/completely_layes.jpg',
+    memeTitle: 'كومبليتلي لايص.. بس وربنا بحبك! 💐'
+  },
+  {
+    id: 3,
+    q: 'في لغة البرمجة لو كتبنا: if (batman.loves_ro2a == true) الناتج المنطقي هيكون: 🧠',
+    options: [
+      'Infinite Loop من الحنية والكلام الحلو بالليل 🌙',
+      'Stack Overflow في القلب والمشاعر اللي مش بتخلص 📈',
+      'Memory Leak لذيذ بس شكلنا قمر سوا 💙',
+      'Syntax Error لأن مفيش مقارنة أصلاً.. دي حقيقة كونية مثبتة! ✨'
+    ],
+    correct: 3,
+    memeImg: '/images/nesreen_heart.jpg',
+    memeTitle: 'يا جارحني بلقمة ناشفة.. وأنا قلبي مش مستحمل هيبتك ❤️'
+  },
+  {
+    id: 4,
+    q: 'الإشارة اللي بتثبت بالدليل القاطع إنك أجدع وأشطر مبرمج في تاريخ البشرية: 🚀',
+    options: [
+      'بتصلح الـ Bug ومبتعرفش أصلاً كانت شغالة غلط إزاي 💻',
+      'بتفهم كلام روءة حتى وهي مش عارفة تعبر من غير ما تتكلم 👀',
+      'بتعمل Deploy يوم الخميس بالليل والمصنع ميولعش 🔥',
+      'كل ما سبق صحيح وشهادة الآيزو معتمدة ومختومة من نون 🏅'
+    ],
+    correct: 3,
+    memeImg: '/images/warda_sheikh.jpg',
+    memeTitle: 'اتفضل الوردة دي عشان أنت عبقري ومفيش منك اتنين 🌹'
+  },
+  {
+    id: 5,
+    q: 'إشارة الإنذار الأحمر والأخطر: لو روءة فجأة قالتلك "براحتك يا بوني".. التصرف السليم: ⚠️',
+    options: [
+      'اهرب فوراً بالبايك على سرعة 200 كم/س 🏍️💨',
+      'لا براحتك ولا نيلة.. اعتذر فوراً وهات شوكولاتة ووردة 🍫🌹',
+      'اكتب سكريبت يحلل نبرة الصوت ويعرف الغلط فين 🔍',
+      'استسلم لمصيرك واطلب الحماية من باتمان شخصياً 🦇'
+    ],
+    correct: 1,
+    memeImg: '/images/eid_milad_garhy.jpg',
+    memeTitle: 'سنة حلوة يا جميل.. يا خوخ وتقيل ومالكش مثيل! 🎂'
+  }
+];
 
 const GALLERY_ITEMS = [
   {
@@ -70,132 +145,34 @@ const GALLERY_ITEMS = [
   }
 ];
 
-// 2000s Nostalgia & Fino Quiz Data
-const FINO_QUIZ_QUESTIONS = [
-  {
-    q: 'السندوتش الفينو اللي كان بيقعد في كيس نايلون من 7 الصبح لحد الحصة الأخيرة.. كان بيبقى إيه وسره إيه؟ 🥖',
-    options: [
-      'جبنة بيضا دمياطي مع خيار دبلان مبلول (ساندوتش كلاسيك معصور)',
-      'حلاوة طحينية سايحة ملزقة في سقف الحلق',
-      'لانشون حلواني بايت من يوم الخميس وريحته واصلة لحوش المدرسة',
-      'كل ما سبق، وده كان سر المناعة القومية لجيل الألفينات 🛡️'
-    ],
-    correct: 3,
-    comment: 'بالظبط! ميكس المناعة الخارق اللي خلى الجيل يقف على رجليه ضد أي برد أو زعل!'
-  },
-  {
-    q: 'لما كارت نت الـ 10 جنيه كان بيقرب يخلص في شات الياهو ماسنجر سنة 2005.. الجملة الرسمية كانت: 💬',
-    options: [
-      'brb tyt ya basha w tc (هقوم اتعشى وراجع على مهلك وخلي بالك من نفسك)',
-      'مسألة جبر للثانوية العامة',
-      'شفرة سرية بيفتحوا بيها سايبر الفرسان بعد العشا',
-      'ألو حول يا جوثام كارت الشحن طار'
-    ],
-    correct: 0,
-    comment: 'لغة عصر العمالقة! tyt و brb و tc و w8 و cya.. اختصارات أعظم من الذكاء الاصطناعي!'
-  },
-  {
-    q: 'اسم الفولدر السري اللي كان محطوط على كمبيوتر البيت جواه كليب عمرو دياب وحلقات سبيستون؟ 📁',
-    options: [
-      'New Folder (2) جواه New Folder (3) مستخبي في ملفات الويندوز',
-      'أحدث أغاني وكليبات صيف 2004',
-      'ملفات هامة لشغل بابا ممنوع اللمس ⚠️',
-      'clip_final_amr_diab_حقيقي_بلوتوث.3gp'
-    ],
-    correct: 0,
-    comment: 'طبعاً! الفولدر المستخبي جوا C:\\WINDOWS عشان محدش من البيت يدخل يمسحه بالغلط!'
-  },
-  {
-    q: 'فك الشفرة الفرانكو الذكية دي: "3ala fekra enta a7la batman w ba7ebak gdn 2"؟ 🔢',
-    options: [
-      'على فكرة أنت أحلى باتمان وبحبك جداً جداً 💙',
-      'معادلة كيمياء لتحضير الجبنة الرومي المقلية',
-      'كود كول تون إيهاب توفيق سنة 2006',
-      'باسورد شبكة واي فاي السايبر'
-    ],
-    correct: 0,
-    comment: 'صح 100%! شفرة فرانكو أصلية بتعترف بأعلى درجات الحب لباتمان!'
-  },
-  {
-    q: 'لو خالتك شافت باتمان لابس الكاب الأسود وماشي فوق السطوح الساعة 7 الصبح في طوبة.. هتقوله إيه؟ 👵🦇',
-    options: [
-      'انزل يا ابني هتسقع.. خدلك سندوتش جبنة رومي في إيدك! 🥖',
-      'إيه الشياكة دي يا جوثام.. ما شاء الله تبارك الله',
-      'متنساش تصبح على طنط ميرفت في جروب العيلة 🌹',
-      'هو أنت ابن الحاج عبدالرحمن؟ الشبه باين سبحان الله'
-    ],
-    correct: 0,
-    comment: 'مستحيل الست المصرية تسيبك تنزل تحارب الجريمة ومعدتك فاضية من غير فينو وشاي بلبن!'
-  }
-];
-
-// Family WhatsApp Cards Data
-const FAMILY_GROUP_CARDS = [
-  {
-    greeting: '🌹 صباح الورد والياسمين والفل 🌹',
-    body: 'أجمل صباح على عيون الغالي بوني.. نهارك أبيض ومشرق زي رغيف الفينو الطازة الخارج من الفرن، وربنا يبعد عنك عيون الحاسدين وعصابات جوثام! 🧿🥖',
-    dua: 'اللهم ارزق بوني راحة البال وسندوتشات جبنة رومي لا تنتهي.. أرسلها لـ 7 تضمن الروقان اليوم! ✨',
-    sticker: '☕ صباح الفل مع شاي بلبن',
-    bg: 'from-amber-900/40 via-rose-950/40 to-yellow-950/40'
-  },
-  {
-    greeting: '💖 جمعة مباركة يا غاليين 💖',
-    body: 'نصيحة صباحية من جروب العيلة لباتمان: لا تخرج لمحاربة الأشرار ومعدتك فارغة، فإن سندوتش الفينو سلاح لا يستهان به! 🥖🦇',
-    dua: 'اللهم اجعل أيام بوني كلها عسل وضحك ومحبة.. ولا ترنا فيه سوءاً أبداً 🤲',
-    sticker: '🕊️ جمعة طيبة ومعطرة بذكر الله',
-    bg: 'from-emerald-950/40 via-teal-950/40 to-slate-900/40'
-  },
-  {
-    greeting: '🌸 ورود وأزهار لقلب بوني 🌸',
-    body: 'تنبيه عاجل من خالتك: تم رصد كائن وسيم وقمور لابس كاب أسود، يرجى تقديم كوباية شاي بلبن سخنة وبسكوت فيري له فوراً! ☕🍪',
-    dua: 'من يقرأ هذه الرسالة يبتسم ويكتب تم في التعليقات فوراً! 🌹',
-    sticker: '💐 باقة ورد من بستان العائلة',
-    bg: 'from-purple-950/40 via-pink-950/40 to-slate-900/40'
-  },
-  {
-    greeting: '✨ حكمة الألفينات الخالدة ✨',
-    body: 'إذا كان حبيبك باتمان، فاعمليله سندوتش حلاوة بالقشطة ومتقلقيش من الجريمة في المدينة! الفينو أساس البناء والمناعة 💪🥖',
-    dua: 'دمت لنا فخراً وسنداً يا أجدع بوني في الدنيا 💙',
-    sticker: '🥖 وسام الفينو الذهبي',
-    bg: 'from-amber-950/40 via-orange-950/40 to-slate-900/40'
-  },
-  {
-    greeting: '💌 رسالة متداولة عبر البلوتوث 2004 💌',
-    body: 'رسالة خاصة لـ BATMAN: أرسلها لعشرة أشخاص وستسمع خبراً جميلاً خلال ساعتين، وإذا تجاهلتها سيفرغ شحن موبايلك النوكيا الليلة! 📱⚡',
-    dua: 'ربنا يحفظك ويسعدك يا حبيب قلوبنا 🤍',
-    sticker: '📲 نوكيا 3310 لا ينكسر',
-    bg: 'from-blue-950/40 via-indigo-950/40 to-slate-900/40'
-  }
-];
-
 export default function App() {
   // Audio state
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTrackId, setCurrentTrackId] = useState<string | null>(null);
   const [currentTrackTitle, setCurrentTrackTitle] = useState<string>('الموسيقى: متوقفة');
 
-  // 2000s & Fino Hub State
-  const [finoTab, setFinoTab] = useState<'quiz' | 'family' | 'sandwich'>('quiz');
-
-  // Quiz state
-  const [quizIndex, setQuizIndex] = useState<number>(0);
-  const [quizScore, setQuizScore] = useState<number>(0);
-  const [quizSelected, setQuizSelected] = useState<number | null>(null);
-  const [quizShowFeedback, setQuizShowFeedback] = useState<boolean>(false);
-  const [quizDone, setQuizDone] = useState<boolean>(false);
-
-  // Family WhatsApp cards
-  const [familyIndex, setFamilyIndex] = useState<number>(0);
-  const [familyCopied, setFamilyCopied] = useState<boolean>(false);
-
-  // Sandwich builder
-  const [sandwichBread, setSandwichBread] = useState<string>('فينو طازة بينقط سمسم 🥖');
-  const [sandwichFilling, setSandwichFilling] = useState<string>('جبنة رومي قديمة مشعوطة 🧀');
-  const [sandwichExtra, setSandwichExtra] = useState<string>('كيس شيبسي طماطم مفروم جواه 🥔');
-  const [sandwichMade, setSandwichMade] = useState<boolean>(false);
-
   // Chaos mode gate state
   const [isChaosOpen, setIsChaosOpen] = useState<boolean>(false);
+
+  // 1. لعبة الإشارات state
+  const [signalIndex, setSignalIndex] = useState<number>(0);
+  const [signalSelected, setSignalSelected] = useState<number | null>(null);
+  const [signalShowFeedback, setSignalShowFeedback] = useState<boolean>(false);
+  const [signalDone, setSignalDone] = useState<boolean>(false);
+
+  // 2. فاصل الكرتون الصغنن (الولد والبنت والكرش)
+  const [isBoyRunning, setIsBoyRunning] = useState<boolean>(false);
+  const [girlGiggling, setGirlGiggling] = useState<boolean>(false);
+  const [tickleCount, setTickleCount] = useState<number>(0);
+
+  // 3. لعبة الكروت (من 1 لـ 4)
+  const [selectedCard, setSelectedCard] = useState<number>(1);
+
+  // 4. بازل بالي (كارت 4)
+  const [puzzleTiles, setPuzzleTiles] = useState<number[]>([1, 2, 0, 4, 3, 5, 7, 6, 8]);
+  const [puzzleSelectedTile, setPuzzleSelectedTile] = useState<number | null>(null);
+  const [puzzleWon, setPuzzleWon] = useState<boolean>(false);
+  const [puzzleMoves, setPuzzleMoves] = useState<number>(0);
 
   // Secret final message revealed state
   const [isFinalRevealed, setIsFinalRevealed] = useState<boolean>(false);
@@ -333,82 +310,144 @@ export default function App() {
     handleStopAudio();
   };
 
-  // Quiz Handlers
-  const handleSelectQuizOption = (optionIndex: number) => {
-    if (quizShowFeedback) return;
-    setQuizSelected(optionIndex);
-    setQuizShowFeedback(true);
-    const isCorrect = optionIndex === FINO_QUIZ_QUESTIONS[quizIndex].correct;
-    if (isCorrect) {
-      setQuizScore(prev => prev + 1);
+  // Tacky Love Rain (Red hearts & ribbons falling)
+  const triggerTackyLoveRain = () => {
+    handlePlayAudio('audio-chaos');
+    const end = Date.now() + 20 * 1000;
+    const interval: any = setInterval(() => {
+      if (Date.now() > end) {
+        clearInterval(interval);
+        return;
+      }
       try {
         confetti({
-          particleCount: 30,
+          particleCount: 8,
+          angle: 60,
           spread: 60,
-          origin: { y: 0.6 },
-          colors: ['#10B981', '#34D399', '#FBBF24']
+          origin: { x: 0, y: 0.1 },
+          colors: ['#FF0000', '#FF1493', '#FF4500', '#FFD700']
         });
-      } catch {
-        // ignore
-      }
-    }
-  };
-
-  const handleNextQuizQuestion = () => {
-    if (quizIndex < FINO_QUIZ_QUESTIONS.length - 1) {
-      setQuizIndex(prev => prev + 1);
-      setQuizSelected(null);
-      setQuizShowFeedback(false);
-    } else {
-      setQuizDone(true);
-      try {
         confetti({
-          particleCount: 90,
-          spread: 80,
-          origin: { y: 0.5 },
-          colors: ['#F59E0B', '#3B82F6', '#EC4899', '#10B981']
+          particleCount: 8,
+          angle: 120,
+          spread: 60,
+          origin: { x: 1, y: 0.1 },
+          colors: ['#FF0000', '#FF69B4', '#DC143C', '#00FFFF']
         });
       } catch {
         // ignore
       }
-    }
+    }, 280);
   };
 
-  const handleResetQuiz = () => {
-    setQuizIndex(0);
-    setQuizScore(0);
-    setQuizSelected(null);
-    setQuizShowFeedback(false);
-    setQuizDone(false);
-  };
-
-  // Family Card Next Handler
-  const handleNextFamilyCard = () => {
-    setFamilyIndex(prev => (prev + 1) % FAMILY_GROUP_CARDS.length);
-    setFamilyCopied(false);
-  };
-
-  const handleCopyFamilyDua = (text: string) => {
-    if (navigator?.clipboard) {
-      navigator.clipboard.writeText(text);
-    }
-    setFamilyCopied(true);
-    setTimeout(() => setFamilyCopied(false), 2500);
-  };
-
-  // Sandwich Builder Handler
-  const handleMakeSandwich = () => {
-    setSandwichMade(true);
+  // Signal Quiz Handlers
+  const handleSelectSignalOption = (optionIndex: number) => {
+    if (signalShowFeedback) return;
+    setSignalSelected(optionIndex);
+    setSignalShowFeedback(true);
     try {
       confetti({
-        particleCount: 50,
-        spread: 70,
+        particleCount: 35,
+        spread: 60,
         origin: { y: 0.6 },
-        colors: ['#F59E0B', '#F97316', '#EAB308']
+        colors: ['#F59E0B', '#EF4444', '#38BDF8']
       });
     } catch {
       // ignore
     }
+  };
+
+  const handleNextSignalQuestion = () => {
+    if (signalIndex < SIGNAL_QUESTIONS.length - 1) {
+      setSignalIndex(prev => prev + 1);
+      setSignalSelected(null);
+      setSignalShowFeedback(false);
+    } else {
+      setSignalDone(true);
+      try {
+        confetti({
+          particleCount: 80,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#FF1493', '#F59E0B', '#3B82F6', '#10B981']
+        });
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handleResetSignal = () => {
+    setSignalIndex(0);
+    setSignalSelected(null);
+    setSignalShowFeedback(false);
+    setSignalDone(false);
+  };
+
+  // Cartoon Interlude Tickle Handler
+  const handleBoyTickle = () => {
+    if (isBoyRunning) return;
+    setIsBoyRunning(true);
+    setGirlGiggling(false);
+
+    setTimeout(() => {
+      setGirlGiggling(true);
+      setTickleCount(prev => prev + 1);
+      try {
+        confetti({
+          particleCount: 25,
+          spread: 60,
+          origin: { y: 0.7 },
+          colors: ['#FF1493', '#38BDF8', '#F59E0B', '#EC4899']
+        });
+      } catch {
+        // ignore
+      }
+    }, 700);
+
+    setTimeout(() => {
+      setIsBoyRunning(false);
+    }, 2400);
+  };
+
+  // Bali Puzzle Tile Click Handler
+  const handlePuzzleTileClick = (index: number) => {
+    if (puzzleWon) return;
+    if (puzzleSelectedTile === null) {
+      setPuzzleSelectedTile(index);
+    } else {
+      // Swap tiles
+      const nextTiles = [...puzzleTiles];
+      const temp = nextTiles[puzzleSelectedTile];
+      nextTiles[puzzleSelectedTile] = nextTiles[index];
+      nextTiles[index] = temp;
+      setPuzzleTiles(nextTiles);
+      setPuzzleSelectedTile(null);
+      setPuzzleMoves(prev => prev + 1);
+
+      // Check if solved (0 to 8)
+      const isSolved = nextTiles.every((val, i) => val === i);
+      if (isSolved) {
+        setPuzzleWon(true);
+        try {
+          confetti({
+            particleCount: 120,
+            spread: 90,
+            origin: { y: 0.5 },
+            colors: ['#10B981', '#38BDF8', '#F59E0B', '#FFFFFF']
+          });
+        } catch {
+          // ignore
+        }
+      }
+    }
+  };
+
+  const handleResetPuzzle = () => {
+    setPuzzleTiles([1, 2, 0, 4, 3, 5, 7, 6, 8]);
+    setPuzzleSelectedTile(null);
+    setPuzzleWon(false);
+    setPuzzleMoves(0);
   };
 
   // Terminal command handler
@@ -753,32 +792,462 @@ export default function App() {
               </button>
             </div>
           ) : (
-            /* Inside Chaos Box: Kept empty for them to build together as requested */
-            <div className="glass-card rounded-3xl p-8 sm:p-14 my-4 relative overflow-hidden transition-all duration-500 shadow-2xl border border-amber-400/40 text-center bg-[#0F1218]/95">
-              <div className="text-5xl mb-4 animate-bounce">🎪🥖😂</div>
-              <h3 className="text-2xl sm:text-3xl font-black text-amber-300 mb-3">
-                العالم العبثي لروءة وبوني 😂
-              </h3>
-              <p className="text-base text-[#F1F4F9] max-w-lg mx-auto mb-2 leading-relaxed">
-                ادخل العالم العبثي دا و ارجو عدم التريقة
-              </p>
-              <p className="text-sm text-amber-200/90 max-w-lg mx-auto mb-6">
-                اي حاجة هتلاقيها دمها تقيل جوا ف هي بهدف العباطي 😂
-              </p>
-              <div className="p-6 rounded-2xl bg-black/40 border border-white/10 max-w-md mx-auto mb-8">
-                <p className="text-xs sm:text-sm text-[#94A3B8] font-sans">
-                  (سيبنا الصفحة اللي جوا العالم دا فاضية وهنبنيها سوا مع بعض خطوة بخطوة بكل الألعاب والتفاصيل 😉✨)
+            /* Expanded Chaos Box: Full rich activities as requested */
+            <div className="rounded-3xl p-6 sm:p-10 my-4 relative overflow-hidden transition-all duration-500 shadow-2xl glass-card border-2 border-amber-400/50 bg-[#0F1218]/95 text-center">
+              {/* Marquee & Headline 1 */}
+              <div className="bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-3 px-4 mb-8 rounded-2xl font-black text-black text-base sm:text-xl shadow-lg animate-pulse tracking-wide">
+                <span>🌹 يا جارحني بلقمة ناشفة و العيش عندك طري تقلان عليا ليه ما تحن يا مفتري 🌹</span>
+              </div>
+
+              {/* Meme 1: Nesreen Amin Heart */}
+              <div className="max-w-md mx-auto mb-10 tilt-card">
+                <div className="p-3 bg-white/10 rounded-3xl border border-white/20 shadow-2xl">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black">
+                    <img
+                      src={IMAGES.nesreenHeart}
+                      alt="يا جارحني بلقمة ناشفة"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-2 inset-x-2 bg-black/85 text-amber-300 text-xs font-bold py-1.5 px-3 rounded-xl">
+                      "لما روءة تعمل قلب لباتمان بس لسه تقلان عليها 😂❤️"
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Meme 2: عيد ميلاد جرحي أنا & 20s Shaabi Song */}
+              <div className="my-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-rose-950/40 to-black/60 border-2 border-rose-500/40 shadow-2xl">
+                <div className="max-w-md mx-auto mb-6">
+                  <div className="p-3 bg-white/10 rounded-3xl border border-white/20 shadow-2xl">
+                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-black">
+                      <img
+                        src={IMAGES.eidMiladGarhy}
+                        alt="عيد ميلاد جرحي أنا"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-2 inset-x-2 bg-black/85 text-yellow-300 text-xs font-bold py-1.5 px-3 rounded-xl">
+                        "يا خوخ وتـقـيل ومالكش مثيل.. وفي عيني أمير خطير! 🎂🦆"
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 20s Shaabi Song CTA with tacky hearts shower */}
+                <div className="text-center">
+                  <button
+                    onClick={triggerTackyLoveRain}
+                    className="px-8 py-4 rounded-full bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:scale-105 active:scale-95 text-white font-black text-sm sm:text-base shadow-2xl transition cursor-pointer flex items-center justify-center gap-3 mx-auto border-2 border-yellow-300"
+                  >
+                    <i
+                      className={`fa-solid fa-compact-disc text-lg ${
+                        isPlaying && currentTrackId === 'audio-chaos' ? 'animate-spin' : ''
+                      }`}
+                    />
+                    <span>
+                      {isPlaying && currentTrackId === 'audio-chaos'
+                        ? 'أوقف تراك المهرجان'
+                        : 'شغل: عليا النعمة بحبك.. عليا النعمة بدوب (20 ث) 💃🔥'}
+                    </span>
+                    <span className="text-xl">❤️🎊</span>
+                  </button>
+                  <p className="text-xs text-amber-300 mt-2 font-medium">
+                    (اضغط واسمع المهرجان مع مطر القلوب والشرايط الملعلعة 20 ثانية! 🎉)
+                  </p>
+                </div>
+              </div>
+
+              {/* Game 1: لعبة الإشارات */}
+              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-amber-400/40 shadow-2xl text-right">
+                <div className="text-center mb-8 pb-4 border-b border-white/10">
+                  <span className="text-xs font-code text-amber-400 font-bold uppercase tracking-widest block mb-1">
+                    Special Developer Challenge
+                  </span>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white flex items-center justify-center gap-2">
+                    <span>لعبة الإشارات الكرييتف</span>
+                    <span className="text-2xl">🚦💻</span>
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 max-w-lg mx-auto">
+                    بما إنك مبرمج عبقري وذكي جداً.. فدي إشارات عشوائية عبيطة جداً ولا واحدة منهم صح، بس معمولة عشان تضحك من قلبك! 😂
+                  </p>
+                </div>
+
+                {!signalDone ? (
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-xs font-code">
+                      <span className="text-amber-400 font-bold">
+                        الإشارة {signalIndex + 1} من {SIGNAL_QUESTIONS.length}
+                      </span>
+                      <span className="text-[#38BDF8]">
+                        مستوى الذكاء: خارق كالعادة 🧠
+                      </span>
+                    </div>
+
+                    <h5 className="text-base sm:text-lg font-bold text-white mb-6 leading-relaxed">
+                      {SIGNAL_QUESTIONS[signalIndex].q}
+                    </h5>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                      {SIGNAL_QUESTIONS[signalIndex].options.map((opt, oIdx) => (
+                        <button
+                          key={oIdx}
+                          onClick={() => handleSelectSignalOption(oIdx)}
+                          disabled={signalShowFeedback}
+                          className={`p-4 rounded-xl border text-right text-xs sm:text-sm font-medium transition cursor-pointer flex items-start gap-2.5 ${
+                            signalSelected === oIdx
+                              ? 'bg-amber-500/20 border-amber-400 text-amber-300 font-bold'
+                              : 'bg-black/40 border-white/10 text-[#F1F4F9] hover:bg-white/10'
+                          }`}
+                        >
+                          <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs font-code shrink-0">
+                            {oIdx + 1}
+                          </span>
+                          <span>{opt}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Feedback with Meme */}
+                    {signalShowFeedback && (
+                      <div className="pt-6 border-t border-white/10 animate-fadeIn">
+                        <div className="max-w-xs mx-auto mb-4 p-2 bg-white/10 rounded-2xl border border-white/20">
+                          <img
+                            src={SIGNAL_QUESTIONS[signalIndex].memeImg}
+                            alt="Meme"
+                            className="w-full aspect-[4/3] object-cover rounded-xl"
+                          />
+                          <p className="text-xs text-amber-300 font-bold text-center mt-2">
+                            {SIGNAL_QUESTIONS[signalIndex].memeTitle}
+                          </p>
+                        </div>
+                        <div className="text-center">
+                          <button
+                            onClick={handleNextSignalQuestion}
+                            className="px-7 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-sm shadow-lg cursor-pointer transition"
+                          >
+                            {signalIndex < SIGNAL_QUESTIONS.length - 1 ? 'الإشارة اللي بعدها ➡️' : 'عرض النتيجة والاعتذار 🏆'}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  /* Apology & Duck Meme at the end of signals */
+                  <div className="text-center bg-gradient-to-br from-rose-950/40 via-amber-950/30 to-black/60 p-8 rounded-3xl border-2 border-rose-400/50 shadow-2xl animate-fadeIn">
+                    <h4 className="text-2xl sm:text-3xl font-black text-rose-300 mb-3">
+                      سوري ع العبط دا 😂
+                    </h4>
+                    <p className="text-sm text-[#F1F4F9] max-w-md mx-auto mb-6 leading-relaxed">
+                      حقك عليا يا بوني.. بس مقدرتش أقاوم فقرة العباطة دي مع أشطر وأذكى باشمهندس في الدنيا! 💙
+                    </p>
+                    <div className="max-w-xs mx-auto mb-6 p-2 bg-white/10 rounded-2xl border border-white/20 shadow-2xl">
+                      <img
+                        src={IMAGES.bataE3tezar}
+                        alt="وردة اعتذار عما بضر منى"
+                        className="w-full aspect-[4/3] object-cover rounded-xl"
+                      />
+                      <p className="text-xs text-yellow-300 font-bold text-center mt-2">
+                        "وردة اعتذار عما بضر منى 🦆🌹"
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleResetSignal}
+                      className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer border border-white/20 transition"
+                    >
+                      إعادة لعبة الإشارات 🔄
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Cartoon Interlude: الولد والبنت والكرش */}
+              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/30 via-pink-950/30 to-blue-950/30 border-2 border-pink-400/40 shadow-2xl text-center">
+                <span className="text-xs font-code text-pink-300 uppercase tracking-widest block mb-1">
+                  Cute Interactive Interlude
+                </span>
+                <h4 className="text-2xl sm:text-3xl font-black text-white mb-2 flex items-center justify-center gap-2">
+                  <span>فاصل لطيف: عبدالرحمن وروءة الصغننين</span>
+                  <span className="text-2xl">👶👧💖</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-[#94A3B8] max-w-md mx-auto mb-8">
+                  اضغط على الولد عشان يجري يدغدغ كرش البنوتة الصغننة وهي تضحك من قلبها!
                 </p>
+
+                {/* Animated Cartoon Playground */}
+                <div className="relative max-w-md mx-auto h-44 bg-black/40 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-between px-8 mb-6">
+                  {/* Floating hearts */}
+                  {girlGiggling && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <span className="text-3xl animate-ping text-pink-400">💖</span>
+                      <span className="text-2xl animate-bounce text-yellow-300 mx-3">😂</span>
+                      <span className="text-3xl animate-pulse text-rose-400">✨</span>
+                    </div>
+                  )}
+
+                  {/* Little Boy (Abd El-Rahman) */}
+                  <div
+                    onClick={handleBoyTickle}
+                    className={`cursor-pointer transition-transform duration-700 flex flex-col items-center ${
+                      isBoyRunning ? 'translate-x-[160px] scale-110' : 'hover:scale-110'
+                    }`}
+                  >
+                    <div className="text-5xl animate-bounce">👦</div>
+                    <span className="text-[11px] font-bold text-[#38BDF8] bg-black/60 px-2 py-0.5 rounded-full mt-1">
+                      عبدالرحمن
+                    </span>
+                  </div>
+
+                  {/* Action prompt if idle */}
+                  <div className="text-center pointer-events-none">
+                    <span className="text-xs text-pink-300 font-sans animate-pulse">
+                      {isBoyRunning ? 'بيجري يدغدغها! 🏃‍♂️💨' : 'اضغط على الولد 👈'}
+                    </span>
+                  </div>
+
+                  {/* Little Girl (Ro2a with round tummy) */}
+                  <div className={`flex flex-col items-center ${girlGiggling ? 'animate-bounce' : ''}`}>
+                    <div className="text-5xl relative">
+                      👧
+                      <span className="absolute -bottom-1 left-2 text-base">🤰</span>
+                    </div>
+                    <span className="text-[11px] font-bold text-pink-300 bg-black/60 px-2 py-0.5 rounded-full mt-1">
+                      كرش روءة الصغنن
+                    </span>
+                  </div>
+                </div>
+
+                {/* Speech bubble / status */}
+                <div className="min-h-12 flex items-center justify-center mb-4">
+                  {girlGiggling ? (
+                    <div className="p-3 bg-pink-500/20 border border-pink-400/50 rounded-2xl text-pink-200 text-xs sm:text-sm font-bold animate-fadeIn">
+                      "ههههههه بطل شقاوة ودغدغة يا بوني.. بطني وجعتني من الضحك بس بموت فيك! 😂💖"
+                    </div>
+                  ) : (
+                    <div className="text-xs text-[#94A3B8]">
+                      عدد مرات الدغدغة: <span className="text-amber-400 font-bold">{tickleCount}</span> مرة ومبسوطين هما الاتنين سوا! 🥰
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  onClick={handleBoyTickle}
+                  className="px-7 py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-400 hover:to-rose-400 text-white font-bold text-xs sm:text-sm shadow-xl transition cursor-pointer flex items-center gap-2 mx-auto active:scale-95"
+                >
+                  <i className="fa-solid fa-hand text-yellow-200" />
+                  <span>دغدغ كرش البنوتة 🏃‍♂️✨</span>
+                </button>
+              </div>
+
+              {/* Game 2: لعبة الكروت (من 1 لـ 4) */}
+              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-[#2563EB]/40 shadow-2xl text-right">
+                <div className="text-center mb-8 pb-4 border-b border-white/10">
+                  <span className="text-xs font-code text-[#38BDF8] uppercase tracking-widest block mb-1">
+                    Card Lottery Game
+                  </span>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white flex items-center justify-center gap-2">
+                    <span>لعبة الكروت السحرية</span>
+                    <span className="text-2xl">🃏✨</span>
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 max-w-md mx-auto">
+                    اختر رقم كارت من 1 لـ 4.. كل كارت مخبي صورة مختلفة وأغنية مميزة!
+                  </p>
+
+                  {/* 4 Cards Buttons */}
+                  <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+                    {[1, 2, 3, 4].map(num => (
+                      <button
+                        key={num}
+                        onClick={() => setSelectedCard(num)}
+                        className={`w-14 h-20 sm:w-16 sm:h-24 rounded-2xl border-2 font-black text-xl sm:text-2xl transition-all cursor-pointer flex flex-col items-center justify-center shadow-lg transform hover:-translate-y-1 ${
+                          selectedCard === num
+                            ? 'bg-gradient-to-b from-[#2563EB] to-blue-700 border-white text-white scale-105 ring-2 ring-blue-400'
+                            : 'bg-black/60 border-white/20 text-[#94A3B8] hover:text-white hover:border-[#2563EB]'
+                        }`}
+                      >
+                        <span className="text-xs font-code opacity-70">كارت</span>
+                        <span>{num}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card 1: باتمان */}
+                {selectedCard === 1 && (
+                  <div className="glass-card rounded-2xl p-6 border border-[#2563EB]/40 text-center animate-fadeIn max-w-lg mx-auto">
+                    <span className="text-xs font-code text-[#38BDF8] font-bold block mb-2">
+                      كارت رقم 1 // The Dark Knight 🦇
+                    </span>
+                    <div className="relative aspect-square max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
+                      <img
+                        src={IMAGES.batmanStation}
+                        alt="باتمان"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h5 className="text-lg font-bold text-white mb-2">ضوء لمع وسط المدينة</h5>
+                    <p className="text-xs sm:text-sm text-[#94A3B8] mb-4">
+                      أنت باتمان الحقيقي اللي بينقذني في كل مرة.. بطل القصة للأبد 🖤
+                    </p>
+                    <button
+                      onClick={() => handlePlayAudio('audio-batman')}
+                      className="px-6 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2 mx-auto"
+                    >
+                      <i className="fa-solid fa-play text-xs" />
+                      <span>شغل أغنية باتمان (ضوء لمع وسط المدينة) 🦇</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Card 2: البحر */}
+                {selectedCard === 2 && (
+                  <div className="glass-card rounded-2xl p-6 border border-[#38BDF8]/40 text-center animate-fadeIn max-w-lg mx-auto">
+                    <span className="text-xs font-code text-[#38BDF8] font-bold block mb-2">
+                      كارت رقم 2 // Sea &amp; Sunshine 🌊
+                    </span>
+                    <div className="relative aspect-[4/5] max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
+                      <img
+                        src={IMAGES.photo2}
+                        alt="صورتك ع البحر"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h5 className="text-lg font-bold text-white mb-2">صورتك وأنت على البحر</h5>
+                    <p className="text-base sm:text-lg font-bold text-[#38BDF8] my-3 leading-relaxed">
+                      "نفسي في بيبي شبهك كدا 🌊👶💙"
+                    </p>
+                    <p className="text-xs text-[#94A3B8]">
+                      بنفس ضحكتك وعيونك الطيبة وحنيتك اللي بالدنيا كلها.
+                    </p>
+                  </div>
+                )}
+
+                {/* Card 3: أبطال الديجيتال */}
+                {selectedCard === 3 && (
+                  <div className="glass-card rounded-2xl p-6 border border-emerald-400/40 text-center animate-fadeIn max-w-lg mx-auto">
+                    <span className="text-xs font-code text-emerald-400 font-bold block mb-2">
+                      كارت رقم 3 // Digimon Heroes 👾
+                    </span>
+                    <div className="relative aspect-square max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
+                      <img
+                        src={IMAGES.spacetoon}
+                        alt="أبطال الديجيتال"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h5 className="text-lg font-bold text-white mb-2">أبطال الديجيتال وسبيستون</h5>
+                    <p className="text-base font-bold text-emerald-300 my-2">
+                      "أنت البطل الحقيقي بتاعي 💙"
+                    </p>
+                    <p className="text-xs text-[#94A3B8] mb-4">
+                      ذكريات الطفولة وبطلي المفضل في الواقع والخيال.
+                    </p>
+                    <button
+                      onClick={() => handlePlayAudio('audio-spacetoon')}
+                      className="px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2 mx-auto"
+                    >
+                      <i className="fa-solid fa-wand-magic-sparkles text-xs" />
+                      <span>شغل أغنية أبطال الديجيتال 🎶</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Card 4: بازل الـ 1000 قطعة في بالي */}
+                {selectedCard === 4 && (
+                  <div className="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-400/50 text-center animate-fadeIn max-w-2xl mx-auto">
+                    <span className="text-xs font-code text-amber-300 font-bold tracking-widest uppercase block mb-2">
+                      كارت رقم 4 // The Grand Finale Puzzle 🌴
+                    </span>
+                    <h5 className="text-xl sm:text-2xl font-black text-white mb-3">
+                      أكبر لعبة: بازل الـ 1000 قطعة في بالي 🧩✨
+                    </h5>
+                    <div className="p-4 rounded-2xl bg-black/50 border border-amber-300/30 text-right mb-6 text-xs sm:text-sm text-[#F1F4F9] leading-relaxed">
+                      "دا آخر كارت وهنا أكبر لعبة بما إنك استحملت العبث اللي فات دا كله! بازل مكون من 1000 قطعة عشان تلعبها في أي وقت وندخل نلعبها سوا أنا وأنت.. المنظر ده في بالي خضار وبحر وشمس خفيفة وكل حاجة جميلة.. نفسي نكون هناك سوا 🌴🌊☀️"
+                    </div>
+
+                    {/* Interactive Bali Jigsaw Mini-Game */}
+                    <div className="mb-6">
+                      <div className="flex items-center justify-between text-xs text-[#94A3B8] font-code mb-3 px-2">
+                        <span>الحركات: {puzzleMoves} 🔄</span>
+                        <span className="text-amber-300 font-bold">
+                          {puzzleWon ? '🎉 مبروك حليت البازل!' : 'اضغط على قطعتين لتبديل أماكنهم'}
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-1.5 max-w-xs mx-auto aspect-square p-2 bg-black/80 rounded-2xl border-2 border-amber-400/60 shadow-2xl">
+                        {puzzleTiles.map((tileIndex, slotIndex) => {
+                          const isSelected = puzzleSelectedTile === slotIndex;
+                          const row = Math.floor(tileIndex / 3);
+                          const col = tileIndex % 3;
+                          return (
+                            <button
+                              key={slotIndex}
+                              onClick={() => handlePuzzleTileClick(slotIndex)}
+                              className={`relative w-full h-full rounded-lg overflow-hidden border transition transform active:scale-95 cursor-pointer ${
+                                isSelected ? 'ring-4 ring-amber-400 scale-105 z-10' : 'border-black'
+                              }`}
+                              style={{
+                                backgroundImage: `url(${IMAGES.baliLandscape})`,
+                                backgroundSize: '300% 300%',
+                                backgroundPosition: `${col * 50}% ${row * 50}%`
+                              }}
+                            >
+                              <span className="absolute bottom-1 right-1 text-[10px] font-code bg-black/70 text-white px-1 rounded">
+                                {tileIndex + 1}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {puzzleWon && (
+                        <div className="mt-4 p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400 text-center animate-bounce">
+                          <p className="text-sm font-bold text-emerald-300">
+                            🏆 عبقري وحليت البازل! وعقبال ما نروح بالي ونشوف المنظر ده سوا بجد 🌴✈️💙
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="mt-4 flex items-center justify-center gap-3">
+                        <button
+                          onClick={handleResetPuzzle}
+                          className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer border border-white/20 transition"
+                        >
+                          إعادة ترتيب البازل 🔄
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Full 1000 Pieces Landscape Preview */}
+                    <div className="pt-4 border-t border-white/10">
+                      <span className="text-xs text-[#94A3B8] font-code block mb-2">
+                        [ معاينة منظر بالي الأصلي الكامل - 1000 Pieces ]
+                      </span>
+                      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/20 shadow-xl max-w-md mx-auto">
+                        <img
+                          src={IMAGES.baliLandscape}
+                          alt="Bali Landscape"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                          <p className="text-xs text-white font-medium text-right">
+                            🌴 جزيرة بالي — خضار وبحر وشمس خفيفة ونفسي نكون هناك سوا.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Exit Button back to quiet state */}
-              <button
-                onClick={exitChaosMode}
-                className="px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-2xl transition flex items-center gap-2 mx-auto cursor-pointer"
-              >
-                <i className="fa-solid fa-arrow-rotate-left text-xs" />
-                <span>الخروج من العالم العبثي 🚪</span>
-              </button>
+              <div className="mt-14 text-center">
+                <button
+                  onClick={exitChaosMode}
+                  className="px-10 py-4 rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-red-600 hover:opacity-95 text-white font-black text-base shadow-2xl transition flex items-center gap-3 mx-auto cursor-pointer transform hover:scale-105 active:scale-95"
+                >
+                  <i className="fa-solid fa-door-open text-base" />
+                  <span>يلا نخرج بقا 😂🚪</span>
+                </button>
+              </div>
             </div>
           )}
         </div>

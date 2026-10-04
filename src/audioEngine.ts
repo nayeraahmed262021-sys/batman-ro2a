@@ -44,7 +44,7 @@ export const TRACKS: Record<TrackId, TrackMeta> = {
   },
   'audio-chaos': {
     id: 'audio-chaos',
-    title: 'عليا النعمة بحبك — مهرجان وضحك',
+    title: 'عليا النعمة بحبك عليا النعمة بدوب (20 ث) 💃🔥',
     subtitle: 'فقرة الهبل والبهجة والمولد'
   },
   'audio-tul8te': {
@@ -403,6 +403,13 @@ class AudioEngine {
 
       step++;
     }, 240);
+
+    // Auto-stop at 20 seconds precisely as requested
+    window.setTimeout(() => {
+      if (this.currentTrackId === 'audio-chaos') {
+        this.stop();
+      }
+    }, 20000);
   }
 
   private playTul8teChill() {
