@@ -4,7 +4,7 @@ import { audioEngine, TRACKS } from './audioEngine';
 
 // Images hotlinked from the user's HTML specification
 const IMAGES = {
-  hero: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqMcdOx_IHLEnFpc9kukDh_JErtSCFQnjvHZEvs12rp1rRMUHM1A1Ps-YXldNjkq8MJZ_YLh4xUyTmuHZt28hJNif0v_CmXt7W8LMZzB05bIDF2JtSGMmrGHY3EqVTnwug_nd0d2XjKcqj53j7cp4kAZXyGpvw8PzUfv6rbF05c1Aw9z45w1BwnU-pEE8LvLIM90lHZ_ys3f3njuyrk7KxAX56a_NP7X8bkR4DcnbEKpLcpRfL_R0guA',
+  hero: '/batman-ro2a.jpg',
   meme: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDj-6g9k6J0Q5BuI5p7irUiRQu9an7UuVQA7ojo8hJmVHKKbXvQNZN1Z0D5uWA_i4_T1qQntI2XWMXqFQwQDgnZzTifR9raKyxK5d5XmrNrRWwDUjt0zj66bytwNOY0-YmTMrAQw4wHAjAW3lKnda3bN8CVRHZ9t3eTIDlUG5LSUoFNCZ8A8LJDcrUJ0RBirVqyeavJVQgZ7uaUXPy8ZqEPK00w1FIf1Nbhc2wfG9dA_DtvDTyeoxClBQ',
   childhood: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIYfehwMvsdO-D7HzgW4CTAG4iRL3QCA6fx8fdNM40NqyGn6TZ3ZH56j0e9uzraZOS_PjTy8Oeo0eFoku-WYc2flnugEvby-u4bvsnBGwws4FKlHHYhyRzmkqX7k63kJpjQeIW4EI4vrB-6la8mNsM0Gji7KqrmgLG10xxiI9fmiWvs6CYl7Oa3d3hnEaqfBrxoPzYY4kJ5ZxsfOa3cCAyJtqDhZ_CAFrib4beRnlTNSbh8Bg8o9bA4Q',
   batmanStation: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB_DtLIMg-mMFly21USDod_NTefmA0MGa8vjQQYmwjbL8z16jwSyhLgL8bkwun231yDrU1jKd2wHyxH2wxnAZzPaWJ0QIuOTcWnkeUstkDJgCuHYNd2ixGPT4l3hP424nGRmUcKkFreMtRA5WmtAiPHI6PVTphF7Z-6xVIIH9n88rqd6ULKeTMVQ9P2OfdL4-wPOL9W00UkNubg7-sRXKQsd4eL-mxZ73nlsAyPF07Itg7MatxSQNMouQ',
@@ -348,14 +348,15 @@ export default function App() {
       >
         <div className="max-w-4xl w-full mx-auto text-center flex flex-col items-center">
           {/* Subtle Interactive Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131720]/90 border border-[#1E2536] text-xs text-[#94A3B8] mb-7 shadow-sm">
-            <i className="fa-solid fa-shield-cat text-[#2563EB]" />
-            <span className="font-display font-medium">A quiet tribute for a special mind</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#131720]/90 border border-[#1E2536] text-xs text-[#94A3B8] mb-7 shadow-sm">
+            <i className="fa-solid fa-envelope text-[#38BDF8]" />
+            <span className="font-display font-medium hidden sm:inline">A quiet tribute for a special mind</span>
             <button
               onClick={() => setShowBonyAlert(true)}
-              className="text-[10px] text-[#38BDF8] hover:underline font-sans mr-1 bg-[#2563EB]/10 px-2 py-0.5 rounded-full cursor-pointer transition"
+              className="text-xs text-[#38BDF8] hover:text-white font-medium flex items-center gap-1.5 cursor-pointer transition bg-[#2563EB]/15 hover:bg-[#2563EB]/30 px-3 py-1 rounded-full border border-[#2563EB]/30"
             >
-              لو انت بوني دوس هنا 👀
+              <span className="font-bold tracking-wide">message for batman</span>
+              <span className="text-sm">✉️</span>
             </button>
           </div>
 
@@ -365,24 +366,24 @@ export default function App() {
           </h1>
 
           {/* Main Hero Photo Frame with 3D Tilt */}
-          <div className="tilt-card relative w-full max-w-xl aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden glass-card p-2 mb-8 group shadow-2xl">
-            <div className="w-full h-full rounded-xl overflow-hidden relative bg-[#0F1218]">
+          <div className="tilt-card relative w-full max-w-sm sm:max-w-md aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden glass-card p-2.5 mb-8 group shadow-2xl border border-white/10 ring-1 ring-blue-500/20">
+            <div className="w-full h-full rounded-2xl overflow-hidden relative bg-[#0F1218]">
               <img
                 src={IMAGES.hero}
-                alt="Batman & Ro2a Hero"
-                className="w-full h-full object-cover grayscale contrast-110 brightness-95 group-hover:grayscale-0 group-hover:scale-105 transition duration-700 cursor-pointer"
+                alt="BATMAN & RO2A"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700 cursor-pointer"
                 onClick={() =>
                   setLightboxImage({
                     src: IMAGES.hero,
-                    caption: 'BATMAN & RO2A — الصورة الرئيسية',
-                    tag: 'hero_frame_01.raw'
+                    caption: 'BATMAN & RO2A ❤️',
+                    tag: 'batman_ro2a.jpg'
                   })
                 }
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07080B]/90 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07080B]/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-xs text-[#94A3B8]/90 font-code pointer-events-none">
-                <span>[hero_frame_01.raw]</span>
-                <span className="text-[#F1F4F9]/90 font-sans font-medium">خاص بينا</span>
+                <span>[batman_ro2a.jpg]</span>
+                <span className="text-[#F1F4F9]/90 font-sans font-medium">خاص بينا ❤️</span>
               </div>
             </div>
           </div>
@@ -413,7 +414,10 @@ export default function App() {
               <span>
                 {currentTrackId === 'audio-happy-birthday' && isPlaying
                   ? 'أوقف الأغنية'
-                  : 'شغل أغنية البداية'}
+                  : 'أغنية هادية (Happy Birthday 🎂)'}
+              </span>
+              <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-mono font-normal">
+                15s
               </span>
             </button>
             <a
@@ -1308,20 +1312,26 @@ export default function App() {
         </div>
       )}
 
-      {/* Bony Easter Egg Alert Modal */}
+      {/* Batman Message Modal */}
       {showBonyAlert && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-6">
-          <div className="glass-card max-w-sm w-full rounded-2xl p-6 border-amber-400/40 text-center relative bg-[#0F1218]/95 shadow-2xl">
-            <div className="text-3xl mb-3">🦇</div>
-            <h4 className="text-lg font-bold text-white mb-2">رسالة لبوني</h4>
-            <p className="text-xs text-[#F1F4F9] leading-relaxed mb-5">
-              أنت مش بس بوني.. أنت بطل قصتنا كلها ودايماً ليك مكانة مفيش حد يقرب منها.
-            </p>
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
+          <div className="glass-card max-w-md w-full rounded-3xl p-7 sm:p-8 border-blue-500/30 text-center relative bg-[#0F1218]/95 shadow-2xl">
+            <div className="text-3xl mb-3">🦇🖤</div>
+            <h4 className="text-xl font-bold text-white mb-4 tracking-wider uppercase font-display text-[#38BDF8]">
+              message for batman
+            </h4>
+            <div className="bg-white/5 rounded-2xl p-5 sm:p-6 mb-6 border border-white/10 text-right">
+              <p className="text-base sm:text-lg text-[#F1F4F9] leading-relaxed font-normal whitespace-pre-line">
+                انت ممكن تكون شخص عادي مش خارق ومش كل يوم بتنقذ المدينة بس شكرا على كل مرة انقذتني فيها
+                {'\n\n'}
+                انا بحبك ❤️
+              </p>
+            </div>
             <button
               onClick={() => setShowBonyAlert(false)}
-              className="px-6 py-2 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-xs font-medium cursor-pointer"
+              className="px-8 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-sm font-semibold cursor-pointer shadow-lg transition"
             >
-              تمام يا روءة 💙
+              شكراً يا روءة 💙
             </button>
           </div>
         </div>

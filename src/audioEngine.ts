@@ -22,8 +22,8 @@ interface TrackMeta {
 export const TRACKS: Record<TrackId, TrackMeta> = {
   'audio-happy-birthday': {
     id: 'audio-happy-birthday',
-    title: 'Happy Birthday To You (هدوء)',
-    subtitle: 'بيانو دافي واحتفال هادي عشانك'
+    title: 'Happy Birthday (نغمة هادية 15 ث)',
+    subtitle: 'صندوق موسيقي هادي وبيانو دافي عشانك'
   },
   'audio-childhood': {
     id: 'audio-childhood',
@@ -179,50 +179,121 @@ class AudioEngine {
     this.activeNodes.push(osc, gain);
   }
 
+  private playMusicBoxNote(freq: number, duration: number, delay: number, volume: number = 0.16) {
+    if (!this.ctx) return;
+    const now = this.ctx.currentTime + delay;
+
+    // 1. Fundamental warm bell-like sine
+    const osc1 = this.ctx.createOscillator();
+    const gain1 = this.ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, now);
+
+    gain1.gain.setValueAtTime(0.0001, now);
+    gain1.gain.linearRampToValueAtTime(volume, now + 0.025);
+    gain1.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+    osc1.connect(gain1);
+    gain1.connect(this.ctx.destination);
+    osc1.start(now);
+    osc1.stop(now + duration + 0.05);
+
+    // 2. Music-box overtone shimmer (gentle higher harmonic)
+    const osc2 = this.ctx.createOscillator();
+    const gain2 = this.ctx.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(freq * 2, now);
+
+    gain2.gain.setValueAtTime(0.0001, now);
+    gain2.gain.linearRampToValueAtTime(volume * 0.3, now + 0.02);
+    gain2.gain.exponentialRampToValueAtTime(0.0001, now + (duration * 0.6));
+
+    osc2.connect(gain2);
+    gain2.connect(this.ctx.destination);
+    osc2.start(now);
+    osc2.stop(now + duration + 0.05);
+
+    // 3. Soft sub-bass warm body
+    const osc3 = this.ctx.createOscillator();
+    const gain3 = this.ctx.createGain();
+    osc3.type = 'triangle';
+    osc3.frequency.setValueAtTime(freq * 0.5, now);
+
+    gain3.gain.setValueAtTime(0.0001, now);
+    gain3.gain.linearRampToValueAtTime(volume * 0.25, now + 0.03);
+    gain3.gain.exponentialRampToValueAtTime(0.0001, now + (duration * 0.85));
+
+    osc3.connect(gain3);
+    gain3.connect(this.ctx.destination);
+    osc3.start(now);
+    osc3.stop(now + duration + 0.05);
+
+    this.activeNodes.push(osc1, gain1, osc2, gain2, osc3, gain3);
+  }
+
   // Melodic tracks
   private playHappyBirthday() {
-    // C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392.00, A4=440.00, B4=493.88, C5=523.25
+    // Calm, gentle music-box Happy Birthday melody tailored to finish under 15 seconds (~14.5s)
     const notes = [
-      { f: 261.63, d: 0.35, t: 0.0 },
-      { f: 261.63, d: 0.35, t: 0.4 },
-      { f: 293.66, d: 0.7, t: 0.8 },
-      { f: 261.63, d: 0.7, t: 1.6 },
-      { f: 349.23, d: 0.7, t: 2.4 },
-      { f: 329.63, d: 1.2, t: 3.2 },
+      // Phrase 1 (Happy birthday to you)
+      { f: 261.63, d: 0.32, t: 0.00 }, // C4
+      { f: 261.63, d: 0.32, t: 0.38 }, // C4
+      { f: 293.66, d: 0.65, t: 0.76 }, // D4
+      { f: 261.63, d: 0.65, t: 1.45 }, // C4
+      { f: 349.23, d: 0.65, t: 2.15 }, // F4
+      { f: 329.63, d: 1.05, t: 2.85 }, // E4
 
-      { f: 261.63, d: 0.35, t: 4.6 },
-      { f: 261.63, d: 0.35, t: 5.0 },
-      { f: 293.66, d: 0.7, t: 5.4 },
-      { f: 261.63, d: 0.7, t: 6.2 },
-      { f: 392.00, d: 0.7, t: 7.0 },
-      { f: 349.23, d: 1.2, t: 7.8 },
+      // Phrase 2 (Happy birthday to you)
+      { f: 261.63, d: 0.32, t: 4.05 }, // C4
+      { f: 261.63, d: 0.32, t: 4.43 }, // C4
+      { f: 293.66, d: 0.65, t: 4.81 }, // D4
+      { f: 261.63, d: 0.65, t: 5.50 }, // C4
+      { f: 392.00, d: 0.65, t: 6.20 }, // G4
+      { f: 349.23, d: 1.05, t: 6.90 }, // F4
 
-      { f: 261.63, d: 0.35, t: 9.2 },
-      { f: 261.63, d: 0.35, t: 9.6 },
-      { f: 523.25, d: 0.8, t: 10.0 },
-      { f: 440.00, d: 0.8, t: 10.9 },
-      { f: 349.23, d: 0.8, t: 11.8 },
-      { f: 329.63, d: 0.8, t: 12.7 },
-      { f: 293.66, d: 1.2, t: 13.6 },
+      // Phrase 3 (Happy birthday dear Batman)
+      { f: 261.63, d: 0.32, t: 8.10 }, // C4
+      { f: 261.63, d: 0.32, t: 8.48 }, // C4
+      { f: 523.25, d: 0.75, t: 8.86 }, // C5
+      { f: 440.00, d: 0.70, t: 9.65 }, // A4
+      { f: 349.23, d: 0.60, t: 10.40 }, // F4
+      { f: 329.63, d: 0.60, t: 11.05 }, // E4
+      { f: 293.66, d: 0.85, t: 11.70 }, // D4
 
-      { f: 466.16, d: 0.35, t: 15.0 },
-      { f: 466.16, d: 0.35, t: 15.4 },
-      { f: 440.00, d: 0.7, t: 15.8 },
-      { f: 349.23, d: 0.7, t: 16.6 },
-      { f: 392.00, d: 0.7, t: 17.4 },
-      { f: 349.23, d: 1.5, t: 18.2 }
+      // Phrase 4 (Happy birthday to you)
+      { f: 466.16, d: 0.32, t: 12.65 }, // Bb4
+      { f: 466.16, d: 0.32, t: 13.00 }, // Bb4
+      { f: 440.00, d: 0.65, t: 13.35 }, // A4
+      { f: 349.23, d: 0.60, t: 14.05 }, // F4
+      { f: 392.00, d: 0.60, t: 14.70 }, // G4
+      { f: 349.23, d: 1.20, t: 15.35 }  // F4
     ];
 
-    const loopLen = 20;
-    const playRound = () => {
-      notes.forEach(n => {
-        // Soft chime / sine
-        this.playTone(n.f, 'sine', n.d, n.t, 0.16);
-        this.playTone(n.f * 0.5, 'triangle', n.d * 1.2, n.t, 0.08); // warm bass octave
-      });
-    };
-    playRound();
-    this.intervalTimer = window.setInterval(playRound, loopLen * 1000);
+    // Harmony chords to add warmth
+    const chords = [
+      { f: 130.81, d: 1.4, t: 0.76 },  // C3
+      { f: 196.00, d: 1.5, t: 2.15 },  // G3
+      { f: 130.81, d: 1.4, t: 4.81 },  // C3
+      { f: 174.61, d: 1.5, t: 6.20 },  // F3
+      { f: 130.81, d: 1.6, t: 8.86 },  // C3
+      { f: 174.61, d: 1.4, t: 10.40 }, // F3
+      { f: 196.00, d: 1.5, t: 13.35 }, // G3
+      { f: 174.61, d: 2.0, t: 14.05 }  // F3
+    ];
+
+    // Play melody with music box chimes scaled to finish in exactly ~14.5 seconds
+    const speedRatio = 0.88; // Scales timings so the whole song finishes comfortably under 15 seconds
+    notes.forEach(n => {
+      this.playMusicBoxNote(n.f, n.d * speedRatio, n.t * speedRatio, 0.17);
+    });
+    chords.forEach(c => {
+      this.playTone(c.f, 'triangle', c.d * speedRatio, c.t * speedRatio, 0.08);
+    });
+
+    // Auto-stop precisely at 14.8 seconds (under 15s limit)
+    this.intervalTimer = window.setTimeout(() => {
+      this.stop();
+    }, 14800);
   }
 
   private playChildhoodLullaby() {
