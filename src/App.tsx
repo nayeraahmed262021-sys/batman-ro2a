@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { audioEngine, TRACKS } from './audioEngine';
 
 // Real photos & memes for Ro2a & Batman
 const IMAGES = {
@@ -93,10 +92,13 @@ const GALLERY_ITEMS = [
 ];
 
 export default function App() {
-  // Audio state
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [currentTrackId, setCurrentTrackId] = useState<string | null>(null);
-  const [currentTrackTitle, setCurrentTrackTitle] = useState<string>('الموسيقى: متوقفة');
+  // Active YouTube track state (ONLY the specified songs from user)
+  // 'birthday' | 'chaos' | 'batman' | 'digimon' | 'fi-yom-w-leila' | 'perfect' | null
+  const [activeYtTrack, setActiveYtTrack] = useState<string | null>(null);
+
+  // Cipher state for secret message vault
+  const [cipherInput, setCipherInput] = useState<string>('');
+  const [cipherError, setCipherError] = useState<string>('');
 
   // Chaos mode gate state
   const [isChaosOpen, setIsChaosOpen] = useState<boolean>(false);
@@ -120,8 +122,6 @@ export default function App() {
 
   // Modals
   const [showBirthdayModal, setShowBirthdayModal] = useState<boolean>(false);
-  const [ytBirthdayPlaying, setYtBirthdayPlaying] = useState<boolean>(false);
-  const [activeYtTrack, setActiveYtTrack] = useState<string | null>(null);
   const [isCringeActive, setIsCringeActive] = useState<boolean>(false);
   const [showSpecialDateModal, setShowSpecialDateModal] = useState<boolean>(false);
   const [showBonyAlert, setShowBonyAlert] = useState<boolean>(false);
@@ -137,17 +137,66 @@ export default function App() {
   // Scroll progress bar
   const [scrollPercent, setScrollPercent] = useState<number>(0);
 
-  // Subscribe to audio engine
-  useEffect(() => {
-    const unsubscribe = audioEngine.subscribe(state => {
-      setIsPlaying(state.isPlaying);
-      setCurrentTrackId(state.trackId);
-      setCurrentTrackTitle(state.title);
-    });
-    return () => unsubscribe();
-  }, []);
+  // Toggle YouTube track helper (turns off if already active, or switches track)
+  const playYtTrack = (trackKey: string | null) => {
+    setActiveYtTrack(prev => (prev === trackKey ? null : trackKey));
+  };
 
-  // Window scroll & mouse tracker
+  // Unlock Vault Logic
+  const handleUnlockVault = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const val = cipherInput.trim().toLowerCase();
+    const validKeys = [
+      'batman',
+      'ro2a',
+      'bony',
+      'boni',
+      '17/9',
+      '17-9',
+      '5/10',
+      '5-10',
+      'perfect',
+      'sudo',
+      'sudo unlock',
+      'sudo decrypt',
+      'sudo ro2a',
+      'developer',
+      '0xbatman',
+      'love'
+    ];
+    if (validKeys.includes(val)) {
+      setCipherError('');
+      setIsFinalRevealed(true);
+      try {
+        confetti({
+          particleCount: 75,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      } catch {
+        // ignore
+      }
+    } else {
+      setCipherError('خطأ: شفرة غير صحيحة! تأكد إنك باتمان واستخدم كودك السري 🦇❌');
+    }
+  };
+
+  const handleDevBypass = () => {
+    setCipherInput('sudo decrypt --batman');
+    setCipherError('');
+    setIsFinalRevealed(true);
+    try {
+      confetti({
+        particleCount: 75,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    } catch {
+      // ignore
+    }
+  };
+
+  // Window scroll, mouse tracker & keyboard shortcuts
   useEffect(() => {
     const handleScroll = () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -164,11 +213,23 @@ export default function App() {
       }
     };
 
-    // Secret date key sequence listener
+    // Secret date & developer shortcut listener
     let keyBuffer = '';
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't intercept if user is typing in terminal
-      if (document.activeElement === terminalInputRef.current) return;
+      // Dev shortcut to unlock secret message: Ctrl+B or Cmd+B
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
+        e.preventDefault();
+        handleDevBypass();
+        const el = document.getElementById('final-message');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Don't intercept if user is typing in terminal or input fields
+      if (
+        document.activeElement === terminalInputRef.current ||
+        (document.activeElement as HTMLElement)?.tagName === 'INPUT'
+      ) return;
 
       keyBuffer += e.key;
       if (keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
@@ -193,27 +254,9 @@ export default function App() {
     };
   }, []);
 
-  // Play audio helper
-  const handlePlayAudio = (trackId: keyof typeof TRACKS) => {
-    setActiveYtTrack(null);
-    audioEngine.playTrack(trackId);
-  };
-
-  const handleStopAudio = () => {
-    audioEngine.stop();
-  };
-
-  // Play YouTube track helper (stopping synthetic sound)
-  const playYtTrack = (trackKey: string | null) => {
-    audioEngine.stop();
-    setActiveYtTrack(trackKey);
-  };
-
-  // Trigger 5/10 birthday modal
+  // Trigger 5/10 birthday modal (No autoplay)
   const triggerBirthdayEgg = () => {
     setShowBirthdayModal(true);
-    setYtBirthdayPlaying(true);
-    handleStopAudio();
     try {
       confetti({
         particleCount: 85,
@@ -241,11 +284,10 @@ export default function App() {
     }
   };
 
-  // Open Chaos Mode: 2000s cringe flip for 10 seconds + song from second 20
+  // Open Chaos Mode: 2000s cringe flip for 10 seconds (NO autoplay music)
   const enterChaosMode = () => {
     setIsChaosOpen(true);
     setIsCringeActive(true);
-    playYtTrack('chaos');
 
     // 10 seconds of tacky hearts and ribbons shower
     const end = Date.now() + 10 * 1000;
@@ -283,7 +325,6 @@ export default function App() {
     if (activeYtTrack === 'chaos') {
       setActiveYtTrack(null);
     }
-    handleStopAudio();
   };
 
   // Tacky Love Rain (Red hearts & ribbons falling for 10 seconds)
@@ -414,9 +455,17 @@ export default function App() {
         { text: '> Batman status: Respected Dark Knight forever. Protected by code.', color: 'text-yellow-400' }
       ]);
     } else if (val === 'music') {
+      const trackName =
+        activeYtTrack === 'birthday' ? 'Happy Birthday (0:14)' :
+        activeYtTrack === 'chaos' ? 'عليا النعمة بحبك (0:20)' :
+        activeYtTrack === 'batman' ? 'ضوء لمع وسط المدينة (تراك باتمان)' :
+        activeYtTrack === 'digimon' ? 'أبطال الديجيتال' :
+        activeYtTrack === 'fi-yom-w-leila' ? 'في يوم وليلة' :
+        activeYtTrack === 'perfect' ? 'Perfect - Ed Sheeran' :
+        'لا يوجد أي تراك يعمل حالياً';
       setTerminalOutput(prev => [
         ...prev,
-        { text: '> Playing: ' + currentTrackTitle, color: 'text-emerald-400' }
+        { text: '> Playing: ' + trackName, color: 'text-emerald-400' }
       ]);
     } else if (val === 'help') {
       setTerminalOutput(prev => [
@@ -458,43 +507,34 @@ export default function App() {
         />
       </div>
 
-      {/* Global Floating Music Controller */}
-      <div className="fixed bottom-6 left-6 z-40 transition-all duration-300">
-        <div className="glass-card px-4 py-2.5 rounded-full flex items-center space-x-3 space-x-reverse shadow-2xl border border-[#1E2536]/80 hover:border-[#2563EB]/60 transition bg-[#0F1218]/90">
-          {/* Animated visualizer bars */}
-          {isPlaying && (
-            <div className="flex items-end gap-1 h-4 w-4">
-              <span className="w-1 bg-[#38BDF8] rounded-full vis-bar h-2" />
-              <span className="w-1 bg-[#2563EB] rounded-full vis-bar h-3" />
-              <span className="w-1 bg-[#38BDF8] rounded-full vis-bar h-4" />
-              <span className="w-1 bg-[#2563EB] rounded-full vis-bar h-1" />
+      {/* Global Floating Now-Playing Bar (Only shown when user plays one of the 6 YouTube tracks) */}
+      {activeYtTrack && (
+        <div className="fixed bottom-6 left-6 z-40 transition-all duration-300 animate-fadeIn">
+          <div className="glass-card px-4 py-2.5 rounded-full flex items-center space-x-3 space-x-reverse shadow-2xl border border-[#2563EB]/60 bg-[#0F1218]/95">
+            <div className="flex items-end gap-1 h-3.5 w-3.5">
+              <span className="w-1 bg-[#38BDF8] rounded-full animate-pulse h-2" />
+              <span className="w-1 bg-[#2563EB] rounded-full animate-pulse h-3.5" />
+              <span className="w-1 bg-[#38BDF8] rounded-full animate-pulse h-2" />
             </div>
-          )}
-
-          <button
-            onClick={() => {
-              if (isPlaying) handleStopAudio();
-              else handlePlayAudio('audio-happy-birthday');
-            }}
-            className="text-xs font-medium text-[#94A3B8] hover:text-white transition flex items-center gap-2"
-          >
-            <i
-              className={`fa-solid fa-compact-disc text-[#2563EB] text-base transition-transform duration-500 ${
-                isPlaying ? 'animate-spin' : ''
-              }`}
-            />
-            <span className="font-sans font-medium">{currentTrackTitle}</span>
-          </button>
-
-          <button
-            onClick={() => audioEngine.testSound()}
-            className="text-[11px] text-amber-300 hover:text-amber-200 bg-amber-400/15 hover:bg-amber-400/25 px-2.5 py-1 rounded-full border border-amber-400/30 transition flex items-center gap-1 cursor-pointer shrink-0"
-            title="جرب الصوت للتأكد من تشغيله في متصفحك أو موبايلك"
-          >
-            <span>🔊 جرب الصوت</span>
-          </button>
+            <span className="text-xs font-medium text-white font-sans">
+              {activeYtTrack === 'birthday' && 'أغنية عيد الميلاد 🎂'}
+              {activeYtTrack === 'chaos' && 'عليا النعمة بحبك 💃'}
+              {activeYtTrack === 'batman' && 'ضوء لمع وسط المدينة 🦇'}
+              {activeYtTrack === 'digimon' && 'أبطال الديجيتال 👾'}
+              {activeYtTrack === 'fi-yom-w-leila' && 'في يوم و ليلة 🎶'}
+              {activeYtTrack === 'perfect' && 'أغنية Perfect 🤍'}
+            </span>
+            <button
+              onClick={() => setActiveYtTrack(null)}
+              className="text-[11px] text-rose-400 hover:text-white bg-rose-500/15 hover:bg-rose-500/30 px-2.5 py-1 rounded-full border border-rose-500/30 transition flex items-center gap-1 cursor-pointer"
+              title="إيقاف الموسيقى"
+            >
+              <i className="fa-solid fa-stop text-[10px]" />
+              <span>إيقاف</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Sticky Minimal Navbar */}
       <nav className="fixed top-0 inset-x-0 z-40 bg-[#07080B]/85 backdrop-blur-md border-b border-[#1E2536]/60 transition-all duration-300">
@@ -598,34 +638,33 @@ export default function App() {
           </div>
 
           {/* Subtitle & Words */}
-          <p className="text-base sm:text-xl font-medium text-white max-w-2xl mx-auto mb-6 leading-relaxed">
+          <p className="text-base sm:text-xl font-medium text-white max-w-2xl mx-auto mb-5 leading-relaxed">
             الويبسايت دا اتعمل علشانك و فيه تفاصيل كتير حاولت تكون شبهنا مع بعض(معقدة بس مختلفة و لذيذة) خد وقتك و استكشفه يارب يعجبك حبيبي كل سنة و عيوني طيب 💙
           </p>
+
+          {/* Note from Ro2a: No song plays automatically */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-xs sm:text-sm text-[#38BDF8] mb-6 font-medium shadow-sm">
+            <i className="fa-solid fa-headphones text-sm text-amber-400" />
+            <span>بوني مفيش اي اغنية هتشتغل غير لم انت تختار تشغلها 🎧💙</span>
+          </div>
 
           {/* Music Start Control (YouTube Happy Birthday from 14s) */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             <button
-              onClick={() => {
-                if (ytBirthdayPlaying) {
-                  setYtBirthdayPlaying(false);
-                } else {
-                  handleStopAudio();
-                  setYtBirthdayPlaying(true);
-                }
-              }}
-              className={`px-7 py-3 rounded-full text-black font-semibold text-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
-                ytBirthdayPlaying
-                  ? 'bg-amber-300 ring-2 ring-amber-400'
-                  : 'bg-white hover:bg-[#F1F4F9]'
+              onClick={() => playYtTrack('birthday')}
+              className={`px-7 py-3 rounded-full font-semibold text-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
+                activeYtTrack === 'birthday'
+                  ? 'bg-amber-400 text-black ring-2 ring-amber-300'
+                  : 'bg-white text-black hover:bg-[#F1F4F9]'
               }`}
             >
               <i
                 className={`fa-solid ${
-                  ytBirthdayPlaying ? 'fa-pause' : 'fa-play'
+                  activeYtTrack === 'birthday' ? 'fa-pause' : 'fa-play'
                 } text-xs text-[#07080B]`}
               />
               <span>
-                {ytBirthdayPlaying
+                {activeYtTrack === 'birthday'
                   ? 'أوقف الأغنية'
                   : 'أغنية عيد الميلاد (Happy Birthday 🎂)'}
               </span>
@@ -642,7 +681,7 @@ export default function App() {
           </div>
 
           {/* Hero YouTube player if active and modal closed */}
-          {ytBirthdayPlaying && !showBirthdayModal && (
+          {activeYtTrack === 'birthday' && !showBirthdayModal && (
             <div className="w-full max-w-md mx-auto mb-8 rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black animate-fadeIn">
               <iframe
                 src="https://www.youtube.com/embed/hSIOlzYUOac?autoplay=1&start=14&enablejsapi=1"
@@ -1546,15 +1585,15 @@ export default function App() {
         </div>
       </section>
 
-      {/* 7. Final Climax Section: Truly Secret Classified Message & Perfect Track */}
+      {/* 7. Final Climax Section: Developer Cipher Protected Secret Message & Perfect Track */}
       <section id="final-message" className="py-32 px-6 relative border-t border-[#1E2536]/40">
         <div className="max-w-2xl mx-auto text-center">
           {!isFinalRevealed ? (
-            /* Locked Classified Bat-Vault */
-            <div className="glass-card rounded-3xl p-8 sm:p-12 border-2 border-[#1E2536] hover:border-[#2563EB]/40 transition shadow-2xl relative overflow-hidden bg-[#0A0D14]/90">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[#38BDF8] text-[11px] font-code mb-5">
+            /* Locked Classified Bat-Vault with Cipher Input */
+            <div className="glass-card rounded-3xl p-8 sm:p-12 border-2 border-[#1E2536] hover:border-[#2563EB]/40 transition shadow-2xl relative overflow-hidden bg-[#0A0D14]/95 text-center">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[#38BDF8] text-[11px] font-code mb-4">
                 <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-                <span>TOP SECRET // FOR BATMAN ONLY // ENCRYPTED</span>
+                <span>TOP SECRET // FOR BATMAN ONLY // CIPHER LOCKED</span>
               </div>
 
               <div className="w-16 h-16 rounded-2xl bg-[#2563EB]/15 text-[#38BDF8] mx-auto flex items-center justify-center text-2xl mb-4 shadow-inner border border-blue-500/30">
@@ -1564,44 +1603,66 @@ export default function App() {
               <h4 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
                 سيكريت مسدج مشفرة 🔒
               </h4>
-
-              {/* Classified Encrypted Payload Display */}
-              <div className="bg-black/60 rounded-xl p-4 my-6 border border-white/10 font-code text-xs text-[#94A3B8] tracking-widest text-left" dir="ltr">
-                <div className="flex items-center justify-between text-[11px] text-[#38BDF8] border-b border-white/10 pb-2 mb-3">
-                  <span>SECURITY_LEVEL: MAXIMUM</span>
-                  <span className="text-amber-400">STATUS: LOCKED 🔒</span>
-                </div>
-                <p className="text-gray-500 font-mono tracking-widest break-all select-none">
-                  ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
-                </p>
-                <p className="text-[11px] text-amber-400/90 mt-2 font-mono">
-                  &lt; ACCESS RESTRICTED: REQUIRES BATMAN DECRYPTION KEY &gt;
-                </p>
-              </div>
-
-              <p className="text-sm text-[#F1F4F9]/80 mb-7 max-w-md mx-auto leading-relaxed">
-                رسالة خاصة جداً ومقفولة.. اضغط على الزر تحت لفك التشفير وقراءتها 🗝️
+              <p className="text-xs sm:text-sm text-[#94A3B8] mb-6 max-w-md mx-auto leading-relaxed">
+                الرسالة دي محمية بشفرة خاصة عشان مفيش أي حد غيرك كـ Developer وباتمان يفتحها.
               </p>
 
-              <button
-                onClick={() => {
-                  setIsFinalRevealed(true);
-                  handlePlayAudio('audio-perfect');
-                  try {
-                    confetti({
-                      particleCount: 50,
-                      spread: 60,
-                      origin: { y: 0.7 }
-                    });
-                  } catch {
-                    // ignore
-                  }
-                }}
-                className="px-8 py-3.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-sm sm:text-base font-bold transition shadow-xl hover:shadow-[#2563EB]/40 flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer"
-              >
-                <i className="fa-solid fa-key text-xs" />
-                <span>فك التشفير وافتح الرسالة ✉️</span>
-              </button>
+              {/* Developer Terminal Box */}
+              <div className="max-w-lg mx-auto bg-black/85 rounded-2xl p-5 border border-white/10 text-left font-code mb-6 shadow-2xl" dir="ltr">
+                <div className="flex items-center justify-between text-[11px] text-[#38BDF8] border-b border-white/10 pb-2 mb-3">
+                  <span>batman@batcave:~# vault_decrypt.sh</span>
+                  <span className="text-amber-400">STATUS: LOCKED 🔒</span>
+                </div>
+
+                <p className="text-xs text-gray-400 mb-3">
+                  // Enter your secret cipher key (or press <span className="text-amber-300 font-bold">Ctrl + B</span>):
+                </p>
+
+                <form onSubmit={handleUnlockVault} className="space-y-3">
+                  <div className="flex items-center gap-2 bg-[#0F1218] px-3.5 py-2.5 rounded-xl border border-white/10 focus-within:border-[#2563EB] transition">
+                    <span className="text-emerald-400 font-bold">&gt;</span>
+                    <input
+                      type="text"
+                      value={cipherInput}
+                      onChange={e => {
+                        setCipherInput(e.target.value);
+                        if (cipherError) setCipherError('');
+                      }}
+                      placeholder="e.g. batman / 17/9 / 5/10 / ro2a"
+                      className="bg-transparent border-none text-xs sm:text-sm font-code text-white focus:outline-none w-full placeholder:text-gray-600"
+                    />
+                  </div>
+
+                  {cipherError && (
+                    <div className="text-rose-400 text-xs font-sans text-right pt-1 animate-fadeIn flex items-center justify-end gap-1.5" dir="rtl">
+                      <i className="fa-solid fa-triangle-exclamation text-xs" />
+                      <span>{cipherError}</span>
+                    </div>
+                  )}
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#0052FF] text-white text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
+                    >
+                      <i className="fa-solid fa-terminal text-xs" />
+                      <span className="font-sans">فك التشفير (Execute) ⚡</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleDevBypass}
+                      className="text-[11px] text-[#94A3B8] hover:text-white underline decoration-dotted transition flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>⌨️ اختصار الديفيلوبر [Ctrl + B]</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div className="text-[11px] text-[#94A3B8]/60 font-code">
+                HINT: استخدم كود باتمان أو تاريخنا السري 17/9 أو 5/10 🦇
+              </div>
             </div>
           ) : (
             /* Final Revealed Message Card */
@@ -1610,7 +1671,7 @@ export default function App() {
 
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-code mb-5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>ACCESS GRANTED // DECRYPTION COMPLETE // 2025</span>
+                <span>ACCESS GRANTED // IDENTITY VERIFIED: BATMAN // 2025</span>
               </div>
 
               <div className="w-14 h-14 rounded-2xl bg-rose-500/15 text-rose-400 mx-auto flex items-center justify-center text-2xl mb-5 shadow-inner border border-rose-500/30">
@@ -1621,27 +1682,40 @@ export default function App() {
                 دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية.. اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا Perfect 🤍
               </p>
 
-              {/* Play Final Song CTA */}
-              <div className="my-8">
+              {/* YouTube Player CTA for Perfect (https://youtu.be/cNGjD0VG4R8) */}
+              <div className="my-8 flex flex-col items-center justify-center">
                 <button
-                  onClick={() => handlePlayAudio('audio-perfect')}
+                  onClick={() => playYtTrack('perfect')}
                   className={`px-8 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base shadow-xl transition flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer ${
-                    currentTrackId === 'audio-perfect' && isPlaying
-                      ? 'bg-rose-600 hover:bg-rose-500'
+                    activeYtTrack === 'perfect'
+                      ? 'bg-rose-600 hover:bg-rose-500 ring-2 ring-rose-400'
                       : 'bg-[#2563EB] hover:bg-[#0052FF] hover:shadow-[#2563EB]/30'
                   }`}
                 >
                   <i
                     className={`fa-solid ${
-                      currentTrackId === 'audio-perfect' && isPlaying ? 'fa-pause' : 'fa-play'
+                      activeYtTrack === 'perfect' ? 'fa-pause' : 'fa-play'
                     } text-xs`}
                   />
                   <span>
-                    {currentTrackId === 'audio-perfect' && isPlaying
+                    {activeYtTrack === 'perfect'
                       ? 'أوقف أغنية Perfect'
-                      : 'شغل أغنية Perfect (من أول I found a love 🎶)'}
+                      : 'شغل أغنية Perfect 🎶'}
                   </span>
                 </button>
+
+                {/* Embedded YouTube Player for Perfect */}
+                {activeYtTrack === 'perfect' && (
+                  <div className="w-full max-w-md mx-auto mt-5 rounded-2xl overflow-hidden border border-rose-500/30 shadow-2xl bg-black animate-fadeIn">
+                    <iframe
+                      src="https://www.youtube.com/embed/cNGjD0VG4R8?autoplay=1&enablejsapi=1"
+                      title="Perfect - Ed Sheeran"
+                      className="w-full aspect-video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Final Goodnight Sign-off */}
@@ -1657,7 +1731,12 @@ export default function App() {
               {/* Re-lock Button */}
               <div className="mt-8 pt-5 border-t border-white/5">
                 <button
-                  onClick={() => setIsFinalRevealed(false)}
+                  onClick={() => {
+                    setIsFinalRevealed(false);
+                    setCipherInput('');
+                    setCipherError('');
+                    if (activeYtTrack === 'perfect') setActiveYtTrack(null);
+                  }}
                   className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-[#94A3B8] hover:text-white transition flex items-center gap-2 mx-auto cursor-pointer"
                 >
                   <i className="fa-solid fa-lock text-[11px]" />
@@ -1690,7 +1769,7 @@ export default function App() {
             <button
               onClick={() => {
                 setShowBirthdayModal(false);
-                setYtBirthdayPlaying(false);
+                if (activeYtTrack === 'birthday') setActiveYtTrack(null);
               }}
               className="absolute top-4 left-4 text-[#94A3B8] hover:text-white text-sm cursor-pointer p-2"
             >
@@ -1715,22 +1794,46 @@ export default function App() {
               </span>
             </div>
 
-            {/* YouTube Track from second 14 */}
-            <div className="my-4 rounded-2xl overflow-hidden border border-white/10 shadow-xl bg-black">
-              <iframe
-                src="https://www.youtube.com/embed/hSIOlzYUOac?autoplay=1&start=14&enablejsapi=1"
-                title="Happy Birthday to you"
-                className="w-full aspect-video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            {/* YouTube Track from second 14 (User clicks to play) */}
+            <div className="my-4">
+              <button
+                onClick={() => playYtTrack('birthday')}
+                className={`px-6 py-2.5 rounded-full text-xs font-bold transition flex items-center gap-2 mx-auto cursor-pointer ${
+                  activeYtTrack === 'birthday'
+                    ? 'bg-amber-400 text-black ring-2 ring-amber-300'
+                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                }`}
+              >
+                <i
+                  className={`fa-solid ${
+                    activeYtTrack === 'birthday' ? 'fa-pause' : 'fa-play'
+                  } text-xs`}
+                />
+                <span>
+                  {activeYtTrack === 'birthday'
+                    ? 'أوقف الأغنية'
+                    : 'شغل أغنية عيد الميلاد (Happy Birthday 🎂)'}
+                </span>
+              </button>
+
+              {activeYtTrack === 'birthday' && (
+                <div className="mt-3 rounded-2xl overflow-hidden border border-white/10 shadow-xl bg-black animate-fadeIn">
+                  <iframe
+                    src="https://www.youtube.com/embed/hSIOlzYUOac?autoplay=1&start=14&enablejsapi=1"
+                    title="Happy Birthday to you"
+                    className="w-full aspect-video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
             </div>
 
             {/* مووووواه مكان بوتون الاغلاق */}
             <button
               onClick={() => {
                 setShowBirthdayModal(false);
-                setYtBirthdayPlaying(false);
+                if (activeYtTrack === 'birthday') setActiveYtTrack(null);
               }}
               className="px-10 py-3.5 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-red-600 hover:opacity-95 text-white text-base font-bold transition shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
             >
