@@ -1682,7 +1682,7 @@ export default function App() {
                 دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية.. اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا Perfect 🤍
               </p>
 
-              {/* YouTube Player CTA for Perfect (https://youtu.be/cNGjD0VG4R8) */}
+              {/* YouTube Player CTA for Perfect (https://youtu.be/2Vv-BfVoq4g) */}
               <div className="my-8 flex flex-col items-center justify-center">
                 <button
                   onClick={() => playYtTrack('perfect')}
@@ -1708,8 +1708,8 @@ export default function App() {
                 {activeYtTrack === 'perfect' && (
                   <div className="w-full max-w-md mx-auto mt-5 rounded-2xl overflow-hidden border border-rose-500/30 shadow-2xl bg-black animate-fadeIn">
                     <iframe
-                      src="https://www.youtube.com/embed/cNGjD0VG4R8?autoplay=1&enablejsapi=1"
-                      title="Perfect - Ed Sheeran"
+                      src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&enablejsapi=1"
+                      title="Ed Sheeran - Perfect"
                       className="w-full aspect-video"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
