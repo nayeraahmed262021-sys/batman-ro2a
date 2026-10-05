@@ -17,6 +17,9 @@ const IMAGES = {
   wardaSheikh: '/images/warda_sheikh.jpg',
   completelyLayes: '/images/completely_layes.jpg',
   bataE3tezar: '/images/bata_e3tezar.jpg',
+  cardBatman: '/images/card_batman.jpg',
+  cardBaby: '/images/card_baby.jpg',
+  cardDigimon: '/images/card_digimon.jpg',
   baliLandscape: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
   meme: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDj-6g9k6J0Q5BuI5p7irUiRQu9an7UuVQA7ojo8hJmVHKKbXvQNZN1Z0D5uWA_i4_T1qQntI2XWMXqFQwQDgnZzTifR9raKyxK5d5XmrNrRWwDUjt0zj66bytwNOY0-YmTMrAQw4wHAjAW3lKnda3bN8CVRHZ9t3eTIDlUG5LSUoFNCZ8A8LJDcrUJ0RBirVqyeavJVQgZ7uaUXPy8ZqEPK00w1FIf1Nbhc2wfG9dA_DtvDTyeoxClBQ',
   childhood: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIYfehwMvsdO-D7HzgW4CTAG4iRL3QCA6fx8fdNM40NqyGn6TZ3ZH56j0e9uzraZOS_PjTy8Oeo0eFoku-WYc2flnugEvby-u4bvsnBGwws4FKlHHYhyRzmkqX7k63kJpjQeIW4EI4vrB-6la8mNsM0Gji7KqrmgLG10xxiI9fmiWvs6CYl7Oa3d3hnEaqfBrxoPzYY4kJ5ZxsfOa3cCAyJtqDhZ_CAFrib4beRnlTNSbh8Bg8o9bA4Q',
@@ -24,86 +27,18 @@ const IMAGES = {
   spacetoon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCL245MxpDaQYS-iwahne09lnLew5QfRQ0rGNEUQ6MBoWxjrtHfid_wODzbwXe4elMdN2wUuSfgUVxkeQT-a2snEw_pt1XK_2ub34w6lConNsMTfs8oc4MCXgh6EjnK041nnaScKrE7f-KGV9vKPfA7tlVu-90ChrSLLOlcAr5JwUvnxRaz0pQisQEG96bpx6LNxMLkDJR8hvE-HsvPGvZxk3VqhSd76dxgrP4v0L30HJQFs9aR1sVMVw'
 };
 
-// 6 Sarcastic Questions without emojis
-const SIGNAL_QUESTIONS = [
-  {
-    id: 1,
-    q: 'لو الكود ضرب Runtime Error على برودكشن الساعة 4 الفجر، الإشارة الكرييتف المنطقية هي:',
-    options: [
-      'أعمل git commit -m "يارب تستر" وأقفل اللاب وأنام في هدوء',
-      'ارن ع روءة و اقولها جعان',
-      'اقول باتمان هو اللي داس ع السلك بالغلط',
-      'تاخد بوسة'
-    ],
-    correct: 3,
-    memeImg: '/images/warda_sheikh.jpg',
-    memeTitle: 'المهندس وهو ماسك وردة بعد ما السيرفر وقع بكل شياكة 🌹'
-  },
-  {
-    id: 2,
-    q: 'لو الـ API رجع 404 Not Found لقلب روءة، إزاي تعالج الـ Exception كطبيب جراح قلوب محترف؟',
-    options: [
-      'أزود الـ Timeout وأستنى لحد ما تحن عليا',
-      'أشغل كشاف باتمان في السما استغاثة في المعادي',
-      'اعمل ريستارت للمشاعر و احضن',
-      'اختر كل ما سبق لان نون طماعة'
-    ],
-    correct: 3,
-    memeImg: '/images/completely_layes.jpg',
-    memeTitle: 'كومبليتلي لايص.. بس وربنا بحبك! 💐'
-  },
-  {
-    id: 3,
-    q: 'في لغة البرمجة لو كتبنا: if (batman.loves_ro2a == true) الناتج المنطقي هيكون:',
-    options: [
-      'INFINITE LOOP من الحب و النحنحة',
-      'STACK OVERFLOW من البوس',
-      'MEMORY LEAK من صورنا سوااااا مش بيخلص خصوصا فيديوهاتنا',
-      'SYNTAX ERROR لان كدا كدا دي حقايق مش محتاجين نتكلم فيها'
-    ],
-    correct: 3,
-    memeImg: '/images/nesreen_heart.jpg',
-    memeTitle: '' // نشيل الجملة المكتوبة من الصورة اللي هتظهر ف النتيجة دي
-  },
-  {
-    id: 4,
-    q: 'الدليل انك اشطر من باتمان شخصيا',
-    options: [
-      'بتصلح ال BUG كلها',
-      'بتنقذ المدينة من الاشرار',
-      'بتحب روءة و بتموت فيها',
-      'بسم الله الرحمن الرحيم الاجابة رقم 3'
-    ],
-    correct: 3,
-    memeImg: '/images/warda_sheikh.jpg',
-    memeTitle: 'اتفضل الوردة دي عشان أنت عبقري ومفيش منك اتنين 🌹'
-  },
-  {
-    id: 5,
-    q: 'لو نون قالتلك براحتك يا عبدالرحمن',
-    options: [
-      'دا معناه ان براحتك فعلا',
-      'معناه ان لا براحتك ولا نيلة دا فخ',
-      'نبعت الكلام لاصدقائك الافتراضيين يحللوه و نطلع بنتيجة',
-      'هخش انام'
-    ],
-    correct: 1,
-    memeImg: '/images/eid_milad_garhy.jpg',
-    memeTitle: 'سنة حلوة يا جميل.. يا خوخ وتقيل ومالكش مثيل! 🎂'
-  },
-  {
-    id: 6,
-    q: 'هل الشاب خالد لو مات هيكون ميت في عز شبابه؟',
-    options: [
-      'اه',
-      'لا',
-      'مع التعليل'
-    ],
-    correct: 2,
-    memeImg: '/images/completely_layes.jpg',
-    memeTitle: 'كومبليتلي لايص.. مع الشاب خالد! 😂'
-  }
-];
+// سؤال اشخلع (سؤال واحد اختار من متعدد)
+const SHAKHLA3_QUESTION = {
+  title: 'اختار من متعدد',
+  q: 'اشخلع ....',
+  options: [
+    'الحبهان',
+    'الكابوريا',
+    'البطاطس المقلية في الزيت الغزير',
+    'السبيط'
+  ],
+  correct: 3 // السبيط (0-indexed: 3)
+};
 
 const GALLERY_ITEMS = [
   {
@@ -166,11 +101,8 @@ export default function App() {
   // Chaos mode gate state
   const [isChaosOpen, setIsChaosOpen] = useState<boolean>(false);
 
-  // 1. لعبة الإشارات state
-  const [signalIndex, setSignalIndex] = useState<number>(0);
-  const [signalSelected, setSignalSelected] = useState<number | null>(null);
-  const [signalShowFeedback, setSignalShowFeedback] = useState<boolean>(false);
-  const [signalDone, setSignalDone] = useState<boolean>(false);
+  // سؤال اشخلع (سؤال واحد اختار من متعدد)
+  const [shakhla3Selected, setShakhla3Selected] = useState<number | null>(null);
 
   // 2. فاصل الكرتون الصغنن (الولد والبنت والكرش)
   const [isBoyRunning, setIsBoyRunning] = useState<boolean>(false);
@@ -319,10 +251,10 @@ export default function App() {
     handleStopAudio();
   };
 
-  // Tacky Love Rain (Red hearts & ribbons falling)
+  // Tacky Love Rain (Red hearts & ribbons falling for 5 seconds)
   const triggerTackyLoveRain = () => {
     handlePlayAudio('audio-chaos');
-    const end = Date.now() + 20 * 1000;
+    const end = Date.now() + 5 * 1000; // 5 seconds and stops
     const interval: any = setInterval(() => {
       if (Date.now() > end) {
         clearInterval(interval);
@@ -349,48 +281,20 @@ export default function App() {
     }, 280);
   };
 
-  // Signal Quiz Handlers
-  const handleSelectSignalOption = (optionIndex: number) => {
-    if (signalShowFeedback) return;
-    setSignalSelected(optionIndex);
-    setSignalShowFeedback(true);
-    try {
-      confetti({
-        particleCount: 35,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#F59E0B', '#EF4444', '#38BDF8']
-      });
-    } catch {
-      // ignore
-    }
-  };
-
-  const handleNextSignalQuestion = () => {
-    if (signalIndex < SIGNAL_QUESTIONS.length - 1) {
-      setSignalIndex(prev => prev + 1);
-      setSignalSelected(null);
-      setSignalShowFeedback(false);
-    } else {
-      setSignalDone(true);
+  // Shakhla3 Multiple Choice Question Handler
+  const handleSelectShakhla3 = (index: number) => {
+    setShakhla3Selected(index);
+    if (index === 3) {
       try {
         confetti({
-          particleCount: 80,
-          spread: 80,
-          origin: { y: 0.5 },
-          colors: ['#FF1493', '#F59E0B', '#3B82F6', '#10B981']
+          particleCount: 50,
+          spread: 70,
+          origin: { y: 0.6 }
         });
       } catch {
         // ignore
       }
     }
-  };
-
-  const handleResetSignal = () => {
-    setSignalIndex(0);
-    setSignalSelected(null);
-    setSignalShowFeedback(false);
-    setSignalDone(false);
   };
 
   // Cartoon Interlude Tickle Handler
@@ -832,107 +736,63 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Game 1: لعبة الإشارات */}
-              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-amber-400/40 shadow-2xl text-right">
-                <div className="text-center mb-8 pb-4 border-b border-white/10">
+              {/* Question: اشخلع .... */}
+              <div className="my-12 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-amber-400/40 shadow-2xl text-right max-w-xl mx-auto">
+                <div className="text-center mb-6 pb-3 border-b border-white/10">
                   <span className="text-xs font-code text-amber-400 font-bold uppercase tracking-widest block mb-1">
-                    Special Developer Challenge
+                    {SHAKHLA3_QUESTION.title}
                   </span>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white flex items-center justify-center gap-2">
-                    <span>لعبة الإشارات الكرييتف</span>
-                    <span className="text-2xl">🚦💻</span>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white">
+                    {SHAKHLA3_QUESTION.q}
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 max-w-lg mx-auto">
-                    بما إنك مبرمج عبقري وذكي جداً.. فدي إشارات عشوائية عبيطة جداً ولا واحدة منهم صح، بس معمولة عشان تضحك من قلبك! 😂
-                  </p>
                 </div>
 
-                {!signalDone ? (
-                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-xs font-code">
-                      <span className="text-amber-400 font-bold">
-                        الإشارة {signalIndex + 1} من {SIGNAL_QUESTIONS.length}
-                      </span>
-                      <span className="text-[#38BDF8]">
-                        مستوى الذكاء: خارق كالعادة 🧠
-                      </span>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                  {SHAKHLA3_QUESTION.options.map((opt, oIdx) => {
+                    const isSelected = shakhla3Selected === oIdx;
+                    const isCorrect = oIdx === SHAKHLA3_QUESTION.correct;
+                    const showResult = shakhla3Selected !== null;
 
-                    <h5 className="text-base sm:text-lg font-bold text-white mb-6 leading-relaxed">
-                      {SIGNAL_QUESTIONS[signalIndex].q}
-                    </h5>
+                    let btnStyle = 'bg-black/40 border-white/10 text-[#F1F4F9] hover:bg-white/10';
+                    if (showResult && isCorrect) {
+                      btnStyle = 'bg-emerald-500/20 border-emerald-400 text-emerald-300 font-bold';
+                    } else if (isSelected && !isCorrect) {
+                      btnStyle = 'bg-rose-500/20 border-rose-400 text-rose-300 font-bold';
+                    }
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                      {SIGNAL_QUESTIONS[signalIndex].options.map((opt, oIdx) => (
-                        <button
-                          key={oIdx}
-                          onClick={() => handleSelectSignalOption(oIdx)}
-                          disabled={signalShowFeedback}
-                          className={`p-4 rounded-xl border text-right text-xs sm:text-sm font-medium transition cursor-pointer flex items-start gap-2.5 ${
-                            signalSelected === oIdx
-                              ? 'bg-amber-500/20 border-amber-400 text-amber-300 font-bold'
-                              : 'bg-black/40 border-white/10 text-[#F1F4F9] hover:bg-white/10'
-                          }`}
-                        >
-                          <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs font-code shrink-0">
-                            {oIdx + 1}
-                          </span>
-                          <span>{opt}</span>
-                        </button>
-                      ))}
-                    </div>
+                    return (
+                      <button
+                        key={oIdx}
+                        onClick={() => handleSelectShakhla3(oIdx)}
+                        className={`p-4 rounded-xl border text-right text-xs sm:text-sm font-medium transition cursor-pointer flex items-center gap-2.5 ${btnStyle}`}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs font-code shrink-0">
+                          {oIdx + 1}
+                        </span>
+                        <span>{opt}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                    {/* Feedback with Meme */}
-                    {signalShowFeedback && (
-                      <div className="pt-6 border-t border-white/10 animate-fadeIn">
-                        <div className="max-w-xs mx-auto mb-4 p-2 bg-white/10 rounded-2xl border border-white/20">
-                          <img
-                            src={SIGNAL_QUESTIONS[signalIndex].memeImg}
-                            alt="Meme"
-                            className="w-full aspect-[4/3] object-cover rounded-xl"
-                          />
-                          {Boolean(SIGNAL_QUESTIONS[signalIndex].memeTitle) && (
-                            <p className="text-xs text-amber-300 font-bold text-center mt-2">
-                              {SIGNAL_QUESTIONS[signalIndex].memeTitle}
-                            </p>
-                          )}
-                        </div>
-                        <div className="text-center">
-                          <button
-                            onClick={handleNextSignalQuestion}
-                            className="px-7 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-sm shadow-lg cursor-pointer transition"
-                          >
-                            {signalIndex < SIGNAL_QUESTIONS.length - 1 ? 'الإشارة اللي بعدها ➡️' : 'عرض النتيجة والاعتذار 🏆'}
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  /* Apology & Duck Meme at the end of signals */
-                  <div className="text-center bg-gradient-to-br from-rose-950/40 via-amber-950/30 to-black/60 p-8 rounded-3xl border-2 border-rose-400/50 shadow-2xl animate-fadeIn">
-                    <h4 className="text-2xl sm:text-3xl font-black text-rose-300 mb-3">
-                      سوري ع العبط دا 😂
-                    </h4>
-                    <p className="text-sm text-[#F1F4F9] max-w-md mx-auto mb-6 leading-relaxed">
-                      حقك عليا يا بوني.. بس مقدرتش أقاوم فقرة العباطة دي مع أشطر وأذكى باشمهندس في الدنيا! 💙
+                {/* Duck Meme Result */}
+                {shakhla3Selected !== null && (
+                  <div className="text-center pt-6 border-t border-white/10 animate-fadeIn">
+                    <p className="text-sm font-bold text-amber-300 mb-4">
+                      {shakhla3Selected === 3
+                        ? 'الاختيار الصح هو السبيط طبعاً! 😂'
+                        : 'الاختيار الصح هو السبيط! 😂'}
                     </p>
-                    <div className="max-w-xs mx-auto mb-6 p-2 bg-white/10 rounded-2xl border border-white/20 shadow-2xl">
+                    <div className="max-w-xs mx-auto p-2 bg-white/10 rounded-2xl border border-white/20 shadow-2xl">
                       <img
                         src={IMAGES.bataE3tezar}
-                        alt="وردة اعتذار عما بضر منى"
+                        alt="وردة عما بضر مني"
                         className="w-full aspect-[4/3] object-cover rounded-xl"
                       />
                       <p className="text-xs text-yellow-300 font-bold text-center mt-2">
-                        "وردة اعتذار عما بضر منى 🦆🌹"
+                        وردة عما بضر مني
                       </p>
                     </div>
-                    <button
-                      onClick={handleResetSignal}
-                      className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer border border-white/20 transition"
-                    >
-                      إعادة لعبة الإشارات 🔄
-                    </button>
                   </div>
                 )}
               </div>
@@ -946,145 +806,176 @@ export default function App() {
                   </span>
                 </div>
 
-                {/* Full-body cartoon interactive playground */}
+                {/* Full-body cartoon interactive playground in LTR so Boy moves left-to-right towards Girl */}
                 <div
+                  dir="ltr"
                   onClick={handleBoyTickle}
-                  className="relative max-w-lg mx-auto h-56 bg-black/40 rounded-3xl border border-white/10 overflow-hidden flex items-end justify-between px-8 sm:px-14 pb-4 cursor-pointer select-none group"
+                  className="relative max-w-lg mx-auto h-64 bg-black/40 rounded-3xl border border-white/10 overflow-hidden flex items-end justify-between px-8 sm:px-14 pb-4 cursor-pointer select-none group"
                 >
-                  {/* Floating laughter hearts when tickling */}
-                  {girlGiggling && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                      <span className="text-4xl animate-ping text-pink-400">💖</span>
-                      <span className="text-3xl animate-bounce text-yellow-300 mx-4">✨</span>
-                      <span className="text-4xl animate-pulse text-rose-400">💕</span>
-                    </div>
-                  )}
-
-                  {/* Boy Character (Full Body SVG) */}
+                  {/* Boy Character (Abd El-Rahman as Batman) */}
                   <div
                     className={`transition-all duration-700 ease-out z-10 flex flex-col items-center ${
                       isBoyRunning
-                        ? 'translate-x-[120px] sm:translate-x-[180px] scale-105'
+                        ? 'translate-x-[115px] sm:translate-x-[175px] scale-105'
                         : 'group-hover:scale-105'
                     } ${girlGiggling ? 'animate-bounce' : ''}`}
                   >
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
-                      {/* Hair */}
-                      <path d="M28 35 C24 18, 48 8, 68 14 C78 18, 80 28, 76 38 C68 28, 50 30, 40 32 Z" fill="#0F172A" />
+                      {/* Dark Batman Bat-Cowl Cape trailing behind */}
+                      <path d="M26 64 Q16 92 18 116 Q28 98 30 78 Z" fill="#09090B" />
+
                       {/* Head */}
-                      <circle cx="50" cy="40" r="22" fill="#FED7AA" />
-                      {/* Hair Bangs */}
-                      <path d="M30 28 Q48 18 68 25 Q56 32 38 32 Z" fill="#0F172A" />
+                      <circle cx="50" cy="40" r="22" fill="#FCD7B6" />
+
+                      {/* Abd El-Rahman's Curly Dark Hair */}
+                      <circle cx="34" cy="22" r="8" fill="#111827" />
+                      <circle cx="44" cy="18" r="9" fill="#0F172A" />
+                      <circle cx="56" cy="18" r="9" fill="#111827" />
+                      <circle cx="66" cy="22" r="8" fill="#0F172A" />
+                      <circle cx="50" cy="16" r="8.5" fill="#111827" />
+                      <path d="M26 36 C24 20, 76 20, 74 36 C70 28, 30 28, 26 36 Z" fill="#111827" />
+
+                      {/* Trimmed Beard along Jawline */}
+                      <path d="M30 42 C30 58, 70 58, 70 42 C70 52, 64 61, 50 61 C36 61, 30 52, 30 42 Z" fill="#18181B" opacity="0.9" />
+
+                      {/* Trimmed Mustache */}
+                      <path d="M42 47 Q50 44 58 47 Q50 50 42 47 Z" fill="#18181B" />
+
+                      {/* Eyebrows */}
+                      <path d="M38 31 Q44 28 48 31" stroke="#18181B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                      <path d="M52 31 Q56 28 62 31" stroke="#18181B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+
                       {/* Eyes */}
                       {girlGiggling ? (
                         <>
-                          <path d="M40 38 Q45 33 50 38" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                          <path d="M56 38 Q61 33 66 38" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M40 37 Q44 33 48 37" stroke="#18181B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M52 37 Q56 33 60 37" stroke="#18181B" strokeWidth="2.5" fill="none" strokeLinecap="round" />
                         </>
                       ) : (
                         <>
-                          <circle cx="43" cy="38" r="3.2" fill="#0F172A" />
-                          <circle cx="61" cy="38" r="3.2" fill="#0F172A" />
-                          <circle cx="44.5" cy="36.5" r="1.2" fill="#FFFFFF" />
-                          <circle cx="62.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                          <circle cx="44" cy="37" r="3" fill="#18181B" />
+                          <circle cx="56" cy="37" r="3" fill="#18181B" />
+                          <circle cx="45" cy="36" r="1.2" fill="#FFFFFF" />
+                          <circle cx="57" cy="36" r="1.2" fill="#FFFFFF" />
                         </>
                       )}
-                      {/* Cheeks */}
-                      <circle cx="36" cy="45" r="3.5" fill="#F43F5E" opacity="0.6" />
-                      <circle cx="68" cy="45" r="3.5" fill="#F43F5E" opacity="0.6" />
-                      {/* Smile */}
-                      <path d="M45 46 Q52 56 60 46" stroke="#991B1B" strokeWidth="2.2" fill={girlGiggling ? '#991B1B' : 'none'} strokeLinecap="round" />
-                      {/* Torso / Blue Hoodie */}
-                      <path d="M32 62 L68 62 L70 106 L30 106 Z" fill="#0284C7" />
-                      {/* Batman insignia on chest */}
-                      <path d="M44 68 Q50 64 56 68 Q54 73 50 71 Q46 73 44 68 Z" fill="#FDE047" />
+
+                      {/* Warm Smile under mustache */}
+                      <path d="M44 53 Q50 59 56 53" stroke="#991B1B" strokeWidth="2" fill={girlGiggling ? '#991B1B' : 'none'} strokeLinecap="round" />
+
+                      {/* Batman Suit Torso */}
+                      <path d="M30 62 L70 62 L68 106 L32 106 Z" fill="#18181B" />
+
+                      {/* Batman Chest Insignia (Yellow Bat) */}
+                      <ellipse cx="50" cy="74" rx="10" ry="6" fill="#FACC15" />
+                      <path d="M43 74 Q46 71 50 73 Q54 71 57 74 Q55 77 50 75 Q45 77 43 74 Z" fill="#09090B" />
+
+                      {/* Utility Belt */}
+                      <rect x="32" y="98" width="36" height="8" rx="2" fill="#EAB308" />
+                      <rect x="46" y="96" width="8" height="12" rx="2" fill="#CA8A04" />
+
                       {/* Left Arm (Resting) */}
-                      <path d="M32 64 Q22 82 26 96" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
-                      <circle cx="26" cy="98" r="5" fill="#FED7AA" />
-                      {/* Right Arm (Reaching forward to tickle tummy) */}
+                      <path d="M30 64 Q22 80 26 96" stroke="#18181B" strokeWidth="8" strokeLinecap="round" fill="none" />
+                      <circle cx="26" cy="96" r="5" fill="#18181B" />
+
+                      {/* Right Arm (Reaching forward & squeezing) */}
                       {isBoyRunning ? (
-                        <path d="M66 66 Q84 72 96 86" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
+                        <g>
+                          <path d="M68 66 Q88 74 104 84" stroke="#18181B" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="106" cy="85" r="5.5" fill="#FCD7B6" />
+                          <path d="M104 81 Q110 83 108 87" stroke="#FCD7B6" strokeWidth="3" strokeLinecap="round" fill="none" />
+                          <path d="M103 88 Q108 90 106 93" stroke="#FCD7B6" strokeWidth="3" strokeLinecap="round" fill="none" />
+                        </g>
                       ) : (
-                        <path d="M68 64 Q76 80 72 96" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
+                        <g>
+                          <path d="M68 64 Q76 80 72 96" stroke="#18181B" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="72" cy="96" r="5" fill="#18181B" />
+                        </g>
                       )}
-                      <circle cx={isBoyRunning ? '98' : '72'} cy={isBoyRunning ? '88' : '98'} r="5" fill="#FED7AA" />
-                      {/* Jeans */}
-                      <path d="M35 106 L35 142 L47 142 L49 106 Z" fill="#1E293B" />
-                      <path d="M51 106 L53 142 L65 142 L65 106 Z" fill="#1E293B" />
-                      {/* Shoes */}
-                      <rect x="30" y="142" width="18" height="8" rx="4" fill="#E2E8F0" />
-                      <rect x="52" y="142" width="18" height="8" rx="4" fill="#E2E8F0" />
+
+                      {/* Legs & Batman Boots */}
+                      <path d="M36 106 L36 142 L46 142 L48 106 Z" fill="#27272A" />
+                      <path d="M52 106 L54 142 L64 142 L64 106 Z" fill="#27272A" />
+                      <rect x="32" y="140" width="16" height="10" rx="3" fill="#09090B" />
+                      <rect x="52" y="140" width="16" height="10" rx="3" fill="#09090B" />
                     </svg>
                   </div>
 
-                  {/* Girl Character (Full Body SVG with cute tummy) */}
+                  {/* Girl Character (Ro2a with Long Wavy Dark Hair & Squeezed Tummy) */}
                   <div className={`z-10 flex flex-col items-center ${girlGiggling ? 'animate-bounce' : ''}`}>
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
-                      {/* Long Hair (Back) */}
-                      <path d="M22 45 C15 70, 15 100, 24 118 C28 92, 30 68, 28 45 Z" fill="#78350F" />
-                      <path d="M78 45 C85 70, 85 100, 76 118 C72 92, 70 68, 72 45 Z" fill="#78350F" />
+                      {/* Long Wavy Hair (Back) */}
+                      <path d="M20 40 C12 65, 12 105, 22 124 C28 95, 30 68, 28 40 Z" fill="#2D1B14" />
+                      <path d="M80 40 C88 65, 88 105, 78 124 C72 95, 70 68, 72 40 Z" fill="#2D1B14" />
+
                       {/* Head */}
-                      <circle cx="50" cy="40" r="21" fill="#FED7AA" />
-                      {/* Hair Front */}
-                      <path d="M26 35 C26 15, 74 15, 74 35 C66 22, 34 22, 26 35 Z" fill="#92400E" />
-                      {/* Pink Hair Ribbon */}
-                      <circle cx="34" cy="21" r="5" fill="#F43F5E" />
-                      <circle cx="28" cy="19" r="4" fill="#FB7185" />
-                      <circle cx="40" cy="19" r="4" fill="#FB7185" />
+                      <circle cx="50" cy="40" r="21" fill="#FCD7B6" />
+
+                      {/* Wavy Hair (Front & Bangs) */}
+                      <path d="M26 35 C24 15, 76 15, 74 35 C66 22, 34 22, 26 35 Z" fill="#3E2419" />
+                      <path d="M26 36 C24 50, 28 65, 32 75 C30 60, 28 48, 28 36 Z" fill="#3E2419" />
+                      <path d="M74 36 C76 50, 72 65, 68 75 C70 60, 72 48, 72 36 Z" fill="#3E2419" />
+
                       {/* Eyes */}
                       {girlGiggling ? (
                         <>
-                          <path d="M40 38 Q45 33 50 38" stroke="#78350F" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                          <path d="M56 38 Q61 33 66 38" stroke="#78350F" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M40 38 Q45 33 50 38" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M56 38 Q61 33 66 38" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
                         </>
                       ) : (
                         <>
-                          <circle cx="43" cy="38" r="3.2" fill="#78350F" />
-                          <circle cx="61" cy="38" r="3.2" fill="#78350F" />
+                          <circle cx="43" cy="38" r="3.2" fill="#3E2419" />
+                          <circle cx="61" cy="38" r="3.2" fill="#3E2419" />
                           <circle cx="44.5" cy="36.5" r="1.2" fill="#FFFFFF" />
                           <circle cx="62.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                          {/* Eyelashes */}
+                          <path d="M40 35 L38 33" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
+                          <path d="M64 35 L66 33" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
                         </>
                       )}
+
                       {/* Rosy Cheeks */}
-                      <circle cx="36" cy="45" r="4" fill="#FB7185" opacity="0.75" />
-                      <circle cx="68" cy="45" r="4" fill="#FB7185" opacity="0.75" />
-                      {/* Smile */}
+                      <circle cx="36" cy="45" r="4" fill="#FB7185" opacity="0.8" />
+                      <circle cx="68" cy="45" r="4" fill="#FB7185" opacity="0.8" />
+
+                      {/* Laugh / Smile */}
                       <path d="M45 46 Q52 56 60 46" stroke="#BE123C" strokeWidth="2.2" fill={girlGiggling ? '#BE123C' : 'none'} strokeLinecap="round" />
+
                       {/* Cute Cropped Pink Top */}
-                      <path d="M34 60 L66 60 L64 78 L36 78 Z" fill="#F472B6" />
-                      {/* THE CUTE ROUND TUMMY ("الكروشة") */}
-                      <path d="M37 78 Q50 94 63 78 Z" fill="#FDE68A" />
-                      {/* Belly Button */}
-                      <ellipse cx="50" cy="85" rx="1.5" ry="1.2" fill="#D97706" />
-                      {/* Tickle sparkles on tummy */}
-                      {girlGiggling && (
-                        <>
-                          <text x="56" y="82" fontSize="12" fill="#F43F5E">✨</text>
-                          <text x="32" y="86" fontSize="12" fill="#F43F5E">🤏</text>
-                        </>
-                      )}
-                      {/* Purple Skirt */}
-                      <path d="M32 88 L68 88 L72 110 L28 110 Z" fill="#818CF8" />
+                      <path d="M34 60 L66 60 L64 76 L36 76 Z" fill="#F472B6" />
+
+                      {/* THE CUTE ROUND TUMMY ("الكروشة") WITH SQUISH ANIMATION */}
+                      <g className={`transition-transform duration-300 origin-[50px_84px] ${girlGiggling ? 'scale-x-125 scale-y-80' : 'scale-100'}`}>
+                        <path d="M36 76 Q50 94 64 76 Z" fill="#FCD7B6" />
+                        {/* Soft belly curve & highlight */}
+                        <ellipse cx="50" cy="83" rx="10" ry="5" fill="#FEE2E2" opacity="0.5" />
+                        {/* Belly Button */}
+                        <ellipse cx="50" cy="84" rx="1.5" ry="1.2" fill="#D97706" />
+                      </g>
+
+                      {/* Skirt */}
+                      <path d="M32 87 L68 87 L72 110 L28 110 Z" fill="#818CF8" />
+
                       {/* Arms */}
                       {girlGiggling ? (
-                        <>
-                          <path d="M34 64 Q20 52 22 40" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
-                          <circle cx="22" cy="38" r="5" fill="#FED7AA" />
-                          <path d="M66 64 Q80 52 78 40" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
-                          <circle cx="78" cy="38" r="5" fill="#FED7AA" />
-                        </>
+                        <g>
+                          <path d="M34 64 Q18 50 22 36" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="22" cy="34" r="4.5" fill="#FCD7B6" />
+                          <path d="M66 64 Q82 50 78 36" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="78" cy="34" r="4.5" fill="#FCD7B6" />
+                        </g>
                       ) : (
-                        <>
-                          <path d="M34 64 Q26 78 30 92" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
-                          <circle cx="30" cy="94" r="5" fill="#FED7AA" />
-                          <path d="M66 64 Q74 78 70 92" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
-                          <circle cx="70" cy="94" r="5" fill="#FED7AA" />
-                        </>
+                        <g>
+                          <path d="M34 64 Q26 78 30 92" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="30" cy="94" r="4.5" fill="#FCD7B6" />
+                          <path d="M66 64 Q74 78 70 92" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="70" cy="94" r="4.5" fill="#FCD7B6" />
+                        </g>
                       )}
-                      {/* Legs */}
-                      <path d="M38 110 L40 142 L48 142 L46 110 Z" fill="#FED7AA" />
-                      <path d="M54 110 L52 142 L60 142 L62 110 Z" fill="#FED7AA" />
-                      {/* Shoes */}
+
+                      {/* Legs & Cute Shoes */}
+                      <path d="M38 110 L40 142 L48 142 L46 110 Z" fill="#FCD7B6" />
+                      <path d="M54 110 L52 142 L60 142 L62 110 Z" fill="#FCD7B6" />
                       <rect x="36" y="142" width="14" height="8" rx="4" fill="#FB7185" />
                       <rect x="50" y="142" width="14" height="8" rx="4" fill="#FB7185" />
                     </svg>
@@ -1130,7 +1021,7 @@ export default function App() {
                         <div>
                           <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
                             <img
-                              src={IMAGES.batmanStation}
+                              src={IMAGES.cardBatman}
                               alt="باتمان"
                               className="w-full h-full object-cover"
                             />
@@ -1158,7 +1049,7 @@ export default function App() {
                     )}
                   </div>
 
-                  {/* Card 2: البحر */}
+                  {/* Card 2: وهو بيبي ع البحر */}
                   <div
                     onClick={() => handleToggleCard(2)}
                     className="min-h-[380px] rounded-3xl cursor-pointer transition-all duration-500 transform hover:-translate-y-2"
@@ -1168,7 +1059,7 @@ export default function App() {
                       <div className="w-full h-full p-6 rounded-3xl bg-gradient-to-b from-[#111827] via-[#0F172A] to-[#1E293B] border-2 border-cyan-500/50 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
                         <div className="absolute inset-0 bg-cyan-500/5 group-hover:bg-cyan-500/10 transition-colors" />
                         <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 flex items-center justify-center text-3xl mb-4 text-cyan-400 group-hover:scale-110 transition-transform">
-                          🌊
+                          👶
                         </div>
                         <span className="text-3xl font-black text-white mb-2 font-code">2</span>
                         <div className="w-12 h-0.5 bg-cyan-500/40 my-2" />
@@ -1182,18 +1073,17 @@ export default function App() {
                         <div>
                           <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
                             <img
-                              src={IMAGES.photo2}
-                              alt="صورتك ع البحر"
+                              src={IMAGES.cardBaby}
+                              alt="وهو بيبي"
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <h5 className="text-base font-bold text-white mb-2">صورتك وأنت على البحر</h5>
                           <p className="text-sm font-bold text-[#38BDF8] my-3 leading-relaxed">
-                            "نفسي في بيبي شبهك كدا 🌊👶💙"
+                            "بنفس ضحكتك و عيونك الحنينة دي بحبك"
                           </p>
                         </div>
                         <p className="text-xs text-[#94A3B8]">
-                          بنفس ضحكتك وعيونك الطيبة وحنيتك اللي بالدنيا كلها.
+                          نفسي في بيبي شبهك كدا 🌊👶💙
                         </p>
                       </div>
                     )}
@@ -1223,7 +1113,7 @@ export default function App() {
                         <div>
                           <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
                             <img
-                              src={IMAGES.spacetoon}
+                              src={IMAGES.cardDigimon}
                               alt="أبطال الديجيتال"
                               className="w-full h-full object-cover"
                             />
