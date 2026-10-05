@@ -120,6 +120,7 @@ export default function App() {
 
   // Modals
   const [showBirthdayModal, setShowBirthdayModal] = useState<boolean>(false);
+  const [ytBirthdayPlaying, setYtBirthdayPlaying] = useState<boolean>(false);
   const [showSpecialDateModal, setShowSpecialDateModal] = useState<boolean>(false);
   const [showBonyAlert, setShowBonyAlert] = useState<boolean>(false);
   const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string; tag: string } | null>(null);
@@ -202,12 +203,14 @@ export default function App() {
   // Trigger 5/10 birthday modal
   const triggerBirthdayEgg = () => {
     setShowBirthdayModal(true);
+    setYtBirthdayPlaying(true);
+    handleStopAudio();
     try {
       confetti({
-        particleCount: 75,
+        particleCount: 85,
         spread: 80,
         origin: { y: 0.5 },
-        colors: ['#F59E0B', '#38BDF8', '#FFFFFF', '#2563EB']
+        colors: ['#F59E0B', '#38BDF8', '#FFFFFF', '#2563EB', '#EC4899']
       });
     } catch {
       // ignore
@@ -542,7 +545,7 @@ export default function App() {
             BATMAN &amp; RO2A
           </h1>
 
-          {/* Main Hero Photo Frame with 3D Tilt */}
+          {/* Main Hero Photo Frame with 3D Tilt - CLEAN: NO TEXT ON PHOTO */}
           <div className="tilt-card relative w-full max-w-sm sm:max-w-md aspect-[3/4] sm:aspect-[4/5] rounded-3xl overflow-hidden glass-card p-2.5 mb-8 group shadow-2xl border border-white/10 ring-1 ring-blue-500/20">
             <div className="w-full h-full rounded-2xl overflow-hidden relative bg-[#0F1218]">
               <img
@@ -552,16 +555,11 @@ export default function App() {
                 onClick={() =>
                   setLightboxImage({
                     src: IMAGES.hero,
-                    caption: 'BATMAN & RO2A ❤️',
-                    tag: 'batman_ro2a.jpg'
+                    caption: '',
+                    tag: ''
                   })
                 }
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07080B]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between text-xs text-[#94A3B8]/90 font-code pointer-events-none">
-                <span>[batman_ro2a.jpg]</span>
-                <span className="text-[#F1F4F9]/90 font-sans font-medium">خاص بينا ❤️</span>
-              </div>
             </div>
           </div>
 
@@ -570,28 +568,35 @@ export default function App() {
             الويبسايت دا اتعمل علشانك و فيه تفاصيل كتير حاولت تكون شبهنا مع بعض(معقدة بس مختلفة و لذيذة) خد وقتك و استكشفه يارب يعجبك حبيبي كل سنة و عيوني طيب 💙
           </p>
 
-          {/* Music Start Control (15s Song) */}
+          {/* Music Start Control (YouTube Happy Birthday from 14s) */}
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             <button
-              onClick={() => handlePlayAudio('audio-happy-birthday')}
+              onClick={() => {
+                if (ytBirthdayPlaying) {
+                  setYtBirthdayPlaying(false);
+                } else {
+                  handleStopAudio();
+                  setYtBirthdayPlaying(true);
+                }
+              }}
               className={`px-7 py-3 rounded-full text-black font-semibold text-sm transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
-                currentTrackId === 'audio-happy-birthday' && isPlaying
+                ytBirthdayPlaying
                   ? 'bg-amber-300 ring-2 ring-amber-400'
                   : 'bg-white hover:bg-[#F1F4F9]'
               }`}
             >
               <i
                 className={`fa-solid ${
-                  currentTrackId === 'audio-happy-birthday' && isPlaying ? 'fa-pause' : 'fa-play'
+                  ytBirthdayPlaying ? 'fa-pause' : 'fa-play'
                 } text-xs text-[#07080B]`}
               />
               <span>
-                {currentTrackId === 'audio-happy-birthday' && isPlaying
+                {ytBirthdayPlaying
                   ? 'أوقف الأغنية'
-                  : 'أغنية هادية (Happy Birthday 🎂)'}
+                  : 'أغنية عيد الميلاد (Happy Birthday 🎂)'}
               </span>
               <span className="text-[11px] bg-black/10 px-2 py-0.5 rounded-full font-mono font-normal">
-                15s
+                من 0:14 🎶
               </span>
             </button>
             <a
@@ -601,6 +606,19 @@ export default function App() {
               يلا بينا نستكشف
             </a>
           </div>
+
+          {/* Hero YouTube player if active and modal closed */}
+          {ytBirthdayPlaying && !showBirthdayModal && (
+            <div className="w-full max-w-md mx-auto mb-8 rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black animate-fadeIn">
+              <iframe
+                src="https://www.youtube.com/embed/hSIOlzYUOac?autoplay=1&start=14&enablejsapi=1"
+                title="Happy Birthday to you"
+                className="w-full aspect-video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          )}
 
           {/* Road Map Placeholder */}
           <div className="w-full max-w-md glass-card rounded-2xl p-6 mb-8 text-center border border-[#1E2536] bg-[#0F1218]/90 shadow-xl">
@@ -1554,29 +1572,56 @@ export default function App() {
 
       {/* 5/10 Birthday Modal Dialog */}
       {showBirthdayModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-6 transition-all duration-300">
-          <div className="glass-card max-w-md w-full rounded-2xl p-8 border-[#2563EB]/60 text-center relative shadow-2xl bg-[#0F1218]/95">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+          <div className="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border-2 border-[#2563EB]/60 text-center relative shadow-2xl bg-[#0F1218]/95 animate-fadeIn">
             <button
-              onClick={() => setShowBirthdayModal(false)}
-              className="absolute top-4 left-4 text-[#94A3B8] hover:text-white text-sm cursor-pointer"
+              onClick={() => {
+                setShowBirthdayModal(false);
+                setYtBirthdayPlaying(false);
+              }}
+              className="absolute top-4 left-4 text-[#94A3B8] hover:text-white text-sm cursor-pointer p-2"
             >
               <i className="fa-solid fa-xmark text-lg" />
             </button>
-            <div className="w-14 h-14 rounded-full bg-amber-400/15 text-amber-400 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
-              <i className="fa-solid fa-cake-candles" />
+
+            {/* Batman Bat-Signal */}
+            <div className="w-16 h-16 rounded-2xl bg-amber-400/15 text-amber-400 flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner border border-amber-400/30">
+              <span>🦇</span>
             </div>
-            <h3 className="text-3xl font-bold font-display text-white mb-2 tracking-wide">5 / 10</h3>
-            <p className="text-base text-[#F1F4F9] font-medium leading-relaxed my-4">
-              اليوم اللي اتولد فيه أحلى وأجدع بوني وباتمان في العالم 🎂💙
-            </p>
-            <p className="text-xs text-[#94A3B8] leading-relaxed mb-6">
-              كل سنة وأنت طيب وناجح ومحقق كل اللي نفسك فيه، ومكانك دايماً محفوظ في القلب.
-            </p>
+
+            {/* تلك إشارة باتمان */}
+            <h3 className="text-2xl sm:text-3xl font-black font-display text-white mb-2 tracking-wide flex items-center justify-center gap-2">
+              <span>تلك إشارة باتمان</span>
+              <span className="text-amber-400">⚡</span>
+            </h3>
+
+            {/* HBD و تورتة و حضن */}
+            <div className="my-3">
+              <span className="text-2xl sm:text-3xl font-extrabold text-amber-300 tracking-wider">
+                HBD 🎂🫂
+              </span>
+            </div>
+
+            {/* YouTube Track from second 14 */}
+            <div className="my-4 rounded-2xl overflow-hidden border border-white/10 shadow-xl bg-black">
+              <iframe
+                src="https://www.youtube.com/embed/hSIOlzYUOac?autoplay=1&start=14&enablejsapi=1"
+                title="Happy Birthday to you"
+                className="w-full aspect-video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            {/* مووووواه مكان بوتون الاغلاق */}
             <button
-              onClick={() => setShowBirthdayModal(false)}
-              className="px-7 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-xs font-semibold transition shadow-lg cursor-pointer"
+              onClick={() => {
+                setShowBirthdayModal(false);
+                setYtBirthdayPlaying(false);
+              }}
+              className="px-10 py-3.5 rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-red-600 hover:opacity-95 text-white text-base font-bold transition shadow-xl cursor-pointer transform hover:scale-105 active:scale-95"
             >
-              إغلاق بهدوء
+              مووووواه 💋
             </button>
           </div>
         </div>
