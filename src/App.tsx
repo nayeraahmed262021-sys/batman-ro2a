@@ -121,6 +121,8 @@ export default function App() {
   // Modals
   const [showBirthdayModal, setShowBirthdayModal] = useState<boolean>(false);
   const [ytBirthdayPlaying, setYtBirthdayPlaying] = useState<boolean>(false);
+  const [activeYtTrack, setActiveYtTrack] = useState<string | null>(null);
+  const [isCringeActive, setIsCringeActive] = useState<boolean>(false);
   const [showSpecialDateModal, setShowSpecialDateModal] = useState<boolean>(false);
   const [showBonyAlert, setShowBonyAlert] = useState<boolean>(false);
   const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string; tag: string } | null>(null);
@@ -193,11 +195,18 @@ export default function App() {
 
   // Play audio helper
   const handlePlayAudio = (trackId: keyof typeof TRACKS) => {
+    setActiveYtTrack(null);
     audioEngine.playTrack(trackId);
   };
 
   const handleStopAudio = () => {
     audioEngine.stop();
+  };
+
+  // Play YouTube track helper (stopping synthetic sound)
+  const playYtTrack = (trackKey: string | null) => {
+    audioEngine.stop();
+    setActiveYtTrack(trackKey);
   };
 
   // Trigger 5/10 birthday modal
@@ -232,51 +241,76 @@ export default function App() {
     }
   };
 
-  // Open Chaos Mode
+  // Open Chaos Mode: 2000s cringe flip for 10 seconds + song from second 20
   const enterChaosMode = () => {
     setIsChaosOpen(true);
-    try {
-      confetti({
-        particleCount: 85,
-        spread: 90,
-        origin: { y: 0.5 },
-        colors: ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6']
-      });
-    } catch {
-      // ignore
-    }
-    handlePlayAudio('audio-chaos');
+    setIsCringeActive(true);
+    playYtTrack('chaos');
+
+    // 10 seconds of tacky hearts and ribbons shower
+    const end = Date.now() + 10 * 1000;
+    const interval: any = setInterval(() => {
+      if (Date.now() > end) {
+        clearInterval(interval);
+        setIsCringeActive(false);
+        return;
+      }
+      try {
+        confetti({
+          particleCount: 12,
+          angle: 60,
+          spread: 80,
+          origin: { x: 0, y: 0.15 },
+          colors: ['#FF0000', '#FF1493', '#FF4500', '#FFD700', '#00FFFF']
+        });
+        confetti({
+          particleCount: 12,
+          angle: 120,
+          spread: 80,
+          origin: { x: 1, y: 0.15 },
+          colors: ['#FF0000', '#FF69B4', '#DC143C', '#FFFF00', '#39FF14']
+        });
+      } catch {
+        // ignore
+      }
+    }, 280);
   };
 
   // Exit Chaos Mode
   const exitChaosMode = () => {
     setIsChaosOpen(false);
+    setIsCringeActive(false);
+    if (activeYtTrack === 'chaos') {
+      setActiveYtTrack(null);
+    }
     handleStopAudio();
   };
 
-  // Tacky Love Rain (Red hearts & ribbons falling for 5 seconds)
+  // Tacky Love Rain (Red hearts & ribbons falling for 10 seconds)
   const triggerTackyLoveRain = () => {
-    handlePlayAudio('audio-chaos');
-    const end = Date.now() + 5 * 1000; // 5 seconds and stops
+    playYtTrack('chaos');
+    setIsCringeActive(true);
+    const end = Date.now() + 10 * 1000; // 10 seconds and stops
     const interval: any = setInterval(() => {
       if (Date.now() > end) {
         clearInterval(interval);
+        setIsCringeActive(false);
         return;
       }
       try {
         confetti({
-          particleCount: 8,
+          particleCount: 10,
           angle: 60,
-          spread: 60,
+          spread: 70,
           origin: { x: 0, y: 0.1 },
-          colors: ['#FF0000', '#FF1493', '#FF4500', '#FFD700']
+          colors: ['#FF0000', '#FF1493', '#FF4500', '#FFD700', '#00FFFF']
         });
         confetti({
-          particleCount: 8,
+          particleCount: 10,
           angle: 120,
-          spread: 60,
+          spread: 70,
           origin: { x: 1, y: 0.1 },
-          colors: ['#FF0000', '#FF69B4', '#DC143C', '#00FFFF']
+          colors: ['#FF0000', '#FF69B4', '#DC143C', '#FFFF00', '#39FF14']
         });
       } catch {
         // ignore
@@ -620,16 +654,6 @@ export default function App() {
             </div>
           )}
 
-          {/* Road Map Placeholder */}
-          <div className="w-full max-w-md glass-card rounded-2xl p-6 mb-8 text-center border border-[#1E2536] bg-[#0F1218]/90 shadow-xl">
-            <h3 className="text-xl font-bold text-white flex items-center justify-center gap-2 mb-2">
-              <span>خريطة الطريق</span>
-              <span className="text-xl">😂</span>
-            </h3>
-            <p className="text-xs text-[#94A3B8]/70 font-sans">
-              (سيبنا مكان الخريطة فاضي هنعملها سوا في الآخر 😉🗺️)
-            </p>
-          </div>
 
 
           {/* Scroll Down Chevron */}
@@ -699,12 +723,12 @@ export default function App() {
               </button>
             </div>
           ) : (
-            /* Expanded Chaos Box: Full rich activities as requested */
-            <div className="rounded-3xl p-6 sm:p-10 my-4 relative overflow-hidden transition-all duration-500 shadow-2xl glass-card border-2 border-amber-400/50 bg-[#0F1218]/95 text-center">
-              {/* Marquee & Headline 1 */}
-              <div className="bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 py-3 px-4 mb-8 rounded-2xl font-black text-black text-base sm:text-xl shadow-lg animate-pulse tracking-wide">
-                <span>🌹 يا جارحني بلقمة ناشفة و العيش عندك طري تقلان عليا ليه ما تحن يا مفتري 🌹</span>
-              </div>
+            /* Expanded Chaos Box: Full rich activities with 10s 2000s cringe flip */
+            <div className={`rounded-3xl p-6 sm:p-10 my-4 relative overflow-hidden transition-all duration-700 shadow-2xl glass-card border-4 ${
+              isCringeActive
+                ? 'border-pink-500 scale-[1.01] rotate-1 ring-8 ring-yellow-400 shadow-[0_0_60px_rgba(255,0,128,0.9)] animate-pulse'
+                : 'border-amber-400/50'
+            } bg-[#0F1218]/95 text-center`}>
 
               {/* Meme 1: Nesreen Amin Heart */}
               <div className="max-w-md mx-auto mb-10 tilt-card">
@@ -712,14 +736,14 @@ export default function App() {
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black">
                     <img
                       src={IMAGES.nesreenHeart}
-                      alt="يا جارحني بلقمة ناشفة"
+                      alt="نسرين أمين"
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Meme 2: عيد ميلاد جرحي أنا & 20s Shaabi Song */}
+              {/* Meme 2: عيد ميلاد جرحي أنا & Shaabi Song from second 20 */}
               <div className="my-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-rose-950/40 to-black/60 border-2 border-rose-500/40 shadow-2xl">
                 <div className="max-w-md mx-auto mb-6">
                   <div className="p-3 bg-white/10 rounded-3xl border border-white/20 shadow-2xl">
@@ -733,21 +757,40 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* 20s Shaabi Song CTA with tacky hearts shower */}
-                <div className="text-center">
+                {/* YouTube Shaabi Track starting from second 20 */}
+                {activeYtTrack === 'chaos' && (
+                  <div className="max-w-md mx-auto my-4 rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black animate-fadeIn">
+                    <iframe
+                      src="https://www.youtube.com/embed/PwhPQRi4NsA?autoplay=1&start=20&enablejsapi=1"
+                      title="عليا النعمة بحبك عليا النعمة بدوب"
+                      className="w-full aspect-video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+
+                {/* Shaabi Song CTA */}
+                <div className="text-center mt-4">
                   <button
-                    onClick={triggerTackyLoveRain}
+                    onClick={() => {
+                      if (activeYtTrack === 'chaos') {
+                        setActiveYtTrack(null);
+                      } else {
+                        triggerTackyLoveRain();
+                      }
+                    }}
                     className="px-8 py-4 rounded-full bg-gradient-to-r from-red-600 via-rose-500 to-amber-500 hover:scale-105 active:scale-95 text-white font-black text-sm sm:text-base shadow-2xl transition cursor-pointer flex items-center justify-center gap-3 mx-auto border-2 border-yellow-300"
                   >
                     <i
                       className={`fa-solid fa-compact-disc text-lg ${
-                        isPlaying && currentTrackId === 'audio-chaos' ? 'animate-spin' : ''
+                        activeYtTrack === 'chaos' ? 'animate-spin' : ''
                       }`}
                     />
                     <span>
-                      {isPlaying && currentTrackId === 'audio-chaos'
+                      {activeYtTrack === 'chaos'
                         ? 'أوقف تراك المهرجان'
-                        : 'شغل: عليا النعمة بحبك.. عليا النعمة بدوب (20 ث) 💃🔥'}
+                        : 'شغل: عليا النعمة بحبك.. عليا النعمة بدوب (من 0:20) 💃🔥'}
                     </span>
                     <span className="text-xl">❤️🎊</span>
                   </button>
@@ -836,7 +879,7 @@ export default function App() {
                       isBoyRunning
                         ? 'translate-x-[115px] sm:translate-x-[175px] scale-105'
                         : 'group-hover:scale-105'
-                    } ${girlGiggling ? 'animate-bounce' : ''}`}
+                    }`}
                   >
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
                       {/* Dark Batman Bat-Cowl Cape trailing behind */}
@@ -919,8 +962,8 @@ export default function App() {
                     </svg>
                   </div>
 
-                  {/* Girl Character (Ro2a with Long Wavy Dark Hair & Squeezed Tummy) */}
-                  <div className={`z-10 flex flex-col items-center ${girlGiggling ? 'animate-bounce' : ''}`}>
+                  {/* Girl Character (Ro2a with Long Wavy Dark Hair & Cute Protruding Tummy) */}
+                  <div className="z-10 flex flex-col items-center">
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
                       {/* Long Wavy Hair (Back) */}
                       <path d="M20 40 C12 65, 12 105, 22 124 C28 95, 30 68, 28 40 Z" fill="#2D1B14" />
@@ -960,19 +1003,23 @@ export default function App() {
                       <path d="M45 46 Q52 56 60 46" stroke="#BE123C" strokeWidth="2.2" fill={girlGiggling ? '#BE123C' : 'none'} strokeLinecap="round" />
 
                       {/* Cute Cropped Pink Top */}
-                      <path d="M34 60 L66 60 L64 76 L36 76 Z" fill="#F472B6" />
+                      <path d="M34 60 L66 60 L64 74 L36 74 Z" fill="#F472B6" />
 
-                      {/* THE CUTE ROUND TUMMY ("الكروشة") WITH SQUISH ANIMATION */}
-                      <g className={`transition-transform duration-300 origin-[50px_84px] ${girlGiggling ? 'scale-x-125 scale-y-80' : 'scale-100'}`}>
-                        <path d="M36 76 Q50 94 64 76 Z" fill="#FCD7B6" />
+                      {/* THE CUTE PROTRUDING ROUND TUMMY ("الكروشة بارزة لقدام شوية") WITH SQUISH ANIMATION */}
+                      <g className={`transition-transform duration-300 origin-[38px_84px] ${girlGiggling ? 'scale-x-125 scale-y-80' : 'scale-100'}`}>
+                        {/* Round cute tummy bulging forward to the left towards the boy */}
+                        <path
+                          d="M36 74 C18 78, 16 92, 34 94 L66 94 C68 86, 68 76, 64 74 Z"
+                          fill="#FCD7B6"
+                        />
                         {/* Soft belly curve & highlight */}
-                        <ellipse cx="50" cy="83" rx="10" ry="5" fill="#FEE2E2" opacity="0.5" />
+                        <ellipse cx="32" cy="84" rx="11" ry="6.5" fill="#FEE2E2" opacity="0.6" />
                         {/* Belly Button */}
-                        <ellipse cx="50" cy="84" rx="1.5" ry="1.2" fill="#D97706" />
+                        <ellipse cx="32" cy="85" rx="2" ry="1.4" fill="#D97706" />
                       </g>
 
                       {/* Skirt */}
-                      <path d="M32 87 L68 87 L72 110 L28 110 Z" fill="#818CF8" />
+                      <path d="M32 94 L68 94 L72 114 L28 114 Z" fill="#818CF8" />
 
                       {/* Arms */}
                       {girlGiggling ? (
@@ -992,8 +1039,8 @@ export default function App() {
                       )}
 
                       {/* Legs & Cute Shoes */}
-                      <path d="M38 110 L40 142 L48 142 L46 110 Z" fill="#FCD7B6" />
-                      <path d="M54 110 L52 142 L60 142 L62 110 Z" fill="#FCD7B6" />
+                      <path d="M38 114 L40 142 L48 142 L46 114 Z" fill="#FCD7B6" />
+                      <path d="M54 114 L52 142 L60 142 L62 114 Z" fill="#FCD7B6" />
                       <rect x="36" y="142" width="14" height="8" rx="4" fill="#FB7185" />
                       <rect x="50" y="142" width="14" height="8" rx="4" fill="#FB7185" />
                     </svg>
@@ -1052,17 +1099,29 @@ export default function App() {
                         <button
                           onClick={e => {
                             e.stopPropagation();
-                            handlePlayAudio('audio-batman');
+                            if (activeYtTrack === 'batman') setActiveYtTrack(null);
+                            else playYtTrack('batman');
                           }}
                           className="px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white font-bold text-xs shadow-lg transition flex items-center justify-center gap-2 mx-auto cursor-pointer"
                         >
                           <i
                             className={`fa-solid ${
-                              isPlaying && currentTrackId === 'audio-batman' ? 'fa-pause' : 'fa-play'
+                              activeYtTrack === 'batman' ? 'fa-pause' : 'fa-play'
                             } text-xs`}
                           />
-                          <span>ضوء لمع وسط المدينة 🦇</span>
+                          <span>{activeYtTrack === 'batman' ? 'أوقف الأغنية' : 'ضوء لمع وسط المدينة 🦇'}</span>
                         </button>
+                        {activeYtTrack === 'batman' && (
+                          <div className="mt-3 rounded-xl overflow-hidden border border-blue-500/30">
+                            <iframe
+                              src="https://www.youtube.com/embed/bu6EBd3rPmI?autoplay=1&enablejsapi=1"
+                              title="ضوء لمع وسط المدينة"
+                              className="w-full aspect-video"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -1144,17 +1203,29 @@ export default function App() {
                         <button
                           onClick={e => {
                             e.stopPropagation();
-                            handlePlayAudio('audio-spacetoon');
+                            if (activeYtTrack === 'digimon') setActiveYtTrack(null);
+                            else playYtTrack('digimon');
                           }}
                           className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg transition flex items-center justify-center gap-2 mx-auto cursor-pointer"
                         >
                           <i
                             className={`fa-solid ${
-                              isPlaying && currentTrackId === 'audio-spacetoon' ? 'fa-pause' : 'fa-play'
+                              activeYtTrack === 'digimon' ? 'fa-pause' : 'fa-play'
                             } text-xs`}
                           />
-                          <span>شغل أغنية أبطال الديجيتال 🎶</span>
+                          <span>{activeYtTrack === 'digimon' ? 'أوقف الأغنية' : 'شغل أغنية أبطال الديجيتال 🎶'}</span>
                         </button>
+                        {activeYtTrack === 'digimon' && (
+                          <div className="mt-3 rounded-xl overflow-hidden border border-emerald-500/30">
+                            <iframe
+                              src="https://www.youtube.com/embed/XMvKHKTJ1cE?autoplay=1&enablejsapi=1"
+                              title="أبطال الديجيتال"
+                              className="w-full aspect-video"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -1191,27 +1262,46 @@ export default function App() {
               ندخل في المشاعر و الحاجات اللي هي الحاجات دي يعني انت فاهم يعني 😉
             </p>
 
-            {/* Fi Yom W Leila Track Button */}
-            <div className="mt-7 flex justify-center">
+            {/* Fi Yom W Leila Track Button & YouTube Embed */}
+            <div className="mt-7 flex flex-col items-center justify-center">
               <button
-                onClick={() => handlePlayAudio('audio-fi-yom-w-leila')}
+                onClick={() => {
+                  if (activeYtTrack === 'fi-yom-w-leila') {
+                    setActiveYtTrack(null);
+                  } else {
+                    playYtTrack('fi-yom-w-leila');
+                  }
+                }}
                 className={`px-7 py-3 rounded-full text-sm font-bold transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-lg flex items-center gap-2.5 cursor-pointer ${
-                  currentTrackId === 'audio-fi-yom-w-leila' && isPlaying
+                  activeYtTrack === 'fi-yom-w-leila'
                     ? 'bg-rose-500 text-white ring-2 ring-rose-400'
                     : 'bg-white text-black hover:bg-[#F1F4F9]'
                 }`}
               >
                 <i
                   className={`fa-solid ${
-                    currentTrackId === 'audio-fi-yom-w-leila' && isPlaying ? 'fa-pause' : 'fa-play'
+                    activeYtTrack === 'fi-yom-w-leila' ? 'fa-pause' : 'fa-play'
                   } text-xs`}
                 />
                 <span>
-                  {currentTrackId === 'audio-fi-yom-w-leila' && isPlaying
+                  {activeYtTrack === 'fi-yom-w-leila'
                     ? 'أوقف أغنية في يوم وليلة'
                     : 'في يوم و ليلة (خدنا حلاوة الحب كله) 🎶'}
                 </span>
               </button>
+
+              {/* YouTube Player Embed for في يوم وليلة */}
+              {activeYtTrack === 'fi-yom-w-leila' && (
+                <div className="w-full max-w-md mx-auto mt-5 rounded-2xl overflow-hidden border border-rose-500/30 shadow-2xl bg-black animate-fadeIn">
+                  <iframe
+                    src="https://www.youtube.com/embed/hzCM7yN9tqo?autoplay=1&enablejsapi=1"
+                    title="في يوم وليلة"
+                    className="w-full aspect-video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -1338,58 +1428,30 @@ export default function App() {
             </h3>
           </div>
           <p className="text-xs sm:text-sm text-[#38BDF8] max-w-sm text-right leading-relaxed font-sans font-medium">
-            صورنا سوا وتحت كل صورة ريكورد بصوت روءة 🎙️💙
+            أحلى صور وذكريات جمعتنا سوا 💙
           </p>
         </div>
 
-        {/* Gallery Grid with 3D Tilt Cards & Voice Record Placeholders */}
+        {/* Gallery Grid: Clean Photos Only - No Text Overlays or Voice Records */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {GALLERY_ITEMS.map((item, idx) => (
             <div
               key={idx}
-              className="glass-card rounded-2xl p-2.5 group tilt-card transition cursor-pointer flex flex-col justify-between border border-white/10 hover:border-[#2563EB]/50"
+              className="glass-card rounded-2xl p-2 group tilt-card transition-all duration-300 cursor-pointer border border-white/10 hover:border-[#2563EB]/50 shadow-xl overflow-hidden hover:scale-[1.02]"
               onClick={() =>
                 setLightboxImage({
                   src: item.src,
-                  caption: item.title,
-                  tag: item.tag
+                  caption: '',
+                  tag: ''
                 })
               }
             >
-              <div>
-                <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition p-4 flex flex-col justify-end">
-                    <span className="text-xs text-[#38BDF8] font-code mb-1">{item.tag}</span>
-                    <p className="text-sm font-medium text-white">{item.title}</p>
-                  </div>
-                </div>
-                <div className="p-3 text-xs text-[#94A3B8] flex justify-between items-center font-code">
-                  <span>{item.file}</span>
-                  <span className="font-sans text-[#F1F4F9] font-medium">{item.tag}</span>
-                </div>
-              </div>
-
-              {/* Voice record placeholder */}
-              <div className="px-1.5 pb-1.5">
-                <div className="flex items-center justify-between bg-black/50 rounded-xl px-3 py-2 border border-white/10 hover:border-[#2563EB]/40 transition">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-full bg-[#2563EB]/25 text-[#38BDF8] flex items-center justify-center text-xs">
-                      <i className="fa-solid fa-microphone text-[11px]" />
-                    </div>
-                    <span className="text-xs font-medium text-white">ريكورد بصوت روءة 🎙️</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                    <span className="w-1 h-3.5 bg-[#2563EB] rounded-full animate-pulse" />
-                    <span className="w-1 h-2 bg-[#38BDF8] rounded-full animate-pulse" />
-                    <span className="text-[10px] font-code text-[#94A3B8] mr-1">{item.duration}</span>
-                  </div>
-                </div>
+              <div className="w-full aspect-[4/5] rounded-xl overflow-hidden bg-[#0F1218] relative">
+                <img
+                  src={item.src}
+                  alt={`صورة ${idx + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                />
               </div>
             </div>
           ))}
@@ -1484,39 +1546,79 @@ export default function App() {
         </div>
       </section>
 
-      {/* 7. Final Climax Section: Secret Message & Perfect Track */}
+      {/* 7. Final Climax Section: Truly Secret Classified Message & Perfect Track */}
       <section id="final-message" className="py-32 px-6 relative border-t border-[#1E2536]/40">
         <div className="max-w-2xl mx-auto text-center">
           {!isFinalRevealed ? (
-            /* Envelope Trigger */
-            <div>
-              <div className="w-16 h-16 rounded-2xl bg-[#2563EB]/15 text-[#2563EB] mx-auto flex items-center justify-center text-2xl mb-5 shadow-inner animate-pulse">
-                <i className="fa-solid fa-envelope-open-text" />
+            /* Locked Classified Bat-Vault */
+            <div className="glass-card rounded-3xl p-8 sm:p-12 border-2 border-[#1E2536] hover:border-[#2563EB]/40 transition shadow-2xl relative overflow-hidden bg-[#0A0D14]/90">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[#38BDF8] text-[11px] font-code mb-5">
+                <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
+                <span>TOP SECRET // FOR BATMAN ONLY // ENCRYPTED</span>
               </div>
-              <h4 className="font-display text-2xl sm:text-3xl font-semibold text-white mb-3">
-                دي اخر حاجة في الويبسايت سيكريت مسدج
+
+              <div className="w-16 h-16 rounded-2xl bg-[#2563EB]/15 text-[#38BDF8] mx-auto flex items-center justify-center text-2xl mb-4 shadow-inner border border-blue-500/30">
+                <i className="fa-solid fa-lock" />
+              </div>
+
+              <h4 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+                سيكريت مسدج مشفرة 🔒
               </h4>
-              <p className="text-sm text-[#94A3B8] mb-6 max-w-md mx-auto leading-relaxed">
-                ممكن اغيرهالك كل شوية.. اضغط هنا عشان تفتحها ✉️
+
+              {/* Classified Encrypted Payload Display */}
+              <div className="bg-black/60 rounded-xl p-4 my-6 border border-white/10 font-code text-xs text-[#94A3B8] tracking-widest text-left" dir="ltr">
+                <div className="flex items-center justify-between text-[11px] text-[#38BDF8] border-b border-white/10 pb-2 mb-3">
+                  <span>SECURITY_LEVEL: MAXIMUM</span>
+                  <span className="text-amber-400">STATUS: LOCKED 🔒</span>
+                </div>
+                <p className="text-gray-500 font-mono tracking-widest break-all select-none">
+                  ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+                </p>
+                <p className="text-[11px] text-amber-400/90 mt-2 font-mono">
+                  &lt; ACCESS RESTRICTED: REQUIRES BATMAN DECRYPTION KEY &gt;
+                </p>
+              </div>
+
+              <p className="text-sm text-[#F1F4F9]/80 mb-7 max-w-md mx-auto leading-relaxed">
+                رسالة خاصة جداً ومقفولة.. اضغط على الزر تحت لفك التشفير وقراءتها 🗝️
               </p>
+
               <button
                 onClick={() => {
                   setIsFinalRevealed(true);
                   handlePlayAudio('audio-perfect');
+                  try {
+                    confetti({
+                      particleCount: 50,
+                      spread: 60,
+                      origin: { y: 0.7 }
+                    });
+                  } catch {
+                    // ignore
+                  }
                 }}
-                className="px-8 py-3.5 rounded-full bg-[#2563EB] text-white hover:bg-[#0052FF] text-sm font-semibold transition shadow-lg hover:shadow-[#2563EB]/30 flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer"
+                className="px-8 py-3.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white text-sm sm:text-base font-bold transition shadow-xl hover:shadow-[#2563EB]/40 flex items-center gap-2.5 mx-auto active:scale-95 cursor-pointer"
               >
                 <i className="fa-solid fa-key text-xs" />
-                <span>افتح السيكريت مسدج</span>
+                <span>فك التشفير وافتح الرسالة ✉️</span>
               </button>
             </div>
           ) : (
             /* Final Revealed Message Card */
-            <div className="glass-card rounded-3xl p-8 sm:p-14 border-[#2563EB]/40 text-center relative overflow-hidden shadow-2xl transition-all duration-700 animate-fadeIn">
-              <div className="absolute -top-12 inset-x-0 h-28 bg-[#2563EB]/15 blur-2xl" />
+            <div className="glass-card rounded-3xl p-8 sm:p-14 border-2 border-[#2563EB]/50 text-center relative overflow-hidden shadow-2xl transition-all duration-700 animate-fadeIn bg-[#0D121F]/90">
+              <div className="absolute -top-12 inset-x-0 h-28 bg-[#2563EB]/20 blur-2xl" />
 
-              <p className="text-base sm:text-lg font-medium text-[#F1F4F9]/90 mb-6 leading-relaxed">
-                دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا perfect
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-code mb-5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>ACCESS GRANTED // DECRYPTION COMPLETE // 2025</span>
+              </div>
+
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/15 text-rose-400 mx-auto flex items-center justify-center text-2xl mb-5 shadow-inner border border-rose-500/30">
+                <i className="fa-solid fa-envelope-open-text" />
+              </div>
+
+              <p className="text-base sm:text-lg font-medium text-white mb-6 leading-relaxed max-w-xl mx-auto">
+                دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية.. اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا Perfect 🤍
               </p>
 
               {/* Play Final Song CTA */}
@@ -1545,11 +1647,22 @@ export default function App() {
               {/* Final Goodnight Sign-off */}
               <div className="pt-8 border-t border-[#1E2536]/60">
                 <p className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                  نايتي نايت بيب
+                  نايتي نايت بيب 🤍
                 </p>
-                <span className="text-xs text-[#94A3B8]/60 font-code block mt-2">
+                <span className="text-xs text-[#94A3B8]/80 font-code block mt-2">
                   🤍 روءة &amp; باتمان 🤍
                 </span>
+              </div>
+
+              {/* Re-lock Button */}
+              <div className="mt-8 pt-5 border-t border-white/5">
+                <button
+                  onClick={() => setIsFinalRevealed(false)}
+                  className="px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-[#94A3B8] hover:text-white transition flex items-center gap-2 mx-auto cursor-pointer"
+                >
+                  <i className="fa-solid fa-lock text-[11px]" />
+                  <span>إعادة القفل والتشفير 🔒</span>
+                </button>
               </div>
             </div>
           )}
@@ -1689,28 +1802,36 @@ export default function App() {
           onClick={() => setLightboxImage(null)}
         >
           <div
-            className="max-w-3xl w-full max-h-[90vh] flex flex-col items-center cursor-default"
+            className="max-w-3xl w-full max-h-[90vh] flex flex-col items-center cursor-default relative"
             onClick={e => e.stopPropagation()}
           >
+            {/* Top Close Button */}
+            <div className="w-full flex justify-end mb-2">
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition text-xs font-sans flex items-center gap-1.5 cursor-pointer border border-white/10 shadow-lg"
+              >
+                <i className="fa-solid fa-xmark text-sm" />
+                <span>إغلاق</span>
+              </button>
+            </div>
+
             <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
               <img
                 src={lightboxImage.src}
-                alt={lightboxImage.caption}
+                alt={lightboxImage.caption || 'صورة'}
                 className="w-full max-h-[75vh] object-contain mx-auto"
               />
             </div>
-            <div className="mt-4 flex items-center justify-between w-full text-xs text-[#94A3B8] px-2 font-code">
-              <span>{lightboxImage.tag}</span>
-              <span className="text-[#F1F4F9] font-sans text-sm font-medium">
-                {lightboxImage.caption}
-              </span>
-              <button
-                onClick={() => setLightboxImage(null)}
-                className="px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white transition text-xs font-sans cursor-pointer"
-              >
-                إغلاق
-              </button>
-            </div>
+
+            {(lightboxImage.tag || lightboxImage.caption) && (
+              <div className="mt-3 flex items-center justify-between w-full text-xs text-[#94A3B8] px-2 font-code">
+                <span>{lightboxImage.tag}</span>
+                <span className="text-[#F1F4F9] font-sans text-sm font-medium">
+                  {lightboxImage.caption}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       )}
