@@ -24,16 +24,16 @@ const IMAGES = {
   spacetoon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCL245MxpDaQYS-iwahne09lnLew5QfRQ0rGNEUQ6MBoWxjrtHfid_wODzbwXe4elMdN2wUuSfgUVxkeQT-a2snEw_pt1XK_2ub34w6lConNsMTfs8oc4MCXgh6EjnK041nnaScKrE7f-KGV9vKPfA7tlVu-90ChrSLLOlcAr5JwUvnxRaz0pQisQEG96bpx6LNxMLkDJR8hvE-HsvPGvZxk3VqhSd76dxgrP4v0L30HJQFs9aR1sVMVw'
 };
 
-// 5 Sarcastic Creative Signal Questions for Developer Batman
+// 6 Sarcastic Questions without emojis
 const SIGNAL_QUESTIONS = [
   {
     id: 1,
-    q: 'لو الكود ضرب Runtime Error على برودكشن الساعة 4 الفجر، الإشارة الكرييتف المنطقية هي: 💻',
+    q: 'لو الكود ضرب Runtime Error على برودكشن الساعة 4 الفجر، الإشارة الكرييتف المنطقية هي:',
     options: [
-      'أعمل git commit -m "يارب تستر" وأقفل اللاب وأنام في هدوء 😴',
-      'أرن على روءة أقولها جعان وعايز سندوتش جبنة رومي مشعوطة 🧀',
-      'ألوم سيرفرات جوثام وأقول باتمان هو اللي داس ع السلك بالغلط 🦇',
-      'ولا إجابة صح.. بس روءة بتحبك بكل لغبطتك ومشاكلك ❤️'
+      'أعمل git commit -m "يارب تستر" وأقفل اللاب وأنام في هدوء',
+      'ارن ع روءة و اقولها جعان',
+      'اقول باتمان هو اللي داس ع السلك بالغلط',
+      'تاخد بوسة'
     ],
     correct: 3,
     memeImg: '/images/warda_sheikh.jpg',
@@ -41,12 +41,12 @@ const SIGNAL_QUESTIONS = [
   },
   {
     id: 2,
-    q: 'لو الـ API رجع 404 Not Found لقلب روءة، إزاي تعالج الـ Exception كمهندس برمجيات محترف؟ 🔌',
+    q: 'لو الـ API رجع 404 Not Found لقلب روءة، إزاي تعالج الـ Exception كطبيب جراح قلوب محترف؟',
     options: [
-      'أزود الـ Timeout وأستنى لحد ما تحن عليا ⏳',
-      'أشغل كشاف باتمان في السما استغاثة في المعادي 🦇',
-      'أعمل Restart للمشاعر بكلمة حلوة وكوباية نسكافيه ☕',
-      'Error: القلب محجوز ومحمي لـ عبدالرحمن فقط ولا يمكن الوصول لغيره 🔒'
+      'أزود الـ Timeout وأستنى لحد ما تحن عليا',
+      'أشغل كشاف باتمان في السما استغاثة في المعادي',
+      'اعمل ريستارت للمشاعر و احضن',
+      'اختر كل ما سبق لان نون طماعة'
     ],
     correct: 3,
     memeImg: '/images/completely_layes.jpg',
@@ -54,25 +54,25 @@ const SIGNAL_QUESTIONS = [
   },
   {
     id: 3,
-    q: 'في لغة البرمجة لو كتبنا: if (batman.loves_ro2a == true) الناتج المنطقي هيكون: 🧠',
+    q: 'في لغة البرمجة لو كتبنا: if (batman.loves_ro2a == true) الناتج المنطقي هيكون:',
     options: [
-      'Infinite Loop من الحنية والكلام الحلو بالليل 🌙',
-      'Stack Overflow في القلب والمشاعر اللي مش بتخلص 📈',
-      'Memory Leak لذيذ بس شكلنا قمر سوا 💙',
-      'Syntax Error لأن مفيش مقارنة أصلاً.. دي حقيقة كونية مثبتة! ✨'
+      'INFINITE LOOP من الحب و النحنحة',
+      'STACK OVERFLOW من البوس',
+      'MEMORY LEAK من صورنا سوااااا مش بيخلص خصوصا فيديوهاتنا',
+      'SYNTAX ERROR لان كدا كدا دي حقايق مش محتاجين نتكلم فيها'
     ],
     correct: 3,
     memeImg: '/images/nesreen_heart.jpg',
-    memeTitle: 'يا جارحني بلقمة ناشفة.. وأنا قلبي مش مستحمل هيبتك ❤️'
+    memeTitle: '' // نشيل الجملة المكتوبة من الصورة اللي هتظهر ف النتيجة دي
   },
   {
     id: 4,
-    q: 'الإشارة اللي بتثبت بالدليل القاطع إنك أجدع وأشطر مبرمج في تاريخ البشرية: 🚀',
+    q: 'الدليل انك اشطر من باتمان شخصيا',
     options: [
-      'بتصلح الـ Bug ومبتعرفش أصلاً كانت شغالة غلط إزاي 💻',
-      'بتفهم كلام روءة حتى وهي مش عارفة تعبر من غير ما تتكلم 👀',
-      'بتعمل Deploy يوم الخميس بالليل والمصنع ميولعش 🔥',
-      'كل ما سبق صحيح وشهادة الآيزو معتمدة ومختومة من نون 🏅'
+      'بتصلح ال BUG كلها',
+      'بتنقذ المدينة من الاشرار',
+      'بتحب روءة و بتموت فيها',
+      'بسم الله الرحمن الرحيم الاجابة رقم 3'
     ],
     correct: 3,
     memeImg: '/images/warda_sheikh.jpg',
@@ -80,16 +80,28 @@ const SIGNAL_QUESTIONS = [
   },
   {
     id: 5,
-    q: 'إشارة الإنذار الأحمر والأخطر: لو روءة فجأة قالتلك "براحتك يا بوني".. التصرف السليم: ⚠️',
+    q: 'لو نون قالتلك براحتك يا عبدالرحمن',
     options: [
-      'اهرب فوراً بالبايك على سرعة 200 كم/س 🏍️💨',
-      'لا براحتك ولا نيلة.. اعتذر فوراً وهات شوكولاتة ووردة 🍫🌹',
-      'اكتب سكريبت يحلل نبرة الصوت ويعرف الغلط فين 🔍',
-      'استسلم لمصيرك واطلب الحماية من باتمان شخصياً 🦇'
+      'دا معناه ان براحتك فعلا',
+      'معناه ان لا براحتك ولا نيلة دا فخ',
+      'نبعت الكلام لاصدقائك الافتراضيين يحللوه و نطلع بنتيجة',
+      'هخش انام'
     ],
     correct: 1,
     memeImg: '/images/eid_milad_garhy.jpg',
     memeTitle: 'سنة حلوة يا جميل.. يا خوخ وتقيل ومالكش مثيل! 🎂'
+  },
+  {
+    id: 6,
+    q: 'هل الشاب خالد لو مات هيكون ميت في عز شبابه؟',
+    options: [
+      'اه',
+      'لا',
+      'مع التعليل'
+    ],
+    correct: 2,
+    memeImg: '/images/completely_layes.jpg',
+    memeTitle: 'كومبليتلي لايص.. مع الشاب خالد! 😂'
   }
 ];
 
@@ -163,16 +175,13 @@ export default function App() {
   // 2. فاصل الكرتون الصغنن (الولد والبنت والكرش)
   const [isBoyRunning, setIsBoyRunning] = useState<boolean>(false);
   const [girlGiggling, setGirlGiggling] = useState<boolean>(false);
-  const [tickleCount, setTickleCount] = useState<number>(0);
 
-  // 3. لعبة الكروت (من 1 لـ 4)
-  const [selectedCard, setSelectedCard] = useState<number>(1);
-
-  // 4. بازل بالي (كارت 4)
-  const [puzzleTiles, setPuzzleTiles] = useState<number[]>([1, 2, 0, 4, 3, 5, 7, 6, 8]);
-  const [puzzleSelectedTile, setPuzzleSelectedTile] = useState<number | null>(null);
-  const [puzzleWon, setPuzzleWon] = useState<boolean>(false);
-  const [puzzleMoves, setPuzzleMoves] = useState<number>(0);
+  // 3. لعبة الكروت الثلاثة (كلهم ع ضهرهم في البداية)
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({
+    1: false,
+    2: false,
+    3: false
+  });
 
   // Secret final message revealed state
   const [isFinalRevealed, setIsFinalRevealed] = useState<boolean>(false);
@@ -392,62 +401,40 @@ export default function App() {
 
     setTimeout(() => {
       setGirlGiggling(true);
-      setTickleCount(prev => prev + 1);
       try {
         confetti({
-          particleCount: 25,
+          particleCount: 30,
           spread: 60,
-          origin: { y: 0.7 },
+          origin: { y: 0.65 },
           colors: ['#FF1493', '#38BDF8', '#F59E0B', '#EC4899']
         });
       } catch {
         // ignore
       }
-    }, 700);
+    }, 600);
 
     setTimeout(() => {
       setIsBoyRunning(false);
-    }, 2400);
+      setGirlGiggling(false);
+    }, 2800);
   };
 
-  // Bali Puzzle Tile Click Handler
-  const handlePuzzleTileClick = (index: number) => {
-    if (puzzleWon) return;
-    if (puzzleSelectedTile === null) {
-      setPuzzleSelectedTile(index);
-    } else {
-      // Swap tiles
-      const nextTiles = [...puzzleTiles];
-      const temp = nextTiles[puzzleSelectedTile];
-      nextTiles[puzzleSelectedTile] = nextTiles[index];
-      nextTiles[index] = temp;
-      setPuzzleTiles(nextTiles);
-      setPuzzleSelectedTile(null);
-      setPuzzleMoves(prev => prev + 1);
-
-      // Check if solved (0 to 8)
-      const isSolved = nextTiles.every((val, i) => val === i);
-      if (isSolved) {
-        setPuzzleWon(true);
-        try {
-          confetti({
-            particleCount: 120,
-            spread: 90,
-            origin: { y: 0.5 },
-            colors: ['#10B981', '#38BDF8', '#F59E0B', '#FFFFFF']
-          });
-        } catch {
-          // ignore
-        }
-      }
+  // Flip Card Handler
+  const handleToggleCard = (cardNum: number) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardNum]: !prev[cardNum]
+    }));
+    try {
+      confetti({
+        particleCount: 25,
+        spread: 60,
+        origin: { y: 0.6 },
+        colors: ['#38BDF8', '#2563EB', '#F59E0B']
+      });
+    } catch {
+      // ignore
     }
-  };
-
-  const handleResetPuzzle = () => {
-    setPuzzleTiles([1, 2, 0, 4, 3, 5, 7, 6, 8]);
-    setPuzzleSelectedTile(null);
-    setPuzzleWon(false);
-    setPuzzleMoves(0);
   };
 
   // Terminal command handler
@@ -558,15 +545,13 @@ export default function App() {
             <span className="font-sans font-medium">{currentTrackTitle}</span>
           </button>
 
-          {isPlaying && (
-            <button
-              onClick={handleStopAudio}
-              className="text-[#94A3B8] hover:text-rose-400 text-xs px-1.5 transition ml-1"
-              title="كتم الصوت"
-            >
-              <i className="fa-solid fa-volume-xmark" />
-            </button>
-          )}
+          <button
+            onClick={() => audioEngine.testSound()}
+            className="text-[11px] text-amber-300 hover:text-amber-200 bg-amber-400/15 hover:bg-amber-400/25 px-2.5 py-1 rounded-full border border-amber-400/30 transition flex items-center gap-1 cursor-pointer shrink-0"
+            title="جرب الصوت للتأكد من تشغيله في متصفحك أو موبايلك"
+          >
+            <span>🔊 جرب الصوت</span>
+          </button>
         </div>
       </div>
 
@@ -808,9 +793,6 @@ export default function App() {
                       alt="يا جارحني بلقمة ناشفة"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-2 inset-x-2 bg-black/85 text-amber-300 text-xs font-bold py-1.5 px-3 rounded-xl">
-                      "لما روءة تعمل قلب لباتمان بس لسه تقلان عليها 😂❤️"
-                    </div>
                   </div>
                 </div>
               </div>
@@ -825,9 +807,6 @@ export default function App() {
                         alt="عيد ميلاد جرحي أنا"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute bottom-2 inset-x-2 bg-black/85 text-yellow-300 text-xs font-bold py-1.5 px-3 rounded-xl">
-                        "يا خوخ وتـقـيل ومالكش مثيل.. وفي عيني أمير خطير! 🎂🦆"
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -850,9 +829,6 @@ export default function App() {
                     </span>
                     <span className="text-xl">❤️🎊</span>
                   </button>
-                  <p className="text-xs text-amber-300 mt-2 font-medium">
-                    (اضغط واسمع المهرجان مع مطر القلوب والشرايط الملعلعة 20 ثانية! 🎉)
-                  </p>
                 </div>
               </div>
 
@@ -915,9 +891,11 @@ export default function App() {
                             alt="Meme"
                             className="w-full aspect-[4/3] object-cover rounded-xl"
                           />
-                          <p className="text-xs text-amber-300 font-bold text-center mt-2">
-                            {SIGNAL_QUESTIONS[signalIndex].memeTitle}
-                          </p>
+                          {Boolean(SIGNAL_QUESTIONS[signalIndex].memeTitle) && (
+                            <p className="text-xs text-amber-300 font-bold text-center mt-2">
+                              {SIGNAL_QUESTIONS[signalIndex].memeTitle}
+                            </p>
+                          )}
                         </div>
                         <div className="text-center">
                           <button
@@ -960,282 +938,319 @@ export default function App() {
               </div>
 
               {/* Cartoon Interlude: الولد والبنت والكرش */}
-              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/30 via-pink-950/30 to-blue-950/30 border-2 border-pink-400/40 shadow-2xl text-center">
-                <span className="text-xs font-code text-pink-300 uppercase tracking-widest block mb-1">
-                  Cute Interactive Interlude
-                </span>
-                <h4 className="text-2xl sm:text-3xl font-black text-white mb-2 flex items-center justify-center gap-2">
-                  <span>فاصل لطيف: عبدالرحمن وروءة الصغننين</span>
-                  <span className="text-2xl">👶👧💖</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-[#94A3B8] max-w-md mx-auto mb-8">
-                  اضغط على الولد عشان يجري يدغدغ كرش البنوتة الصغننة وهي تضحك من قلبها!
-                </p>
-
-                {/* Animated Cartoon Playground */}
-                <div className="relative max-w-md mx-auto h-44 bg-black/40 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-between px-8 mb-6">
-                  {/* Floating hearts */}
-                  {girlGiggling && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <span className="text-3xl animate-ping text-pink-400">💖</span>
-                      <span className="text-2xl animate-bounce text-yellow-300 mx-3">😂</span>
-                      <span className="text-3xl animate-pulse text-rose-400">✨</span>
-                    </div>
-                  )}
-
-                  {/* Little Boy (Abd El-Rahman) */}
-                  <div
-                    onClick={handleBoyTickle}
-                    className={`cursor-pointer transition-transform duration-700 flex flex-col items-center ${
-                      isBoyRunning ? 'translate-x-[160px] scale-110' : 'hover:scale-110'
-                    }`}
-                  >
-                    <div className="text-5xl animate-bounce">👦</div>
-                    <span className="text-[11px] font-bold text-[#38BDF8] bg-black/60 px-2 py-0.5 rounded-full mt-1">
-                      عبدالرحمن
-                    </span>
-                  </div>
-
-                  {/* Action prompt if idle */}
-                  <div className="text-center pointer-events-none">
-                    <span className="text-xs text-pink-300 font-sans animate-pulse">
-                      {isBoyRunning ? 'بيجري يدغدغها! 🏃‍♂️💨' : 'اضغط على الولد 👈'}
-                    </span>
-                  </div>
-
-                  {/* Little Girl (Ro2a with round tummy) */}
-                  <div className={`flex flex-col items-center ${girlGiggling ? 'animate-bounce' : ''}`}>
-                    <div className="text-5xl relative">
-                      👧
-                      <span className="absolute -bottom-1 left-2 text-base">🤰</span>
-                    </div>
-                    <span className="text-[11px] font-bold text-pink-300 bg-black/60 px-2 py-0.5 rounded-full mt-1">
-                      كرش روءة الصغنن
-                    </span>
-                  </div>
+              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-gradient-to-r from-purple-950/20 via-pink-950/20 to-blue-950/20 border-2 border-pink-400/30 shadow-2xl text-center">
+                {/* The ONLY text in this entire section: "الكروشة" */}
+                <div className="mb-8">
+                  <span className="inline-block text-2xl sm:text-3xl font-black text-pink-400 bg-pink-500/10 px-8 py-2 rounded-full border border-pink-500/30 shadow-lg tracking-wider">
+                    الكروشة
+                  </span>
                 </div>
 
-                {/* Speech bubble / status */}
-                <div className="min-h-12 flex items-center justify-center mb-4">
-                  {girlGiggling ? (
-                    <div className="p-3 bg-pink-500/20 border border-pink-400/50 rounded-2xl text-pink-200 text-xs sm:text-sm font-bold animate-fadeIn">
-                      "ههههههه بطل شقاوة ودغدغة يا بوني.. بطني وجعتني من الضحك بس بموت فيك! 😂💖"
-                    </div>
-                  ) : (
-                    <div className="text-xs text-[#94A3B8]">
-                      عدد مرات الدغدغة: <span className="text-amber-400 font-bold">{tickleCount}</span> مرة ومبسوطين هما الاتنين سوا! 🥰
-                    </div>
-                  )}
-                </div>
-
-                <button
+                {/* Full-body cartoon interactive playground */}
+                <div
                   onClick={handleBoyTickle}
-                  className="px-7 py-3 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-400 hover:to-rose-400 text-white font-bold text-xs sm:text-sm shadow-xl transition cursor-pointer flex items-center gap-2 mx-auto active:scale-95"
+                  className="relative max-w-lg mx-auto h-56 bg-black/40 rounded-3xl border border-white/10 overflow-hidden flex items-end justify-between px-8 sm:px-14 pb-4 cursor-pointer select-none group"
                 >
-                  <i className="fa-solid fa-hand text-yellow-200" />
-                  <span>دغدغ كرش البنوتة 🏃‍♂️✨</span>
-                </button>
+                  {/* Floating laughter hearts when tickling */}
+                  {girlGiggling && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                      <span className="text-4xl animate-ping text-pink-400">💖</span>
+                      <span className="text-3xl animate-bounce text-yellow-300 mx-4">✨</span>
+                      <span className="text-4xl animate-pulse text-rose-400">💕</span>
+                    </div>
+                  )}
+
+                  {/* Boy Character (Full Body SVG) */}
+                  <div
+                    className={`transition-all duration-700 ease-out z-10 flex flex-col items-center ${
+                      isBoyRunning
+                        ? 'translate-x-[120px] sm:translate-x-[180px] scale-105'
+                        : 'group-hover:scale-105'
+                    } ${girlGiggling ? 'animate-bounce' : ''}`}
+                  >
+                    <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
+                      {/* Hair */}
+                      <path d="M28 35 C24 18, 48 8, 68 14 C78 18, 80 28, 76 38 C68 28, 50 30, 40 32 Z" fill="#0F172A" />
+                      {/* Head */}
+                      <circle cx="50" cy="40" r="22" fill="#FED7AA" />
+                      {/* Hair Bangs */}
+                      <path d="M30 28 Q48 18 68 25 Q56 32 38 32 Z" fill="#0F172A" />
+                      {/* Eyes */}
+                      {girlGiggling ? (
+                        <>
+                          <path d="M40 38 Q45 33 50 38" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M56 38 Q61 33 66 38" stroke="#0F172A" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                        </>
+                      ) : (
+                        <>
+                          <circle cx="43" cy="38" r="3.2" fill="#0F172A" />
+                          <circle cx="61" cy="38" r="3.2" fill="#0F172A" />
+                          <circle cx="44.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                          <circle cx="62.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                        </>
+                      )}
+                      {/* Cheeks */}
+                      <circle cx="36" cy="45" r="3.5" fill="#F43F5E" opacity="0.6" />
+                      <circle cx="68" cy="45" r="3.5" fill="#F43F5E" opacity="0.6" />
+                      {/* Smile */}
+                      <path d="M45 46 Q52 56 60 46" stroke="#991B1B" strokeWidth="2.2" fill={girlGiggling ? '#991B1B' : 'none'} strokeLinecap="round" />
+                      {/* Torso / Blue Hoodie */}
+                      <path d="M32 62 L68 62 L70 106 L30 106 Z" fill="#0284C7" />
+                      {/* Batman insignia on chest */}
+                      <path d="M44 68 Q50 64 56 68 Q54 73 50 71 Q46 73 44 68 Z" fill="#FDE047" />
+                      {/* Left Arm (Resting) */}
+                      <path d="M32 64 Q22 82 26 96" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
+                      <circle cx="26" cy="98" r="5" fill="#FED7AA" />
+                      {/* Right Arm (Reaching forward to tickle tummy) */}
+                      {isBoyRunning ? (
+                        <path d="M66 66 Q84 72 96 86" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
+                      ) : (
+                        <path d="M68 64 Q76 80 72 96" stroke="#0284C7" strokeWidth="9" strokeLinecap="round" fill="none" />
+                      )}
+                      <circle cx={isBoyRunning ? '98' : '72'} cy={isBoyRunning ? '88' : '98'} r="5" fill="#FED7AA" />
+                      {/* Jeans */}
+                      <path d="M35 106 L35 142 L47 142 L49 106 Z" fill="#1E293B" />
+                      <path d="M51 106 L53 142 L65 142 L65 106 Z" fill="#1E293B" />
+                      {/* Shoes */}
+                      <rect x="30" y="142" width="18" height="8" rx="4" fill="#E2E8F0" />
+                      <rect x="52" y="142" width="18" height="8" rx="4" fill="#E2E8F0" />
+                    </svg>
+                  </div>
+
+                  {/* Girl Character (Full Body SVG with cute tummy) */}
+                  <div className={`z-10 flex flex-col items-center ${girlGiggling ? 'animate-bounce' : ''}`}>
+                    <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
+                      {/* Long Hair (Back) */}
+                      <path d="M22 45 C15 70, 15 100, 24 118 C28 92, 30 68, 28 45 Z" fill="#78350F" />
+                      <path d="M78 45 C85 70, 85 100, 76 118 C72 92, 70 68, 72 45 Z" fill="#78350F" />
+                      {/* Head */}
+                      <circle cx="50" cy="40" r="21" fill="#FED7AA" />
+                      {/* Hair Front */}
+                      <path d="M26 35 C26 15, 74 15, 74 35 C66 22, 34 22, 26 35 Z" fill="#92400E" />
+                      {/* Pink Hair Ribbon */}
+                      <circle cx="34" cy="21" r="5" fill="#F43F5E" />
+                      <circle cx="28" cy="19" r="4" fill="#FB7185" />
+                      <circle cx="40" cy="19" r="4" fill="#FB7185" />
+                      {/* Eyes */}
+                      {girlGiggling ? (
+                        <>
+                          <path d="M40 38 Q45 33 50 38" stroke="#78350F" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M56 38 Q61 33 66 38" stroke="#78350F" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                        </>
+                      ) : (
+                        <>
+                          <circle cx="43" cy="38" r="3.2" fill="#78350F" />
+                          <circle cx="61" cy="38" r="3.2" fill="#78350F" />
+                          <circle cx="44.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                          <circle cx="62.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                        </>
+                      )}
+                      {/* Rosy Cheeks */}
+                      <circle cx="36" cy="45" r="4" fill="#FB7185" opacity="0.75" />
+                      <circle cx="68" cy="45" r="4" fill="#FB7185" opacity="0.75" />
+                      {/* Smile */}
+                      <path d="M45 46 Q52 56 60 46" stroke="#BE123C" strokeWidth="2.2" fill={girlGiggling ? '#BE123C' : 'none'} strokeLinecap="round" />
+                      {/* Cute Cropped Pink Top */}
+                      <path d="M34 60 L66 60 L64 78 L36 78 Z" fill="#F472B6" />
+                      {/* THE CUTE ROUND TUMMY ("الكروشة") */}
+                      <path d="M37 78 Q50 94 63 78 Z" fill="#FDE68A" />
+                      {/* Belly Button */}
+                      <ellipse cx="50" cy="85" rx="1.5" ry="1.2" fill="#D97706" />
+                      {/* Tickle sparkles on tummy */}
+                      {girlGiggling && (
+                        <>
+                          <text x="56" y="82" fontSize="12" fill="#F43F5E">✨</text>
+                          <text x="32" y="86" fontSize="12" fill="#F43F5E">🤏</text>
+                        </>
+                      )}
+                      {/* Purple Skirt */}
+                      <path d="M32 88 L68 88 L72 110 L28 110 Z" fill="#818CF8" />
+                      {/* Arms */}
+                      {girlGiggling ? (
+                        <>
+                          <path d="M34 64 Q20 52 22 40" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="22" cy="38" r="5" fill="#FED7AA" />
+                          <path d="M66 64 Q80 52 78 40" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="78" cy="38" r="5" fill="#FED7AA" />
+                        </>
+                      ) : (
+                        <>
+                          <path d="M34 64 Q26 78 30 92" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="30" cy="94" r="5" fill="#FED7AA" />
+                          <path d="M66 64 Q74 78 70 92" stroke="#F472B6" strokeWidth="8" strokeLinecap="round" fill="none" />
+                          <circle cx="70" cy="94" r="5" fill="#FED7AA" />
+                        </>
+                      )}
+                      {/* Legs */}
+                      <path d="M38 110 L40 142 L48 142 L46 110 Z" fill="#FED7AA" />
+                      <path d="M54 110 L52 142 L60 142 L62 110 Z" fill="#FED7AA" />
+                      {/* Shoes */}
+                      <rect x="36" y="142" width="14" height="8" rx="4" fill="#FB7185" />
+                      <rect x="50" y="142" width="14" height="8" rx="4" fill="#FB7185" />
+                    </svg>
+                  </div>
+                </div>
               </div>
 
-              {/* Game 2: لعبة الكروت (من 1 لـ 4) */}
-              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-[#2563EB]/40 shadow-2xl text-right">
-                <div className="text-center mb-8 pb-4 border-b border-white/10">
+              {/* Game 2: لعبة الكروت الثلاثة */}
+              <div className="my-14 p-6 sm:p-10 rounded-3xl bg-black/50 border-2 border-[#2563EB]/40 shadow-2xl text-center">
+                <div className="mb-8">
                   <span className="text-xs font-code text-[#38BDF8] uppercase tracking-widest block mb-1">
-                    Card Lottery Game
+                    Card Reveal Game
                   </span>
                   <h4 className="text-2xl sm:text-3xl font-black text-white flex items-center justify-center gap-2">
-                    <span>لعبة الكروت السحرية</span>
+                    <span>لعبة الكروت</span>
                     <span className="text-2xl">🃏✨</span>
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#94A3B8] mt-2 max-w-md mx-auto">
-                    اختر رقم كارت من 1 لـ 4.. كل كارت مخبي صورة مختلفة وأغنية مميزة!
-                  </p>
-
-                  {/* 4 Cards Buttons */}
-                  <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
-                    {[1, 2, 3, 4].map(num => (
-                      <button
-                        key={num}
-                        onClick={() => setSelectedCard(num)}
-                        className={`w-14 h-20 sm:w-16 sm:h-24 rounded-2xl border-2 font-black text-xl sm:text-2xl transition-all cursor-pointer flex flex-col items-center justify-center shadow-lg transform hover:-translate-y-1 ${
-                          selectedCard === num
-                            ? 'bg-gradient-to-b from-[#2563EB] to-blue-700 border-white text-white scale-105 ring-2 ring-blue-400'
-                            : 'bg-black/60 border-white/20 text-[#94A3B8] hover:text-white hover:border-[#2563EB]'
-                        }`}
-                      >
-                        <span className="text-xs font-code opacity-70">كارت</span>
-                        <span>{num}</span>
-                      </button>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Card 1: باتمان */}
-                {selectedCard === 1 && (
-                  <div className="glass-card rounded-2xl p-6 border border-[#2563EB]/40 text-center animate-fadeIn max-w-lg mx-auto">
-                    <span className="text-xs font-code text-[#38BDF8] font-bold block mb-2">
-                      كارت رقم 1 // The Dark Knight 🦇
-                    </span>
-                    <div className="relative aspect-square max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
-                      <img
-                        src={IMAGES.batmanStation}
-                        alt="باتمان"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h5 className="text-lg font-bold text-white mb-2">ضوء لمع وسط المدينة</h5>
-                    <p className="text-xs sm:text-sm text-[#94A3B8] mb-4">
-                      أنت باتمان الحقيقي اللي بينقذني في كل مرة.. بطل القصة للأبد 🖤
-                    </p>
-                    <button
-                      onClick={() => handlePlayAudio('audio-batman')}
-                      className="px-6 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2 mx-auto"
-                    >
-                      <i className="fa-solid fa-play text-xs" />
-                      <span>شغل أغنية باتمان (ضوء لمع وسط المدينة) 🦇</span>
-                    </button>
-                  </div>
-                )}
-
-                {/* Card 2: البحر */}
-                {selectedCard === 2 && (
-                  <div className="glass-card rounded-2xl p-6 border border-[#38BDF8]/40 text-center animate-fadeIn max-w-lg mx-auto">
-                    <span className="text-xs font-code text-[#38BDF8] font-bold block mb-2">
-                      كارت رقم 2 // Sea &amp; Sunshine 🌊
-                    </span>
-                    <div className="relative aspect-[4/5] max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
-                      <img
-                        src={IMAGES.photo2}
-                        alt="صورتك ع البحر"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h5 className="text-lg font-bold text-white mb-2">صورتك وأنت على البحر</h5>
-                    <p className="text-base sm:text-lg font-bold text-[#38BDF8] my-3 leading-relaxed">
-                      "نفسي في بيبي شبهك كدا 🌊👶💙"
-                    </p>
-                    <p className="text-xs text-[#94A3B8]">
-                      بنفس ضحكتك وعيونك الطيبة وحنيتك اللي بالدنيا كلها.
-                    </p>
-                  </div>
-                )}
-
-                {/* Card 3: أبطال الديجيتال */}
-                {selectedCard === 3 && (
-                  <div className="glass-card rounded-2xl p-6 border border-emerald-400/40 text-center animate-fadeIn max-w-lg mx-auto">
-                    <span className="text-xs font-code text-emerald-400 font-bold block mb-2">
-                      كارت رقم 3 // Digimon Heroes 👾
-                    </span>
-                    <div className="relative aspect-square max-w-xs mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10">
-                      <img
-                        src={IMAGES.spacetoon}
-                        alt="أبطال الديجيتال"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h5 className="text-lg font-bold text-white mb-2">أبطال الديجيتال وسبيستون</h5>
-                    <p className="text-base font-bold text-emerald-300 my-2">
-                      "أنت البطل الحقيقي بتاعي 💙"
-                    </p>
-                    <p className="text-xs text-[#94A3B8] mb-4">
-                      ذكريات الطفولة وبطلي المفضل في الواقع والخيال.
-                    </p>
-                    <button
-                      onClick={() => handlePlayAudio('audio-spacetoon')}
-                      className="px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm cursor-pointer shadow-lg transition flex items-center gap-2 mx-auto"
-                    >
-                      <i className="fa-solid fa-wand-magic-sparkles text-xs" />
-                      <span>شغل أغنية أبطال الديجيتال 🎶</span>
-                    </button>
-                  </div>
-                )}
-
-                {/* Card 4: بازل الـ 1000 قطعة في بالي */}
-                {selectedCard === 4 && (
-                  <div className="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-400/50 text-center animate-fadeIn max-w-2xl mx-auto">
-                    <span className="text-xs font-code text-amber-300 font-bold tracking-widest uppercase block mb-2">
-                      كارت رقم 4 // The Grand Finale Puzzle 🌴
-                    </span>
-                    <h5 className="text-xl sm:text-2xl font-black text-white mb-3">
-                      أكبر لعبة: بازل الـ 1000 قطعة في بالي 🧩✨
-                    </h5>
-                    <div className="p-4 rounded-2xl bg-black/50 border border-amber-300/30 text-right mb-6 text-xs sm:text-sm text-[#F1F4F9] leading-relaxed">
-                      "دا آخر كارت وهنا أكبر لعبة بما إنك استحملت العبث اللي فات دا كله! بازل مكون من 1000 قطعة عشان تلعبها في أي وقت وندخل نلعبها سوا أنا وأنت.. المنظر ده في بالي خضار وبحر وشمس خفيفة وكل حاجة جميلة.. نفسي نكون هناك سوا 🌴🌊☀️"
-                    </div>
-
-                    {/* Interactive Bali Jigsaw Mini-Game */}
-                    <div className="mb-6">
-                      <div className="flex items-center justify-between text-xs text-[#94A3B8] font-code mb-3 px-2">
-                        <span>الحركات: {puzzleMoves} 🔄</span>
-                        <span className="text-amber-300 font-bold">
-                          {puzzleWon ? '🎉 مبروك حليت البازل!' : 'اضغط على قطعتين لتبديل أماكنهم'}
+                {/* 3 Face-Down Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                  {/* Card 1: باتمان */}
+                  <div
+                    onClick={() => handleToggleCard(1)}
+                    className="min-h-[380px] rounded-3xl cursor-pointer transition-all duration-500 transform hover:-translate-y-2"
+                  >
+                    {!flippedCards[1] ? (
+                      /* Face Down (Card Back) */
+                      <div className="w-full h-full p-6 rounded-3xl bg-gradient-to-b from-[#111827] via-[#0F172A] to-[#1E293B] border-2 border-blue-500/50 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors" />
+                        <div className="w-16 h-16 rounded-2xl bg-blue-500/15 border border-blue-400/40 flex items-center justify-center text-3xl mb-4 text-blue-400 group-hover:scale-110 transition-transform">
+                          🦇
+                        </div>
+                        <span className="text-3xl font-black text-white mb-2 font-code">1</span>
+                        <div className="w-12 h-0.5 bg-blue-500/40 my-2" />
+                        <span className="text-xs font-bold text-blue-300 mt-2 bg-blue-500/20 px-3 py-1 rounded-full border border-blue-400/30">
+                          اضغط لفتح الكارت ✨
                         </span>
                       </div>
-
-                      <div className="grid grid-cols-3 gap-1.5 max-w-xs mx-auto aspect-square p-2 bg-black/80 rounded-2xl border-2 border-amber-400/60 shadow-2xl">
-                        {puzzleTiles.map((tileIndex, slotIndex) => {
-                          const isSelected = puzzleSelectedTile === slotIndex;
-                          const row = Math.floor(tileIndex / 3);
-                          const col = tileIndex % 3;
-                          return (
-                            <button
-                              key={slotIndex}
-                              onClick={() => handlePuzzleTileClick(slotIndex)}
-                              className={`relative w-full h-full rounded-lg overflow-hidden border transition transform active:scale-95 cursor-pointer ${
-                                isSelected ? 'ring-4 ring-amber-400 scale-105 z-10' : 'border-black'
-                              }`}
-                              style={{
-                                backgroundImage: `url(${IMAGES.baliLandscape})`,
-                                backgroundSize: '300% 300%',
-                                backgroundPosition: `${col * 50}% ${row * 50}%`
-                              }}
-                            >
-                              <span className="absolute bottom-1 right-1 text-[10px] font-code bg-black/70 text-white px-1 rounded">
-                                {tileIndex + 1}
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      {puzzleWon && (
-                        <div className="mt-4 p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400 text-center animate-bounce">
-                          <p className="text-sm font-bold text-emerald-300">
-                            🏆 عبقري وحليت البازل! وعقبال ما نروح بالي ونشوف المنظر ده سوا بجد 🌴✈️💙
+                    ) : (
+                      /* Face Up */
+                      <div className="w-full h-full p-6 rounded-3xl bg-[#0F1218] border-2 border-blue-500 shadow-2xl text-center flex flex-col justify-between animate-fadeIn">
+                        <div>
+                          <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
+                            <img
+                              src={IMAGES.batmanStation}
+                              alt="باتمان"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h5 className="text-base font-bold text-white mb-2">ضوء لمع وسط المدينة</h5>
+                          <p className="text-xs text-[#94A3B8] mb-4 leading-relaxed">
+                            أنت باتمان الحقيقي اللي بينقذني في كل مرة.. بطل القصة للأبد 🖤
                           </p>
                         </div>
-                      )}
-
-                      <div className="mt-4 flex items-center justify-center gap-3">
                         <button
-                          onClick={handleResetPuzzle}
-                          className="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold cursor-pointer border border-white/20 transition"
+                          onClick={e => {
+                            e.stopPropagation();
+                            handlePlayAudio('audio-batman');
+                          }}
+                          className="px-5 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#0052FF] text-white font-bold text-xs shadow-lg transition flex items-center justify-center gap-2 mx-auto cursor-pointer"
                         >
-                          إعادة ترتيب البازل 🔄
+                          <i
+                            className={`fa-solid ${
+                              isPlaying && currentTrackId === 'audio-batman' ? 'fa-pause' : 'fa-play'
+                            } text-xs`}
+                          />
+                          <span>ضوء لمع وسط المدينة 🦇</span>
                         </button>
                       </div>
-                    </div>
+                    )}
+                  </div>
 
-                    {/* Full 1000 Pieces Landscape Preview */}
-                    <div className="pt-4 border-t border-white/10">
-                      <span className="text-xs text-[#94A3B8] font-code block mb-2">
-                        [ معاينة منظر بالي الأصلي الكامل - 1000 Pieces ]
-                      </span>
-                      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/20 shadow-xl max-w-md mx-auto">
-                        <img
-                          src={IMAGES.baliLandscape}
-                          alt="Bali Landscape"
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
-                          <p className="text-xs text-white font-medium text-right">
-                            🌴 جزيرة بالي — خضار وبحر وشمس خفيفة ونفسي نكون هناك سوا.
+                  {/* Card 2: البحر */}
+                  <div
+                    onClick={() => handleToggleCard(2)}
+                    className="min-h-[380px] rounded-3xl cursor-pointer transition-all duration-500 transform hover:-translate-y-2"
+                  >
+                    {!flippedCards[2] ? (
+                      /* Face Down (Card Back) */
+                      <div className="w-full h-full p-6 rounded-3xl bg-gradient-to-b from-[#111827] via-[#0F172A] to-[#1E293B] border-2 border-cyan-500/50 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-cyan-500/5 group-hover:bg-cyan-500/10 transition-colors" />
+                        <div className="w-16 h-16 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 flex items-center justify-center text-3xl mb-4 text-cyan-400 group-hover:scale-110 transition-transform">
+                          🌊
+                        </div>
+                        <span className="text-3xl font-black text-white mb-2 font-code">2</span>
+                        <div className="w-12 h-0.5 bg-cyan-500/40 my-2" />
+                        <span className="text-xs font-bold text-cyan-300 mt-2 bg-cyan-500/20 px-3 py-1 rounded-full border border-cyan-400/30">
+                          اضغط لفتح الكارت ✨
+                        </span>
+                      </div>
+                    ) : (
+                      /* Face Up */
+                      <div className="w-full h-full p-6 rounded-3xl bg-[#0F1218] border-2 border-[#38BDF8] shadow-2xl text-center flex flex-col justify-between animate-fadeIn">
+                        <div>
+                          <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
+                            <img
+                              src={IMAGES.photo2}
+                              alt="صورتك ع البحر"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h5 className="text-base font-bold text-white mb-2">صورتك وأنت على البحر</h5>
+                          <p className="text-sm font-bold text-[#38BDF8] my-3 leading-relaxed">
+                            "نفسي في بيبي شبهك كدا 🌊👶💙"
                           </p>
                         </div>
+                        <p className="text-xs text-[#94A3B8]">
+                          بنفس ضحكتك وعيونك الطيبة وحنيتك اللي بالدنيا كلها.
+                        </p>
                       </div>
-                    </div>
+                    )}
                   </div>
-                )}
+
+                  {/* Card 3: أبطال الديجيتال */}
+                  <div
+                    onClick={() => handleToggleCard(3)}
+                    className="min-h-[380px] rounded-3xl cursor-pointer transition-all duration-500 transform hover:-translate-y-2"
+                  >
+                    {!flippedCards[3] ? (
+                      /* Face Down (Card Back) */
+                      <div className="w-full h-full p-6 rounded-3xl bg-gradient-to-b from-[#111827] via-[#0F172A] to-[#1E293B] border-2 border-emerald-500/50 shadow-2xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-emerald-500/10 transition-colors" />
+                        <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center text-3xl mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+                          👾
+                        </div>
+                        <span className="text-3xl font-black text-white mb-2 font-code">3</span>
+                        <div className="w-12 h-0.5 bg-emerald-500/40 my-2" />
+                        <span className="text-xs font-bold text-emerald-300 mt-2 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30">
+                          اضغط لفتح الكارت ✨
+                        </span>
+                      </div>
+                    ) : (
+                      /* Face Up */
+                      <div className="w-full h-full p-6 rounded-3xl bg-[#0F1218] border-2 border-emerald-400 shadow-2xl text-center flex flex-col justify-between animate-fadeIn">
+                        <div>
+                          <div className="relative aspect-square max-w-[200px] mx-auto rounded-2xl overflow-hidden bg-black mb-4 border border-white/10 shadow-lg">
+                            <img
+                              src={IMAGES.spacetoon}
+                              alt="أبطال الديجيتال"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <h5 className="text-base font-bold text-white mb-1">أبطال الديجيتال</h5>
+                          <p className="text-sm font-bold text-emerald-300 my-2">
+                            "انت البطل الحقيقي بتاعي 💙"
+                          </p>
+                        </div>
+                        <button
+                          onClick={e => {
+                            e.stopPropagation();
+                            handlePlayAudio('audio-spacetoon');
+                          }}
+                          className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg transition flex items-center justify-center gap-2 mx-auto cursor-pointer"
+                        >
+                          <i
+                            className={`fa-solid ${
+                              isPlaying && currentTrackId === 'audio-spacetoon' ? 'fa-pause' : 'fa-play'
+                            } text-xs`}
+                          />
+                          <span>شغل أغنية أبطال الديجيتال 🎶</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Exit Button back to quiet state */}
