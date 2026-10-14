@@ -1014,75 +1014,84 @@ export default function App() {
                     </svg>
                   </div>
 
-                  {/* Girl Character (Ro2a: Pretty, Light Copper Hair, High-Stomach White Top, Black Shorts w/ White Trim, Black Sneakers) */}
+                  {/* Girl Character (Ro2a: Pretty, Natural Copper Hair, Short-Sleeve White High-Stomach Top, Black Shorts w/ White Trim, Black Sneakers) */}
                   <div className="z-10 flex flex-col items-center">
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
-                      {/* Gorgeous Light Copper Wavy Hair (Back) */}
-                      <path d="M 16 40 C 8 65, 8 105, 18 126 C 24 95, 26 68, 24 40 Z" fill="#D97746" />
-                      <path d="M 84 40 C 92 65, 92 105, 82 126 C 76 95, 74 68, 76 40 Z" fill="#D97746" />
-                      <path d="M 19 40 C 12 65, 12 105, 21 124 Z" fill="#B85D2A" opacity="0.5" />
-                      <path d="M 81 40 C 88 65, 88 105, 79 124 Z" fill="#B85D2A" opacity="0.5" />
+                      {/* Gorgeous Natural Flowing Copper Hair (Back volume & shoulder locks) */}
+                      {/* Full rounded hair volume behind head */}
+                      <ellipse cx="50" cy="37" rx="27" ry="25" fill="#D46F34" />
+                      {/* Soft flowing shoulder locks cascading down both sides */}
+                      <path
+                        d="M 23 37 C 19 58, 20 84, 25 110 C 29 113, 33 108, 31 92 C 30 74, 31 54, 32 39 Z"
+                        fill="#D46F34"
+                      />
+                      <path
+                        d="M 77 37 C 81 58, 80 84, 75 110 C 71 113, 67 108, 69 92 C 70 74, 69 54, 68 39 Z"
+                        fill="#D46F34"
+                      />
+                      {/* Warm inner shadow depth on hair */}
+                      <path d="M 25 45 C 22 62, 23 82, 27 104 Z" fill="#B85522" opacity="0.45" />
+                      <path d="M 75 45 C 78 62, 77 82, 73 104 Z" fill="#B85522" opacity="0.45" />
 
-                      {/* Head */}
+                      {/* Head (Skin tone) */}
                       <circle cx="50" cy="38" r="20" fill="#FCD7B6" />
 
-                      {/* Light Copper Wavy Bangs & Strands */}
-                      <path d="M 25 33 C 23 13, 77 13, 75 33 C 67 21, 33 21, 25 33 Z" fill="#DF7A44" />
-                      <path d="M 25 34 C 23 48, 26 62, 29 72 C 27 58, 26 46, 27 34 Z" fill="#D97746" />
-                      <path d="M 75 34 C 77 48, 74 62, 71 72 C 73 58, 74 46, 73 34 Z" fill="#D97746" />
+                      {/* Front Copper Bangs & Soft Face-framing locks */}
+                      <path
+                        d="M 26 34 C 28 20, 48 18, 50 25 C 52 18, 72 20, 74 34 C 68 23, 53 21, 50 26 C 47 21, 32 23, 26 34 Z"
+                        fill="#D46F34"
+                      />
+                      {/* Delicate side strands */}
+                      <path d="M 26 34 Q 24 46 27 56 Q 28 46 28 35 Z" fill="#C05822" />
+                      <path d="M 74 34 Q 76 46 73 56 Q 72 46 72 35 Z" fill="#C05822" />
                       {/* Golden Copper Hair Highlights */}
-                      <path d="M 35 20 Q 50 16 65 20" stroke="#F5B28D" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.85" />
-                      <path d="M 26 46 Q 28 58 30 68" stroke="#F5B28D" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.7" />
+                      <path d="M 35 18 Q 50 14 65 18" stroke="#F5B288" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.8" />
 
-                      {/* Delicate Curved Eyebrows (حواجب مرسومة جميلة) */}
-                      <path d="M 36 28 Q 42 24 48 27" stroke="#873612" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-                      <path d="M 52 27 Q 58 24 64 28" stroke="#873612" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                      {/* Delicate Curved Eyebrows (حواجب مرسومة وناعمة) */}
+                      <path d="M 37 30 Q 42 27 47 29.5" stroke="#9A4318" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+                      <path d="M 53 29.5 Q 58 27 63 30" stroke="#9A4318" strokeWidth="1.6" strokeLinecap="round" fill="none" />
 
-                      {/* Beautiful Eyes with Pretty Long Eyelashes (عيون حلوة ورموش جميلة) */}
+                      {/* Beautiful Eyes with Delicate Feminine Eyelashes (عيون حلوة ورموش رقيقة قمر) */}
                       {girlGiggling ? (
                         <g>
-                          {/* Happy laughing eye curves with fluttery lashes */}
-                          <path d="M 38 35 Q 44 29 49 35" stroke="#18181B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                          <path d="M 37 34 L 33 30" stroke="#18181B" strokeWidth="2" strokeLinecap="round" />
-                          <path d="M 40 32 L 38 28" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" />
-                          <path d="M 44 31 L 43.5 27.5" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" />
+                          {/* Happy closed laughing eye curves with sweet lashes */}
+                          <path d="M 37 36 Q 42 31 47 36" stroke="#18181B" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                          <path d="M 37 35.5 Q 34 34 33 32" stroke="#18181B" strokeWidth="1.4" strokeLinecap="round" />
+                          <path d="M 38 34 Q 36 32 35 30" stroke="#18181B" strokeWidth="1.2" strokeLinecap="round" />
 
-                          <path d="M 51 35 Q 56 29 62 35" stroke="#18181B" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                          <path d="M 63 34 L 67 30" stroke="#18181B" strokeWidth="2" strokeLinecap="round" />
-                          <path d="M 60 32 L 62 28" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" />
-                          <path d="M 56 31 L 56.5 27.5" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" />
+                          <path d="M 53 36 Q 58 31 63 36" stroke="#18181B" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                          <path d="M 63 35.5 Q 66 34 67 32" stroke="#18181B" strokeWidth="1.4" strokeLinecap="round" />
+                          <path d="M 62 34 Q 64 32 65 30" stroke="#18181B" strokeWidth="1.2" strokeLinecap="round" />
                         </g>
                       ) : (
                         <g>
                           {/* Upper lash liner */}
-                          <path d="M 37 34 Q 43 29 49 34" stroke="#18181B" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-                          <path d="M 51 34 Q 57 29 63 34" stroke="#18181B" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                          <path d="M 38 36 Q 43 32 48 36" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+                          <path d="M 52 36 Q 57 32 62 36" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" fill="none" />
 
-                          {/* Pretty Long Eyelashes */}
-                          <path d="M 37 33 L 33 30" stroke="#18181B" strokeWidth="2" strokeLinecap="round" />
-                          <path d="M 40 31 L 38 27.5" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" />
-                          <path d="M 44 30 L 43.5 27" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" />
+                          {/* Sweet outer feminine lashes */}
+                          <path d="M 38 35.5 Q 35 34 33 32" stroke="#18181B" strokeWidth="1.4" strokeLinecap="round" />
+                          <path d="M 39 34 Q 37 32 36 30" stroke="#18181B" strokeWidth="1.2" strokeLinecap="round" />
 
-                          <path d="M 63 33 L 67 30" stroke="#18181B" strokeWidth="2" strokeLinecap="round" />
-                          <path d="M 60 31 L 62 27.5" stroke="#18181B" strokeWidth="1.8" strokeLinecap="round" />
-                          <path d="M 56 30 L 56.5 27" stroke="#18181B" strokeWidth="1.5" strokeLinecap="round" />
+                          <path d="M 62 35.5 Q 65 34 67 32" stroke="#18181B" strokeWidth="1.4" strokeLinecap="round" />
+                          <path d="M 61 34 Q 63 32 64 30" stroke="#18181B" strokeWidth="1.2" strokeLinecap="round" />
 
-                          {/* Large Sparkling Eyes with Light Highlights */}
-                          <ellipse cx="43.5" cy="36.5" rx="4.2" ry="4.8" fill="#3D2314" />
-                          <ellipse cx="43.5" cy="36.5" rx="2.8" ry="3.2" fill="#18181B" />
-                          <circle cx="41.5" cy="34.5" r="1.6" fill="#FFFFFF" />
-                          <circle cx="45" cy="38" r="0.9" fill="#FFFFFF" />
+                          {/* Large Sparkling Eyes with Light Reflections */}
+                          <ellipse cx="43" cy="38" rx="4.2" ry="4.8" fill="#2E1810" />
+                          <ellipse cx="43" cy="38" rx="2.8" ry="3.4" fill="#18181B" />
+                          <circle cx="41.2" cy="36" r="1.6" fill="#FFFFFF" />
+                          <circle cx="44.5" cy="40" r="0.8" fill="#FFFFFF" />
 
-                          <ellipse cx="56.5" cy="36.5" rx="4.2" ry="4.8" fill="#3D2314" />
-                          <ellipse cx="56.5" cy="36.5" rx="2.8" ry="3.2" fill="#18181B" />
-                          <circle cx="54.5" cy="34.5" r="1.6" fill="#FFFFFF" />
-                          <circle cx="58" cy="38" r="0.9" fill="#FFFFFF" />
+                          <ellipse cx="57" cy="38" rx="4.2" ry="4.8" fill="#2E1810" />
+                          <ellipse cx="57" cy="38" rx="2.8" ry="3.4" fill="#18181B" />
+                          <circle cx="55.2" cy="36" r="1.6" fill="#FFFFFF" />
+                          <circle cx="58.5" cy="40" r="0.8" fill="#FFFFFF" />
                         </g>
                       )}
 
                       {/* Rosy Blushing Cheeks (خدود قمر) */}
-                      <ellipse cx="34" cy="43" rx="5" ry="3.5" fill="#FB7185" opacity="0.85" />
-                      <ellipse cx="66" cy="43" rx="5" ry="3.5" fill="#FB7185" opacity="0.85" />
+                      <ellipse cx="33" cy="44" rx="4.5" ry="3" fill="#FB7185" opacity="0.75" />
+                      <ellipse cx="67" cy="44" rx="4.5" ry="3" fill="#FB7185" opacity="0.75" />
 
                       {/* Sweet Pretty Smile */}
                       {girlGiggling ? (
@@ -1091,7 +1100,7 @@ export default function App() {
                           <path d="M 46 47 Q 50 52 54 47" stroke="#FDA4AF" strokeWidth="2" fill="#FDA4AF" strokeLinecap="round" />
                         </g>
                       ) : (
-                        <path d="M 45 44 Q 50 51 55 44" stroke="#BE123C" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                        <path d="M 46 44 Q 50 49 54 44" stroke="#BE123C" strokeWidth="2" strokeLinecap="round" fill="none" />
                       )}
 
                       {/* Legs & Black Sneakers with White Accents (كوتشي اسود) */}
@@ -1122,20 +1131,20 @@ export default function App() {
                       <path d="M 22 106 L 22 112" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
                       <path d="M 78 106 L 78 112" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" />
 
-                      {/* Tight Cropped High-Stomach White Top (توب هاي ستوماك ابيض نص كم ضيق) */}
+                      {/* Tight Cropped High-Stomach White Top (توب هاي ستوماك ابيض ضيق) */}
                       <path
-                        d="M 38 56 Q 50 60 62 56 L 74 62 L 73 75 Q 50 71 27 75 L 26 62 Z"
+                        d="M 36 56 Q 50 59 64 56 L 74 60 L 72 73 Q 50 70 28 73 L 26 60 Z"
                         fill="#FFFFFF"
                       />
                       {/* Tight Fit Creases & Subtle Shading */}
-                      <path d="M 36 68 Q 50 65 64 68" stroke="#E2E8F0" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-                      <path d="M 38 56 Q 50 60 62 56" stroke="#E2E8F0" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                      <path d="M 37 67 Q 50 64 63 67" stroke="#E2E8F0" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+                      <path d="M 36 56 Q 50 59 64 56" stroke="#E2E8F0" strokeWidth="1.4" strokeLinecap="round" fill="none" />
 
                       {/* THE CUTE CHUBBY BELLY ("الكروشة المدورة والچوانب") WITH SQUISH ANIMATION */}
                       <g className={`transition-transform duration-300 origin-[50px_88px] ${girlGiggling ? 'scale-x-115 scale-y-90' : 'scale-100'}`}>
                         {/* Round plump belly with soft love handles bulging out on both sides and spilling over the shorts */}
                         <path
-                          d="M 27 75 Q 50 71 73 75 C 81 79, 82 89, 76 95 C 71 102, 29 102, 24 95 C 18 89, 19 79, 27 75 Z"
+                          d="M 28 73 Q 50 70 72 73 C 80 77, 81 87, 76 94 C 71 101, 29 101, 24 94 C 19 87, 20 77, 28 73 Z"
                           fill="#FCD7B6"
                         />
 
@@ -1162,27 +1171,41 @@ export default function App() {
                         )}
                       </g>
 
-                      {/* Arms (Tight White Short Sleeves | Idle: Pinching Tummy | Giggling: Joyful Raised Arms) */}
+                      {/* Arms (AUTHENTIC SHORT SLEEVE: White shoulder cap + BARE SKIN arms down to hands!) */}
                       {girlGiggling ? (
                         <g>
-                          <path d="M 25 63 Q 12 48 16 34" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          {/* Short white sleeves on shoulders (نص كم) */}
+                          <path d="M 27 60 L 22 53" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
+                          <path d="M 73 60 L 78 53" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
+
+                          {/* Bare skin arms raised in laughter */}
+                          <path d="M 22 53 Q 15 43 16 34" stroke="#FCD7B6" strokeWidth="5.5" strokeLinecap="round" fill="none" />
                           <circle cx="16" cy="32" r="4.5" fill="#FCD7B6" />
-                          <path d="M 75 63 Q 88 48 84 34" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" fill="none" />
+
+                          <path d="M 78 53 Q 85 43 84 34" stroke="#FCD7B6" strokeWidth="5.5" strokeLinecap="round" fill="none" />
                           <circle cx="84" cy="32" r="4.5" fill="#FCD7B6" />
                         </g>
                       ) : (
                         <g>
-                          {/* Left Arm: White short sleeve & skin forearm holding/pinching left tummy roll */}
-                          <path d="M 25 63 Q 17 72 20 80" stroke="#FFFFFF" strokeWidth="6.5" strokeLinecap="round" fill="none" />
-                          <path d="M 20 80 Q 23 88 28 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
-                          <circle cx="28" cy="88" r="4" fill="#FCD7B6" />
-                          <path d="M 26 86 Q 30 87 29 90" stroke="#E59866" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                          {/* Left Arm: Short white sleeve (نص كم على الكتف بس) */}
+                          <path d="M 27 60 L 21 67" stroke="#FFFFFF" strokeWidth="6.5" strokeLinecap="round" />
+                          <ellipse cx="21" cy="67" rx="3.2" ry="1.4" fill="#E2E8F0" />
 
-                          {/* Right Arm: White short sleeve & skin forearm holding/pinching right tummy roll */}
-                          <path d="M 75 63 Q 83 72 80 80" stroke="#FFFFFF" strokeWidth="6.5" strokeLinecap="round" fill="none" />
-                          <path d="M 80 80 Q 77 88 72 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          {/* Left Arm: BARE SKIN from short sleeve down to waist */}
+                          <path d="M 21 67 Q 17 76 21 83" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          <path d="M 21 83 Q 24 88 28 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          <circle cx="28" cy="88" r="4" fill="#FCD7B6" />
+                          <path d="M 26 86 Q 30 87 29 90" stroke="#E59866" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+
+                          {/* Right Arm: Short white sleeve (نص كم على الكتف بس) */}
+                          <path d="M 73 60 L 79 67" stroke="#FFFFFF" strokeWidth="6.5" strokeLinecap="round" />
+                          <ellipse cx="79" cy="67" rx="3.2" ry="1.4" fill="#E2E8F0" />
+
+                          {/* Right Arm: BARE SKIN from short sleeve down to waist */}
+                          <path d="M 79 67 Q 83 76 79 83" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          <path d="M 79 83 Q 76 88 72 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
                           <circle cx="72" cy="88" r="4" fill="#FCD7B6" />
-                          <path d="M 74 86 Q 70 87 71 90" stroke="#E59866" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                          <path d="M 74 86 Q 70 87 71 90" stroke="#E59866" strokeWidth="1.4" strokeLinecap="round" fill="none" />
                         </g>
                       )}
                     </svg>
