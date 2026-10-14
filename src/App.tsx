@@ -978,87 +978,128 @@ export default function App() {
                     </svg>
                   </div>
 
-                  {/* Girl Character (Ro2a with Long Wavy Dark Hair & Cute Protruding Tummy) */}
+                  {/* Girl Character (Ro2a with Cute Chubby Tummy matching reference illustration) */}
                   <div className="z-10 flex flex-col items-center">
                     <svg viewBox="0 0 100 160" className="w-24 sm:w-28 h-auto drop-shadow-xl">
                       {/* Long Wavy Hair (Back) */}
-                      <path d="M20 40 C12 65, 12 105, 22 124 C28 95, 30 68, 28 40 Z" fill="#2D1B14" />
-                      <path d="M80 40 C88 65, 88 105, 78 124 C72 95, 70 68, 72 40 Z" fill="#2D1B14" />
+                      <path d="M18 40 C10 65, 10 105, 20 124 C26 95, 28 68, 26 40 Z" fill="#2D1B14" />
+                      <path d="M82 40 C90 65, 90 105, 80 124 C74 95, 72 68, 74 40 Z" fill="#2D1B14" />
 
                       {/* Head */}
-                      <circle cx="50" cy="40" r="21" fill="#FCD7B6" />
+                      <circle cx="50" cy="38" r="20" fill="#FCD7B6" />
 
                       {/* Wavy Hair (Front & Bangs) */}
-                      <path d="M26 35 C24 15, 76 15, 74 35 C66 22, 34 22, 26 35 Z" fill="#3E2419" />
-                      <path d="M26 36 C24 50, 28 65, 32 75 C30 60, 28 48, 28 36 Z" fill="#3E2419" />
-                      <path d="M74 36 C76 50, 72 65, 68 75 C70 60, 72 48, 72 36 Z" fill="#3E2419" />
+                      <path d="M26 33 C24 14, 76 14, 74 33 C66 21, 34 21, 26 33 Z" fill="#3E2419" />
+                      <path d="M26 34 C24 48, 27 62, 30 72 C28 58, 27 46, 28 34 Z" fill="#3E2419" />
+                      <path d="M74 34 C76 48, 73 62, 70 72 C72 58, 73 46, 72 34 Z" fill="#3E2419" />
 
                       {/* Eyes */}
                       {girlGiggling ? (
                         <>
-                          <path d="M40 38 Q45 33 50 38" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                          <path d="M56 38 Q61 33 66 38" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M39 36 Q44 31 49 36" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                          <path d="M55 36 Q60 31 65 36" stroke="#3E2419" strokeWidth="2.5" fill="none" strokeLinecap="round" />
                         </>
                       ) : (
                         <>
-                          <circle cx="43" cy="38" r="3.2" fill="#3E2419" />
-                          <circle cx="61" cy="38" r="3.2" fill="#3E2419" />
-                          <circle cx="44.5" cy="36.5" r="1.2" fill="#FFFFFF" />
-                          <circle cx="62.5" cy="36.5" r="1.2" fill="#FFFFFF" />
+                          <circle cx="43" cy="36" r="3.2" fill="#3E2419" />
+                          <circle cx="61" cy="36" r="3.2" fill="#3E2419" />
+                          <circle cx="44.5" cy="34.5" r="1.2" fill="#FFFFFF" />
+                          <circle cx="62.5" cy="34.5" r="1.2" fill="#FFFFFF" />
                           {/* Eyelashes */}
-                          <path d="M40 35 L38 33" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
-                          <path d="M64 35 L66 33" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
+                          <path d="M40 33 L38 31" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
+                          <path d="M64 33 L66 31" stroke="#3E2419" strokeWidth="1.5" strokeLinecap="round" />
                         </>
                       )}
 
-                      {/* Rosy Cheeks */}
-                      <circle cx="36" cy="45" r="4" fill="#FB7185" opacity="0.8" />
-                      <circle cx="68" cy="45" r="4" fill="#FB7185" opacity="0.8" />
+                      {/* Rosy Blushing Cheeks */}
+                      <circle cx="35" cy="43" r="4.5" fill="#FB7185" opacity="0.85" />
+                      <circle cx="67" cy="43" r="4.5" fill="#FB7185" opacity="0.85" />
 
                       {/* Laugh / Smile */}
-                      <path d="M45 46 Q52 56 60 46" stroke="#BE123C" strokeWidth="2.2" fill={girlGiggling ? '#BE123C' : 'none'} strokeLinecap="round" />
-
-                      {/* Cute Cropped Pink Top */}
-                      <path d="M34 60 L66 60 L64 74 L36 74 Z" fill="#F472B6" />
-
-                      {/* THE CUTE PROTRUDING ROUND TUMMY ("الكروشة بارزة لقدام شوية") WITH SQUISH ANIMATION */}
-                      <g className={`transition-transform duration-300 origin-[38px_84px] ${girlGiggling ? 'scale-x-125 scale-y-80' : 'scale-100'}`}>
-                        {/* Round cute tummy bulging forward to the left towards the boy */}
-                        <path
-                          d="M36 74 C18 78, 16 92, 34 94 L66 94 C68 86, 68 76, 64 74 Z"
-                          fill="#FCD7B6"
-                        />
-                        {/* Soft belly curve & highlight */}
-                        <ellipse cx="32" cy="84" rx="11" ry="6.5" fill="#FEE2E2" opacity="0.6" />
-                        {/* Belly Button */}
-                        <ellipse cx="32" cy="85" rx="2" ry="1.4" fill="#D97706" />
-                      </g>
-
-                      {/* Skirt */}
-                      <path d="M32 94 L68 94 L72 114 L28 114 Z" fill="#818CF8" />
-
-                      {/* Arms */}
                       {girlGiggling ? (
                         <g>
-                          <path d="M34 64 Q18 50 22 36" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
-                          <circle cx="22" cy="34" r="4.5" fill="#FCD7B6" />
-                          <path d="M66 64 Q82 50 78 36" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
-                          <circle cx="78" cy="34" r="4.5" fill="#FCD7B6" />
+                          <path d="M43 44 Q50 55 59 44 Z" fill="#BE123C" />
+                          <path d="M47 48 Q50 53 55 48" stroke="#FDA4AF" strokeWidth="2" fill="#FDA4AF" strokeLinecap="round" />
+                        </g>
+                      ) : (
+                        <path d="M45 44 Q51 53 57 44" stroke="#BE123C" strokeWidth="2.2" fill="none" strokeLinecap="round" />
+                      )}
+
+                      {/* Legs & Cute Pink Shoes (Under pants) */}
+                      <path d="M 30 118 L 32 142 L 45 142 L 45 118 Z" fill="#FCD7B6" />
+                      <path d="M 55 118 L 55 142 L 68 142 L 70 118 Z" fill="#FCD7B6" />
+                      <rect x="29" y="142" width="17" height="8" rx="4" fill="#FB7185" />
+                      <rect x="54" y="142" width="17" height="8" rx="4" fill="#FB7185" />
+
+                      {/* Dark Pants tucked under the tummy roll (matching reference illustration) */}
+                      <path
+                        d="M 23 92 L 77 92 L 78 118 L 52 118 L 50 112 L 48 118 L 22 118 Z"
+                        fill="#334155"
+                      />
+                      <path d="M 50 102 L 50 112" stroke="#1E293B" strokeWidth="1.5" strokeLinecap="round" />
+
+                      {/* Chubby Pink Top (Snug on round torso like reference) */}
+                      <path
+                        d="M38 56 Q50 60 62 56 L74 62 L73 75 Q50 71 27 75 L26 62 Z"
+                        fill="#F43F5E"
+                      />
+                      {/* Shirt Crease over chest */}
+                      <path d="M36 69 Q50 66 64 69" stroke="#BE123C" strokeWidth="1.6" strokeLinecap="round" fill="none" opacity="0.5" />
+
+                      {/* THE CUTE CHUBBY BELLY ("الكروشة المدورة والچوانب زي الصورة بالظبط") */}
+                      <g className={`transition-transform duration-300 origin-[50px_88px] ${girlGiggling ? 'scale-x-115 scale-y-90' : 'scale-100'}`}>
+                        {/* Round plump belly with soft love handles bulging out on both sides and spilling over the pants */}
+                        <path
+                          d="M 27 75 Q 50 71 73 75 C 81 79, 82 89, 76 95 C 71 102, 29 102, 24 95 C 18 89, 19 79, 27 75 Z"
+                          fill="#FCD7B6"
+                        />
+
+                        {/* Soft tummy highlight in center */}
+                        <ellipse cx="50" cy="85" rx="14" ry="6.5" fill="#FFFFFF" opacity="0.22" />
+
+                        {/* Center Belly Button crease */}
+                        <path d="M 50 86 Q 50.6 89.5 50 93" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.8" />
+
+                        {/* Left & Right pinch/crease folds (matching reference illustration) */}
+                        <path d="M 25 87 Q 31 88 35 85" stroke="#E59866" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.8" />
+                        <path d="M 75 87 Q 69 88 65 85" stroke="#E59866" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.8" />
+
+                        {/* Soft under-tummy roll shadow where it spills over the pants */}
+                        <path d="M 24 95 C 30 102.5, 70 102.5, 76 95" stroke="#D97706" strokeWidth="1.6" strokeLinecap="round" fill="none" opacity="0.4" />
+
+                        {/* Cartoon tickle squish lines when Batman reaches and tickles her belly */}
+                        {girlGiggling && (
+                          <g className="animate-pulse">
+                            <path d="M 15 80 L 9 76" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M 14 87 L 8 87" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M 15 94 L 9 98" stroke="#FACC15" strokeWidth="2" strokeLinecap="round" />
+                          </g>
+                        )}
+                      </g>
+
+                      {/* Arms (Idle: Pinching tummy like photo | Giggling: Arms up laughing) */}
+                      {girlGiggling ? (
+                        <g>
+                          <path d="M 25 63 Q 12 48 16 34" stroke="#F43F5E" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="16" cy="32" r="4.5" fill="#FCD7B6" />
+                          <path d="M 75 63 Q 88 48 84 34" stroke="#F43F5E" strokeWidth="7" strokeLinecap="round" fill="none" />
+                          <circle cx="84" cy="32" r="4.5" fill="#FCD7B6" />
                         </g>
                       ) : (
                         <g>
-                          <path d="M34 64 Q26 78 30 92" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
-                          <circle cx="30" cy="94" r="4.5" fill="#FCD7B6" />
-                          <path d="M66 64 Q74 78 70 92" stroke="#F472B6" strokeWidth="7" strokeLinecap="round" fill="none" />
-                          <circle cx="70" cy="94" r="4.5" fill="#FCD7B6" />
+                          {/* Left Arm holding/pinching left tummy love handle (like reference) */}
+                          <path d="M 25 63 Q 17 72 20 81" stroke="#F43F5E" strokeWidth="6.5" strokeLinecap="round" fill="none" />
+                          <path d="M 20 81 Q 23 88 28 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          <circle cx="28" cy="88" r="4" fill="#FCD7B6" />
+                          <path d="M 26 86 Q 30 87 29 90" stroke="#E59866" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+
+                          {/* Right Arm holding/pinching right tummy love handle (like reference) */}
+                          <path d="M 75 63 Q 83 72 80 81" stroke="#F43F5E" strokeWidth="6.5" strokeLinecap="round" fill="none" />
+                          <path d="M 80 81 Q 77 88 72 88" stroke="#FCD7B6" strokeWidth="5" strokeLinecap="round" fill="none" />
+                          <circle cx="72" cy="88" r="4" fill="#FCD7B6" />
+                          <path d="M 74 86 Q 70 87 71 90" stroke="#E59866" strokeWidth="1.5" strokeLinecap="round" fill="none" />
                         </g>
                       )}
-
-                      {/* Legs & Cute Shoes */}
-                      <path d="M38 114 L40 142 L48 142 L46 114 Z" fill="#FCD7B6" />
-                      <path d="M54 114 L52 142 L60 142 L62 114 Z" fill="#FCD7B6" />
-                      <rect x="36" y="142" width="14" height="8" rx="4" fill="#FB7185" />
-                      <rect x="50" y="142" width="14" height="8" rx="4" fill="#FB7185" />
                     </svg>
                   </div>
                 </div>
