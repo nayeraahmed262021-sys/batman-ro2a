@@ -181,7 +181,7 @@ export default function App() {
       }
     };
 
-    // Secret date listener
+    // Secret ro2a keyboard listener
     let keyBuffer = '';
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't intercept if user is typing in terminal or input fields
@@ -193,11 +193,19 @@ export default function App() {
       keyBuffer += e.key;
       if (keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
 
-      if (keyBuffer.includes('17/9') || keyBuffer.includes('17-9')) {
-        triggerSpecialDate();
-        keyBuffer = '';
-      } else if (keyBuffer.includes('5/10') || keyBuffer.includes('5-10')) {
-        triggerBirthdayEgg();
+      if (keyBuffer.toLowerCase().includes('ro2a')) {
+        setIsFinalRevealed(true);
+        try {
+          confetti({
+            particleCount: 75,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        } catch {
+          // ignore
+        }
+        const el = document.getElementById('final-message');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
         keyBuffer = '';
       }
     };
@@ -391,27 +399,37 @@ export default function App() {
       return;
     }
 
-    if (val === '5/10' || val === '5-10') {
-      triggerBirthdayEgg();
+    if (val === 'ro2a' || val === 'روءة') {
+      setIsFinalRevealed(true);
+      try {
+        confetti({
+          particleCount: 75,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      } catch {
+        // ignore
+      }
       setTerminalOutput(prev => [
         ...prev,
-        { text: '> 5/10 عيد ميلاد بوني الجميل 🎂💙', color: 'text-amber-400' }
+        { text: '> [ACCESS GRANTED]: Secret vault unlocked 🤍', color: 'text-emerald-400 font-bold' }
+      ]);
+      const el = document.getElementById('final-message');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else if (val === '5/10' || val === '5-10') {
+      setTerminalOutput(prev => [
+        ...prev,
+        { text: '> 5/10: HBD Bony 🎂💙', color: 'text-amber-400' }
       ]);
     } else if (val === '17/9' || val === '17-9') {
-      triggerSpecialDate();
       setTerminalOutput(prev => [
         ...prev,
-        { text: '> 17/9 unlocked: التاريخ اللي في القلب علطول 💙', color: 'text-[#38BDF8]' }
-      ]);
-    } else if (val === 'secret' || val === 'ro2a') {
-      setTerminalOutput(prev => [
-        ...prev,
-        { text: '> Secret: "انا بحبك بكل لغبطتنا يا عبدالرحمن."', color: 'text-rose-400' }
+        { text: '> 17/9: في القلب علطول 💙', color: 'text-[#38BDF8]' }
       ]);
     } else if (val === 'batman') {
       setTerminalOutput(prev => [
         ...prev,
-        { text: '> Batman status: Respected Dark Knight forever. Protected by code.', color: 'text-yellow-400' }
+        { text: '> Batman status: ONLINE 🦇 Protected by code.', color: 'text-yellow-400' }
       ]);
     } else if (val === 'music') {
       const trackName =
@@ -429,12 +447,12 @@ export default function App() {
     } else if (val === 'help') {
       setTerminalOutput(prev => [
         ...prev,
-        { text: '> commands available: 5/10, 17/9, secret, batman, music, clear, help', color: 'text-gray-400' }
+        { text: '> available commands: clear, music, help', color: 'text-gray-400' }
       ]);
     } else {
       setTerminalOutput(prev => [
         ...prev,
-        { text: `> Unknown command: "${val}". Type "help" for options.`, color: 'text-rose-400' }
+        { text: `> command not recognized: "${val}". Type "help" for options.`, color: 'text-rose-400' }
       ]);
     }
   };
@@ -1472,7 +1490,7 @@ export default function App() {
                   setTerminalOutput(prev => [
                     ...prev,
                     {
-                      text: '> commands available: 5/10, 17/9, secret, batman, music, clear, help',
+                      text: '> available commands: clear, music, help',
                       color: 'text-gray-400'
                     }
                   ])
@@ -1481,9 +1499,8 @@ export default function App() {
                 title="Help"
               />
               <span
-                onClick={triggerBirthdayEgg}
-                className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block cursor-pointer hover:opacity-100"
-                title="5/10 birthday"
+                className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"
+                title="Status"
               />
               <span className="text-xs text-[#94A3B8] font-code mr-2">batman-core-system ~ zsh</span>
             </div>
@@ -1536,8 +1553,8 @@ export default function App() {
                 type="text"
                 value={terminalInputVal}
                 onChange={e => setTerminalInputVal(e.target.value)}
-                placeholder="try typing: 5/10, 17/9, secret, batman, help, or clear"
-                className="bg-transparent border-none text-xs sm:text-sm font-code text-[#38BDF8] focus:outline-none w-full"
+                placeholder="type a command..."
+                className="bg-transparent border-none text-xs sm:text-sm font-code text-[#38BDF8] focus:outline-none w-full placeholder:text-gray-600"
               />
             </form>
           </div>
