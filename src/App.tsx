@@ -19,6 +19,7 @@ const IMAGES = {
   cardBatman: '/images/card_batman.jpg',
   cardBaby: '/images/card_baby.jpg',
   cardDigimon: '/images/card_digimon.jpg',
+  familyKids: '/images/family_kids.jpg',
   baliLandscape: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
   meme: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDj-6g9k6J0Q5BuI5p7irUiRQu9an7UuVQA7ojo8hJmVHKKbXvQNZN1Z0D5uWA_i4_T1qQntI2XWMXqFQwQDgnZzTifR9raKyxK5d5XmrNrRWwDUjt0zj66bytwNOY0-YmTMrAQw4wHAjAW3lKnda3bN8CVRHZ9t3eTIDlUG5LSUoFNCZ8A8LJDcrUJ0RBirVqyeavJVQgZ7uaUXPy8ZqEPK00w1FIf1Nbhc2wfG9dA_DtvDTyeoxClBQ',
   childhood: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIYfehwMvsdO-D7HzgW4CTAG4iRL3QCA6fx8fdNM40NqyGn6TZ3ZH56j0e9uzraZOS_PjTy8Oeo0eFoku-WYc2flnugEvby-u4bvsnBGwws4FKlHHYhyRzmkqX7k63kJpjQeIW4EI4vrB-6la8mNsM0Gji7KqrmgLG10xxiI9fmiWvs6CYl7Oa3d3hnEaqfBrxoPzYY4kJ5ZxsfOa3cCAyJtqDhZ_CAFrib4beRnlTNSbh8Bg8o9bA4Q',
@@ -142,29 +143,11 @@ export default function App() {
     setActiveYtTrack(prev => (prev === trackKey ? null : trackKey));
   };
 
-  // Unlock Vault Logic
+  // Unlock Vault Logic (ONLY ro2a)
   const handleUnlockVault = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     const val = cipherInput.trim().toLowerCase();
-    const validKeys = [
-      'batman',
-      'ro2a',
-      'bony',
-      'boni',
-      '17/9',
-      '17-9',
-      '5/10',
-      '5-10',
-      'perfect',
-      'sudo',
-      'sudo unlock',
-      'sudo decrypt',
-      'sudo ro2a',
-      'developer',
-      '0xbatman',
-      'love'
-    ];
-    if (validKeys.includes(val)) {
+    if (val === 'ro2a' || val === 'روءة') {
       setCipherError('');
       setIsFinalRevealed(true);
       try {
@@ -177,22 +160,7 @@ export default function App() {
         // ignore
       }
     } else {
-      setCipherError('خطأ: شفرة غير صحيحة! تأكد إنك باتمان واستخدم كودك السري 🦇❌');
-    }
-  };
-
-  const handleDevBypass = () => {
-    setCipherInput('sudo decrypt --batman');
-    setCipherError('');
-    setIsFinalRevealed(true);
-    try {
-      confetti({
-        particleCount: 75,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-    } catch {
-      // ignore
+      setCipherError('شفرة غير صحيحة 🔒');
     }
   };
 
@@ -213,18 +181,9 @@ export default function App() {
       }
     };
 
-    // Secret date & developer shortcut listener
+    // Secret date listener
     let keyBuffer = '';
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Dev shortcut to unlock secret message: Ctrl+B or Cmd+B
-      if ((e.ctrlKey || e.metaKey) && (e.key === 'b' || e.key === 'B')) {
-        e.preventDefault();
-        handleDevBypass();
-        const el = document.getElementById('final-message');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-
       // Don't intercept if user is typing in terminal or input fields
       if (
         document.activeElement === terminalInputRef.current ||
@@ -1604,18 +1563,18 @@ export default function App() {
                 سيكريت مسدج مشفرة 🔒
               </h4>
               <p className="text-xs sm:text-sm text-[#94A3B8] mb-6 max-w-md mx-auto leading-relaxed">
-                الرسالة دي محمية بشفرة خاصة عشان مفيش أي حد غيرك كـ Developer وباتمان يفتحها.
+                رسالة خاصة جداً ومقفولة بتشفير.. لازم تدخل الكود الصح عشان تتفتح 🔒
               </p>
 
               {/* Developer Terminal Box */}
-              <div className="max-w-lg mx-auto bg-black/85 rounded-2xl p-5 border border-white/10 text-left font-code mb-6 shadow-2xl" dir="ltr">
+              <div className="max-w-lg mx-auto bg-black/85 rounded-2xl p-5 border border-white/10 text-left font-code mb-4 shadow-2xl" dir="ltr">
                 <div className="flex items-center justify-between text-[11px] text-[#38BDF8] border-b border-white/10 pb-2 mb-3">
                   <span>batman@batcave:~# vault_decrypt.sh</span>
                   <span className="text-amber-400">STATUS: LOCKED 🔒</span>
                 </div>
 
                 <p className="text-xs text-gray-400 mb-3">
-                  // Enter your secret cipher key (or press <span className="text-amber-300 font-bold">Ctrl + B</span>):
+                  // Enter decryption key:
                 </p>
 
                 <form onSubmit={handleUnlockVault} className="space-y-3">
@@ -1628,7 +1587,7 @@ export default function App() {
                         setCipherInput(e.target.value);
                         if (cipherError) setCipherError('');
                       }}
-                      placeholder="e.g. batman / 17/9 / 5/10 / ro2a"
+                      placeholder="••••••••"
                       className="bg-transparent border-none text-xs sm:text-sm font-code text-white focus:outline-none w-full placeholder:text-gray-600"
                     />
                   </div>
@@ -1640,28 +1599,16 @@ export default function App() {
                     </div>
                   )}
 
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="pt-2 flex justify-center">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#0052FF] text-white text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
+                      className="w-full sm:w-auto px-8 py-2.5 rounded-xl bg-[#2563EB] hover:bg-[#0052FF] text-white text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95"
                     >
                       <i className="fa-solid fa-terminal text-xs" />
                       <span className="font-sans">فك التشفير (Execute) ⚡</span>
                     </button>
-
-                    <button
-                      type="button"
-                      onClick={handleDevBypass}
-                      className="text-[11px] text-[#94A3B8] hover:text-white underline decoration-dotted transition flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>⌨️ اختصار الديفيلوبر [Ctrl + B]</span>
-                    </button>
                   </div>
                 </form>
-              </div>
-
-              <div className="text-[11px] text-[#94A3B8]/60 font-code">
-                HINT: استخدم كود باتمان أو تاريخنا السري 17/9 أو 5/10 🦇
               </div>
             </div>
           ) : (
@@ -1671,7 +1618,7 @@ export default function App() {
 
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-code mb-5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>ACCESS GRANTED // IDENTITY VERIFIED: BATMAN // 2025</span>
+                <span>ACCESS GRANTED // 2025</span>
               </div>
 
               <div className="w-14 h-14 rounded-2xl bg-rose-500/15 text-rose-400 mx-auto flex items-center justify-center text-2xl mb-5 shadow-inner border border-rose-500/30">
@@ -1681,6 +1628,31 @@ export default function App() {
               <p className="text-base sm:text-lg font-medium text-white mb-6 leading-relaxed max-w-xl mx-auto">
                 دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية.. اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا Perfect 🤍
               </p>
+
+              {/* Special Family Photo with Kids */}
+              <div className="my-8 max-w-xl mx-auto animate-fadeIn">
+                <div
+                  className="rounded-3xl overflow-hidden p-2.5 bg-gradient-to-b from-white/15 via-white/5 to-white/10 border border-white/20 shadow-2xl cursor-pointer group transition-transform duration-500 hover:scale-[1.01]"
+                  onClick={() =>
+                    setLightboxImage({
+                      src: IMAGES.familyKids,
+                      caption: 'تفتكر دا كان هيبقى شكل اولادنا ولا لا',
+                      tag: '🤍'
+                    })
+                  }
+                >
+                  <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black shadow-inner">
+                    <img
+                      src={IMAGES.familyKids}
+                      alt="تفتكر دا كان هيبقى شكل اولادنا ولا لا"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-700"
+                    />
+                  </div>
+                </div>
+                <p className="text-base sm:text-xl font-bold text-amber-300 mt-4 leading-relaxed font-sans text-center">
+                  تفتكر دا كان هيبقى شكل اولادنا ولا لا
+                </p>
+              </div>
 
               {/* YouTube Player CTA for Perfect (https://youtu.be/2Vv-BfVoq4g) */}
               <div className="my-8 flex flex-col items-center justify-center">
