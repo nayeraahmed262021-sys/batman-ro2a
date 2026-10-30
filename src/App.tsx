@@ -1791,9 +1791,40 @@ export default function App() {
                 <i className="fa-solid fa-envelope-open-text" />
               </div>
 
-              <p className="text-base sm:text-lg font-medium text-white mb-6 leading-relaxed max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed max-w-xl mx-auto">
                 دي اخر حاجة في الويبسايت سيكريت مسدج ممكن اغيرهالك كل شوية.. اقراها وانت بتسمع الاغنية اللي كان نفسي نرقص عليها سوا في فرحنا Perfect 🤍
               </p>
+
+              {/* Black Box Secret Message */}
+              <div
+                className="my-8 max-w-xl mx-auto bg-black/95 rounded-2xl p-6 sm:p-9 border border-white/15 shadow-2xl text-right relative overflow-hidden backdrop-blur-md"
+                dir="rtl"
+              >
+                <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-rose-500/60 via-amber-400/50 to-blue-500/60" />
+                <div className="flex items-center justify-between text-xs text-[#94A3B8] border-b border-white/10 pb-3 mb-5 font-mono">
+                  <span className="text-amber-300 font-sans font-medium text-xs sm:text-sm">
+                    الثلاثون من أكتوبر ٢٠٢٦ م
+                  </span>
+                  <span className="text-rose-400/90 text-[11px] font-sans flex items-center gap-1.5">
+                    <i className="fa-solid fa-envelope-heart text-xs" />
+                    <span>رسالة خاصة</span>
+                  </span>
+                </div>
+                <div className="space-y-3.5 text-white/95 text-base sm:text-lg leading-relaxed font-sans">
+                  <p className="font-semibold text-rose-300 text-lg sm:text-xl">
+                    أما بعد، سأظل أحبك رغم كل البُعد…
+                  </p>
+                  <p className="text-gray-100">
+                    توقفت أرجلي عن المشي حين علمت أنني فقدتك، ألم أكن أمشي لأسير إليك! ألم أكن أقاوم لأجلك؟
+                  </p>
+                  <p className="text-gray-100">
+                    ألم تكن نور عيني التي أسير على هداها!
+                  </p>
+                  <p className="text-gray-300 font-light">
+                    لا أعلم كيف يمشي شخصًا إذا فقد نور عينه، كيف ينجو؟!
+                  </p>
+                </div>
+              </div>
 
               {/* Special Family Photo with Kids */}
               <div className="my-8 max-w-xl mx-auto animate-fadeIn">
